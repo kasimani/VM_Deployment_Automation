@@ -127,7 +127,7 @@ def deploy_vm_route(request, render_template, redirect, url_for, flash):
         ip_addr = (request.form.get("ip_addr") or "").strip()
         subnetprefix = (request.form.get("subnetprefix") or "24").strip()
         vm_gateway = (request.form.get("vm_gateway") or "").strip()
-        hv_id_selected = request.form.get("hv_id") 
+        hv_id_selected = request.form.getlist("hv_id")
 
         qcow2_images = {
             "deployer": "NSP_K8S_PLATFORM_RHEL*.qcow2",
@@ -178,8 +178,12 @@ def deploy_vm_route(request, render_template, redirect, url_for, flash):
 
         bundles = [{"base_name": base_name, "count": vm_count, "spec": base_spec}]
         
-        if hv_id_selected and hv_id_selected.lower() != "all":
-            hypervisors = [hv for hv in hypervisors if str(hv["id"]) == hv_id_selected]
+        # if hv_id_selected and hv_id_selected.lower() != "all":
+        #     hypervisors = [hv for hv in hypervisors if str(hv["id"]) == hv_id_selected]
+        if not hv_id_selected or "all" in hv_id_selected:
+            pass
+        else:
+            hypervisors = [hv for hv in hypervisors if str(hv["id"]) in hv_id_selected]
 
         plan = build_deployment_plan(hypervisors, bundles)
         logging.info(f"Deployment plan: {plan}")

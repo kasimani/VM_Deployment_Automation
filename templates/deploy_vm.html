@@ -9,15 +9,59 @@
         <input type="text" name="subnetprefix" placeholder="Subnet Prefix" required>
         <input type="text" name="vm_gateway" placeholder="Gateway" required>
 
-        <select name="hv_id">
-            <option value="all" selected>-- All Hypervisors --</option>
+<!--        <select name="hv_id">
+            <option value="all" selected>&#45;&#45; All Hypervisors &#45;&#45;</option>
             {% for hv in hypervisors %}
                 <option value="{{ hv.id }}">{{ hv.ip }}</option>
             {% endfor %}
-        </select>
+        </select>-->
 
+        <div style="display:flex; flex-direction:column; gap:6px; border: 1px solid black;">
+
+              <label><input type="checkbox" id="hv_all" value="all" checked> -- All Hypervisors --</label>
+
+              <div id="hv_list" style="padding-left:8px;">
+                {% for hv in hypervisors %}
+                  <label style="display:block;">
+                    <input type="checkbox" name="hv_id" value="{{ hv.id }}" class="hv_item">
+                    {{ hv.ip }}
+                  </label>
+                {% endfor %}
+              </div>
+        </div>
+
+        <script>
+          // Simple “Select All” logic
+        const hvAll = document.getElementById('hv_all');
+        const hvItems = document.querySelectorAll('.hv_item');
+
+        // default: all selected, but users must be able to click others
+        hvItems.forEach(cb => cb.disabled = false);
+
+        hvAll.addEventListener('change', () => {
+            if (hvAll.checked) {
+                // if ALL checked → uncheck all individuals
+                hvItems.forEach(cb => { cb.checked = false; });
+            }
+        });
+
+        // if any individual HV is selected → uncheck ALL
+        hvItems.forEach(cb => {
+            cb.addEventListener('change', () => {
+                if (cb.checked) {
+                    hvAll.checked = false;
+                } else {
+                    // if user deselects individuals and none selected → fallback to ALL
+                    const anyChecked = [...hvItems].some(i => i.checked);
+                    if (!anyChecked) hvAll.checked = true;
+                }
+            });
+        });
+        </script>
+
+<!--        <label for="vm_type">Select VM Type:</label>-->
         <select id="vm_type" name="vm_type" required onchange="toggleVmCount()">
-            <label for="vm_type">Select VM Type:</label>
+<!--            <label for="vm_type">Select VM Type:</label>-->
             <option value="">-- Select VM Type --</option>
             <option value="deployer">Deployer</option>
             <option value="nfm-p">NFM-P</option>

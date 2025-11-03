@@ -1694,3 +1694,501 @@
 2025-10-30 19:53:57 [INFO] Authentication (publickey) successful!
 2025-10-30 19:53:59 [INFO] 127.0.0.1 - - [30/Oct/2025 19:53:59] "GET /dashboard HTTP/1.1" 200 -
 2025-10-30 19:54:18 [INFO] 127.0.0.1 - - [30/Oct/2025 19:54:18] "GET /add_hv HTTP/1.1" 200 -
+2025-11-03 15:29:09 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-11-03 15:29:09 [INFO] [33mPress CTRL+C to quit[0m
+2025-11-03 15:30:35 [INFO] 127.0.0.1 - - [03/Nov/2025 15:30:35] "GET / HTTP/1.1" 200 -
+2025-11-03 15:30:36 [INFO] 127.0.0.1 - - [03/Nov/2025 15:30:36] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-11-03 15:30:38 [INFO] 127.0.0.1 - - [03/Nov/2025 15:30:38] "GET /deploy_vm HTTP/1.1" 200 -
+2025-11-03 15:32:23 [INFO] 127.0.0.1 - - [03/Nov/2025 15:32:23] "GET /deploy_vm HTTP/1.1" 200 -
+2025-11-03 15:33:15 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-11-03 15:33:15 [INFO] [33mPress CTRL+C to quit[0m
+2025-11-03 15:33:15 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-11-03 15:33:15 [INFO] [33mPress CTRL+C to quit[0m
+2025-11-03 15:33:21 [ERROR] Exception on /deploy_vm [GET]
+Traceback (most recent call last):
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\app.py", line 137, in deploy_vm
+    return deploy_vm_route(request, render_template, redirect, url_for, flash)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\deploy_vm_handler2.py", line 215, in deploy_vm_route
+    return render_template("deploy_vm.html", hypervisors=hypervisors)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\flask\templating.py", line 150, in render_template
+    return _render(app, template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\flask\templating.py", line 131, in _render
+    rv = template.render(context)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\jinja2\environment.py", line 1295, in render
+    self.environment.handle_exception()
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\jinja2\environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\templates\deploy_vm.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\templates\base.html", line 16, in top-level template code
+    {% block content %}{% endblock %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\templates\deploy_vm.html", line 23, in block 'content'
+    <input type="checkbox" name="hv_id" value="{{ hv.id }}">
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\jinja2\environment.py", line 490, in getattr
+    return getattr(obj, attribute)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+jinja2.exceptions.UndefinedError: 'hv' is undefined
+2025-11-03 15:33:21 [INFO] 127.0.0.1 - - [03/Nov/2025 15:33:21] "[35m[1mGET /deploy_vm HTTP/1.1[0m" 500 -
+2025-11-03 15:33:24 [INFO] 127.0.0.1 - - [03/Nov/2025 15:33:24] "GET / HTTP/1.1" 200 -
+2025-11-03 15:33:26 [ERROR] Exception on /deploy_vm [GET]
+Traceback (most recent call last):
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\app.py", line 137, in deploy_vm
+    return deploy_vm_route(request, render_template, redirect, url_for, flash)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\deploy_vm_handler2.py", line 215, in deploy_vm_route
+    return render_template("deploy_vm.html", hypervisors=hypervisors)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\flask\templating.py", line 150, in render_template
+    return _render(app, template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\flask\templating.py", line 131, in _render
+    rv = template.render(context)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\jinja2\environment.py", line 1295, in render
+    self.environment.handle_exception()
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\jinja2\environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\templates\deploy_vm.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\templates\base.html", line 16, in top-level template code
+    {% block content %}{% endblock %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\templates\deploy_vm.html", line 23, in block 'content'
+    <input type="checkbox" name="hv_id" value="{{ hv.id }}">
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\jinja2\environment.py", line 490, in getattr
+    return getattr(obj, attribute)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+jinja2.exceptions.UndefinedError: 'hv' is undefined
+2025-11-03 15:33:26 [INFO] 127.0.0.1 - - [03/Nov/2025 15:33:26] "[35m[1mGET /deploy_vm HTTP/1.1[0m" 500 -
+2025-11-03 15:33:30 [ERROR] Exception on /deploy_vm [GET]
+Traceback (most recent call last):
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\app.py", line 137, in deploy_vm
+    return deploy_vm_route(request, render_template, redirect, url_for, flash)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\deploy_vm_handler2.py", line 215, in deploy_vm_route
+    return render_template("deploy_vm.html", hypervisors=hypervisors)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\flask\templating.py", line 150, in render_template
+    return _render(app, template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\flask\templating.py", line 131, in _render
+    rv = template.render(context)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\jinja2\environment.py", line 1295, in render
+    self.environment.handle_exception()
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\jinja2\environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\templates\deploy_vm.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\templates\base.html", line 16, in top-level template code
+    {% block content %}{% endblock %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\templates\deploy_vm.html", line 23, in block 'content'
+    <input type="checkbox" name="hv_id" value="{{ hv.id }}">
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\jinja2\environment.py", line 490, in getattr
+    return getattr(obj, attribute)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+jinja2.exceptions.UndefinedError: 'hv' is undefined
+2025-11-03 15:33:30 [INFO] 127.0.0.1 - - [03/Nov/2025 15:33:30] "[35m[1mGET /deploy_vm HTTP/1.1[0m" 500 -
+2025-11-03 15:33:30 [INFO] 127.0.0.1 - - [03/Nov/2025 15:33:30] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-11-03 15:33:46 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-11-03 15:33:46 [INFO] [33mPress CTRL+C to quit[0m
+2025-11-03 15:33:57 [ERROR] Exception on /deploy_vm [GET]
+Traceback (most recent call last):
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\app.py", line 137, in deploy_vm
+    return deploy_vm_route(request, render_template, redirect, url_for, flash)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\deploy_vm_handler2.py", line 215, in deploy_vm_route
+    return render_template("deploy_vm.html", hypervisors=hypervisors)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\flask\templating.py", line 150, in render_template
+    return _render(app, template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\flask\templating.py", line 131, in _render
+    rv = template.render(context)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\jinja2\environment.py", line 1295, in render
+    self.environment.handle_exception()
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\jinja2\environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\templates\deploy_vm.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\templates\base.html", line 16, in top-level template code
+    {% block content %}{% endblock %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\templates\deploy_vm.html", line 23, in block 'content'
+    <input type="checkbox" name="hv_id" value="{{ hv.id }}">
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\jinja2\environment.py", line 490, in getattr
+    return getattr(obj, attribute)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+jinja2.exceptions.UndefinedError: 'hv' is undefined
+2025-11-03 15:33:57 [INFO] 127.0.0.1 - - [03/Nov/2025 15:33:57] "[35m[1mGET /deploy_vm HTTP/1.1[0m" 500 -
+2025-11-03 15:33:59 [ERROR] Exception on /deploy_vm [GET]
+Traceback (most recent call last):
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\app.py", line 137, in deploy_vm
+    return deploy_vm_route(request, render_template, redirect, url_for, flash)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\deploy_vm_handler2.py", line 215, in deploy_vm_route
+    return render_template("deploy_vm.html", hypervisors=hypervisors)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\flask\templating.py", line 150, in render_template
+    return _render(app, template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\flask\templating.py", line 131, in _render
+    rv = template.render(context)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\jinja2\environment.py", line 1295, in render
+    self.environment.handle_exception()
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\jinja2\environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\templates\deploy_vm.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\templates\base.html", line 16, in top-level template code
+    {% block content %}{% endblock %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\templates\deploy_vm.html", line 23, in block 'content'
+    <input type="checkbox" name="hv_id" value="{{ hv.id }}">
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\jinja2\environment.py", line 490, in getattr
+    return getattr(obj, attribute)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+jinja2.exceptions.UndefinedError: 'hv' is undefined
+2025-11-03 15:33:59 [INFO] 127.0.0.1 - - [03/Nov/2025 15:33:59] "[35m[1mGET /deploy_vm HTTP/1.1[0m" 500 -
+2025-11-03 15:34:41 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-11-03 15:34:41 [INFO] [33mPress CTRL+C to quit[0m
+2025-11-03 15:34:42 [ERROR] Exception on /deploy_vm [GET]
+Traceback (most recent call last):
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\app.py", line 137, in deploy_vm
+    return deploy_vm_route(request, render_template, redirect, url_for, flash)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\deploy_vm_handler2.py", line 215, in deploy_vm_route
+    return render_template("deploy_vm.html", hypervisors=hypervisors)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\flask\templating.py", line 150, in render_template
+    return _render(app, template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\flask\templating.py", line 131, in _render
+    rv = template.render(context)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\jinja2\environment.py", line 1295, in render
+    self.environment.handle_exception()
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\jinja2\environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\templates\deploy_vm.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\templates\base.html", line 16, in top-level template code
+    {% block content %}{% endblock %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\templates\deploy_vm.html", line 21, in block 'content'
+    <input type="checkbox" name="hv_id" value="{{ hv.id }}">
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\jinja2\environment.py", line 490, in getattr
+    return getattr(obj, attribute)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+jinja2.exceptions.UndefinedError: 'hv' is undefined
+2025-11-03 15:34:42 [INFO] 127.0.0.1 - - [03/Nov/2025 15:34:42] "[35m[1mGET /deploy_vm HTTP/1.1[0m" 500 -
+2025-11-03 15:34:44 [ERROR] Exception on /deploy_vm [GET]
+Traceback (most recent call last):
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\app.py", line 137, in deploy_vm
+    return deploy_vm_route(request, render_template, redirect, url_for, flash)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\deploy_vm_handler2.py", line 215, in deploy_vm_route
+    return render_template("deploy_vm.html", hypervisors=hypervisors)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\flask\templating.py", line 150, in render_template
+    return _render(app, template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\flask\templating.py", line 131, in _render
+    rv = template.render(context)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\jinja2\environment.py", line 1295, in render
+    self.environment.handle_exception()
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\jinja2\environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\templates\deploy_vm.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\templates\base.html", line 16, in top-level template code
+    {% block content %}{% endblock %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\templates\deploy_vm.html", line 21, in block 'content'
+    <input type="checkbox" name="hv_id" value="{{ hv.id }}">
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\jinja2\environment.py", line 490, in getattr
+    return getattr(obj, attribute)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+jinja2.exceptions.UndefinedError: 'hv' is undefined
+2025-11-03 15:34:44 [INFO] 127.0.0.1 - - [03/Nov/2025 15:34:44] "[35m[1mGET /deploy_vm HTTP/1.1[0m" 500 -
+2025-11-03 15:35:18 [ERROR] Exception on /deploy_vm [GET]
+Traceback (most recent call last):
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\app.py", line 137, in deploy_vm
+    return deploy_vm_route(request, render_template, redirect, url_for, flash)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\deploy_vm_handler2.py", line 215, in deploy_vm_route
+    return render_template("deploy_vm.html", hypervisors=hypervisors)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\flask\templating.py", line 150, in render_template
+    return _render(app, template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\flask\templating.py", line 131, in _render
+    rv = template.render(context)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\jinja2\environment.py", line 1295, in render
+    self.environment.handle_exception()
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\jinja2\environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\templates\deploy_vm.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\templates\base.html", line 16, in top-level template code
+    {% block content %}{% endblock %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\templates\deploy_vm.html", line 21, in block 'content'
+    <input type="checkbox" name="hv_id" value="{{ hv.id }}">
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\jinja2\environment.py", line 490, in getattr
+    return getattr(obj, attribute)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+jinja2.exceptions.UndefinedError: 'hv' is undefined
+2025-11-03 15:35:18 [INFO] 127.0.0.1 - - [03/Nov/2025 15:35:18] "[35m[1mGET /deploy_vm HTTP/1.1[0m" 500 -
+2025-11-03 15:35:21 [INFO] 127.0.0.1 - - [03/Nov/2025 15:35:21] "GET / HTTP/1.1" 200 -
+2025-11-03 15:35:22 [ERROR] Exception on /deploy_vm [GET]
+Traceback (most recent call last):
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\app.py", line 137, in deploy_vm
+    return deploy_vm_route(request, render_template, redirect, url_for, flash)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\deploy_vm_handler2.py", line 215, in deploy_vm_route
+    return render_template("deploy_vm.html", hypervisors=hypervisors)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\flask\templating.py", line 150, in render_template
+    return _render(app, template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\flask\templating.py", line 131, in _render
+    rv = template.render(context)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\jinja2\environment.py", line 1295, in render
+    self.environment.handle_exception()
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\jinja2\environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\templates\deploy_vm.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\templates\base.html", line 16, in top-level template code
+    {% block content %}{% endblock %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\templates\deploy_vm.html", line 21, in block 'content'
+    <input type="checkbox" name="hv_id" value="{{ hv.id }}">
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\jinja2\environment.py", line 490, in getattr
+    return getattr(obj, attribute)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+jinja2.exceptions.UndefinedError: 'hv' is undefined
+2025-11-03 15:35:22 [INFO] 127.0.0.1 - - [03/Nov/2025 15:35:22] "[35m[1mGET /deploy_vm HTTP/1.1[0m" 500 -
+2025-11-03 15:35:51 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-11-03 15:35:51 [INFO] [33mPress CTRL+C to quit[0m
+2025-11-03 15:36:35 [INFO] 127.0.0.1 - - [03/Nov/2025 15:36:35] "GET / HTTP/1.1" 200 -
+2025-11-03 15:36:37 [ERROR] Exception on /deploy_vm [GET]
+Traceback (most recent call last):
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\app.py", line 137, in deploy_vm
+    return deploy_vm_route(request, render_template, redirect, url_for, flash)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\deploy_vm_handler2.py", line 215, in deploy_vm_route
+    return render_template("deploy_vm.html", hypervisors=hypervisors)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\flask\templating.py", line 150, in render_template
+    return _render(app, template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\flask\templating.py", line 131, in _render
+    rv = template.render(context)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\jinja2\environment.py", line 1295, in render
+    self.environment.handle_exception()
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\jinja2\environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\templates\deploy_vm.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\templates\base.html", line 16, in top-level template code
+    {% block content %}{% endblock %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\templates\deploy_vm.html", line 21, in block 'content'
+    <input type="checkbox" name="hv_id" value="{{ hv.id }}">
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msing045\PycharmProjects\VM_Deployment\.venv\Lib\site-packages\jinja2\environment.py", line 490, in getattr
+    return getattr(obj, attribute)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+jinja2.exceptions.UndefinedError: 'hv' is undefined
+2025-11-03 15:36:37 [INFO] 127.0.0.1 - - [03/Nov/2025 15:36:37] "[35m[1mGET /deploy_vm HTTP/1.1[0m" 500 -
+2025-11-03 15:37:03 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-11-03 15:37:03 [INFO] [33mPress CTRL+C to quit[0m
+2025-11-03 15:37:06 [INFO] 127.0.0.1 - - [03/Nov/2025 15:37:06] "GET /deploy_vm HTTP/1.1" 200 -
+2025-11-03 15:41:13 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-11-03 15:41:13 [INFO] [33mPress CTRL+C to quit[0m
+2025-11-03 15:41:15 [INFO] 127.0.0.1 - - [03/Nov/2025 15:41:15] "GET /deploy_vm HTTP/1.1" 200 -
+2025-11-03 15:41:18 [INFO] 127.0.0.1 - - [03/Nov/2025 15:41:18] "GET /deploy_vm HTTP/1.1" 200 -
+2025-11-03 15:41:29 [INFO] 127.0.0.1 - - [03/Nov/2025 15:41:29] "GET /deploy_vm HTTP/1.1" 200 -
+2025-11-03 15:42:39 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-11-03 15:42:39 [INFO] [33mPress CTRL+C to quit[0m
+2025-11-03 15:42:46 [INFO] 127.0.0.1 - - [03/Nov/2025 15:42:46] "GET /deploy_vm HTTP/1.1" 200 -
+2025-11-03 15:55:49 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-11-03 15:55:49 [INFO] [33mPress CTRL+C to quit[0m
+2025-11-03 15:55:54 [INFO] 127.0.0.1 - - [03/Nov/2025 15:55:54] "GET /deploy_vm HTTP/1.1" 200 -
+2025-11-03 17:19:23 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-11-03 17:19:23 [INFO] [33mPress CTRL+C to quit[0m
+2025-11-03 17:19:28 [INFO] 127.0.0.1 - - [03/Nov/2025 17:19:28] "GET /deploy_vm HTTP/1.1" 200 -
+2025-11-03 17:28:31 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-11-03 17:28:31 [INFO] [33mPress CTRL+C to quit[0m
+2025-11-03 17:28:35 [INFO] 127.0.0.1 - - [03/Nov/2025 17:28:35] "GET /deploy_vm HTTP/1.1" 200 -
+2025-11-03 17:31:07 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-11-03 17:31:07 [INFO] [33mPress CTRL+C to quit[0m
+2025-11-03 17:31:16 [INFO] 127.0.0.1 - - [03/Nov/2025 17:31:16] "GET /deploy_vm HTTP/1.1" 200 -
+2025-11-03 17:36:44 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-11-03 17:36:44 [INFO] [33mPress CTRL+C to quit[0m
+2025-11-03 17:36:49 [INFO] 127.0.0.1 - - [03/Nov/2025 17:36:49] "GET /deploy_vm HTTP/1.1" 200 -
+2025-11-03 17:37:18 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-11-03 17:37:18 [INFO] [33mPress CTRL+C to quit[0m
+2025-11-03 17:37:21 [INFO] 127.0.0.1 - - [03/Nov/2025 17:37:21] "GET /deploy_vm HTTP/1.1" 200 -
+2025-11-03 17:38:02 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-11-03 17:38:02 [INFO] [33mPress CTRL+C to quit[0m
+2025-11-03 17:38:07 [INFO] 127.0.0.1 - - [03/Nov/2025 17:38:07] "GET /deploy_vm HTTP/1.1" 200 -
