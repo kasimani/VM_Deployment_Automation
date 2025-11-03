@@ -1,0 +1,7 @@
+vm_name: "default-vm"
+vm_cpu: "{{ default_cpu }}"
+vm_memory: "{{ default_memory }}"
+vm_disk: "{{ default_disk }}"
+vm_image: "{{ image_path }}/base.qcow2"
+vm_network: "default"
+vm_hv: "127.0.0.1"

@@ -1,0 +1,5 @@
+- name: Deploy VMs on this HV
+  include_tasks: vm_creation.yml
+  loop: "{{ vms }}"
+  loop_control:
+    loop_var: vm

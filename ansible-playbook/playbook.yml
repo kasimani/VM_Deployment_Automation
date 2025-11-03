@@ -1,0 +1,8 @@
+- name: Deploy VM from QCOW2
+  hosts: hypervisors
+  gather_facts: false
+  vars_files:
+    - vars/vm_vars.yml
+  become: yes
+  roles:
+    - vm_deploy

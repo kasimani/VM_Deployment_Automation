@@ -1,0 +1,1696 @@
+2025-09-05 15:09:25 [INFO] 127.0.0.1 - - [05/Sep/2025 15:09:25] "GET /deploy_vm HTTP/1.1" 200 -
+2025-09-05 15:09:59 [INFO] Selected qcow2 image for cluster: /home/qcow2images/NSP_K8S_PLATFORM_RHEL8_23_11.qcow2
+2025-09-05 15:09:59 [INFO] Deployment plan: [{'hv': {'id': 1, 'name': 'HV_1', 'ip': '10.58.8.5', 'username': 'root', 'password': 'Bsnl@123'}, 'hv_id': 1, 'vms': [{'cpu': 8, 'ram': 8192, 'disk': 300, 'ipaddr': '192.168.23.10', 'prefix': '24', 'gateway': '192.168.23.1', 'qcow2_image': '/home/qcow2images/NSP_K8S_PLATFORM_RHEL8_23_11.qcow2', 'vg_name': 'vg1', 'vm_type': 'cluster', 'required_partitions': [{'lv': 'lv_home', 'mount': '/home', 'size_mb': 30720}, {'lv': 'lv_opt', 'mount': '/opt', 'size_mb': 51200}], 'name': 'Cluster_VM01'}]}, {'hv': {'id': 2, 'name': 'HV_2', 'ip': '10.58.8.11', 'username': 'root', 'password': 'Tcl@123'}, 'hv_id': 2, 'vms': [{'cpu': 8, 'ram': 8192, 'disk': 300, 'ipaddr': '192.168.23.10', 'prefix': '24', 'gateway': '192.168.23.1', 'qcow2_image': '/home/qcow2images/NSP_K8S_PLATFORM_RHEL8_23_11.qcow2', 'vg_name': 'vg1', 'vm_type': 'cluster', 'required_partitions': [{'lv': 'lv_home', 'mount': '/home', 'size_mb': 30720}, {'lv': 'lv_opt', 'mount': '/opt', 'size_mb': 51200}], 'name': 'Cluster_VM02'}]}]
+2025-09-05 15:09:59 [INFO] 127.0.0.1 - - [05/Sep/2025 15:09:59] "[32mPOST /deploy_vm HTTP/1.1[0m" 302 -
+2025-09-05 15:09:59 [INFO] Running Ansible: ansible-playbook playbook.yml -e target_server=10.58.8.11 -e target_server_username=root -e @vars/vm_vars_Cluster_VM_2.yml -e qcow2_image_src_dir=/home/qcow2images -e qcow2_image_dst_dir=/home/images -e vm_interface=enp1s0 -e user_ssh_pub_key=~/.ssh/id_rsa.pub --forks 5
+2025-09-05 15:09:59 [INFO] Running Ansible: ansible-playbook playbook.yml -e target_server=10.58.8.5 -e target_server_username=root -e @vars/vm_vars_Cluster_VM_1.yml -e qcow2_image_src_dir=/home/qcow2images -e qcow2_image_dst_dir=/home/images -e vm_interface=enp1s0 -e user_ssh_pub_key=~/.ssh/id_rsa.pub --forks 5
+2025-09-05 15:10:00 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-09-05 15:10:00 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:10:00 [INFO] [Ansible STDOUT][HV 10.58.8.5] PLAY [Deploy VM from QCOW2] ****************************************************
+2025-09-05 15:10:00 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:10:00 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Deploy VMs on this HV] ***************************************
+2025-09-05 15:10:00 [INFO] [Ansible STDOUT][HV 10.58.8.11] 
+2025-09-05 15:10:00 [INFO] [Ansible STDOUT][HV 10.58.8.11] PLAY [Deploy VM from QCOW2] ****************************************************
+2025-09-05 15:10:00 [INFO] [Ansible STDOUT][HV 10.58.8.11] 
+2025-09-05 15:10:00 [INFO] [Ansible STDOUT][HV 10.58.8.11] TASK [vm_deploy : Deploy VMs on this HV] ***************************************
+2025-09-05 15:10:00 [INFO] [Ansible STDOUT][HV 10.58.8.5] included: /home/manish/vm_deployment_automation/ansible-playbook/roles/vm_deploy/tasks/vm_creation.yml for localhost => (item={'cpu': 8, 'ram': 8192, 'disk': 300, 'ipaddr': '192.168.23.10', 'prefix': '24', 'gateway': '192.168.23.1', 'qcow2_image': '/home/qcow2images/NSP_K8S_PLATFORM_RHEL8_23_11.qcow2', 'vg_name': 'vg1', 'vm_type': 'cluster', 'required_partitions': [{'lv': 'lv_home', 'mount': '/home', 'size_mb': 30720}, {'lv': 'lv_opt', 'mount': '/opt', 'size_mb': 51200}], 'name': 'Cluster_VM01'})
+2025-09-05 15:10:00 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:10:00 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Ensure VM directory exists] **********************************
+2025-09-05 15:10:00 [INFO] [Ansible STDOUT][HV 10.58.8.11] included: /home/manish/vm_deployment_automation/ansible-playbook/roles/vm_deploy/tasks/vm_creation.yml for localhost => (item={'cpu': 8, 'ram': 8192, 'disk': 300, 'ipaddr': '192.168.23.10', 'prefix': '24', 'gateway': '192.168.23.1', 'qcow2_image': '/home/qcow2images/NSP_K8S_PLATFORM_RHEL8_23_11.qcow2', 'vg_name': 'vg1', 'vm_type': 'cluster', 'required_partitions': [{'lv': 'lv_home', 'mount': '/home', 'size_mb': 30720}, {'lv': 'lv_opt', 'mount': '/opt', 'size_mb': 51200}], 'name': 'Cluster_VM02'})
+2025-09-05 15:10:00 [INFO] [Ansible STDOUT][HV 10.58.8.11] 
+2025-09-05 15:10:00 [INFO] [Ansible STDOUT][HV 10.58.8.11] TASK [vm_deploy : Ensure VM directory exists] **********************************
+2025-09-05 15:10:00 [INFO] Authentication (publickey) successful!
+2025-09-05 15:10:01 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-09-05 15:10:02 [INFO] Authentication (publickey) successful!
+2025-09-05 15:10:04 [INFO] 127.0.0.1 - - [05/Sep/2025 15:10:04] "GET /dashboard HTTP/1.1" 200 -
+2025-09-05 15:10:10 [INFO] [Ansible STDOUT][HV 10.58.8.11] changed: [localhost -> 10.58.8.11]
+2025-09-05 15:10:10 [INFO] [Ansible STDOUT][HV 10.58.8.11] 
+2025-09-05 15:10:10 [INFO] [Ansible STDOUT][HV 10.58.8.11] TASK [vm_deploy : Define qcow2_vm_path fact] ***********************************
+2025-09-05 15:10:10 [INFO] [Ansible STDOUT][HV 10.58.8.11] ok: [localhost -> 10.58.8.11]
+2025-09-05 15:10:10 [INFO] [Ansible STDOUT][HV 10.58.8.11] 
+2025-09-05 15:10:10 [INFO] [Ansible STDOUT][HV 10.58.8.11] TASK [vm_deploy : Check if QCOW2 image already exists] *************************
+2025-09-05 15:10:11 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-09-05 15:10:11 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:10:11 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Define qcow2_vm_path fact] ***********************************
+2025-09-05 15:10:11 [INFO] [Ansible STDOUT][HV 10.58.8.5] ok: [localhost -> 10.58.8.5]
+2025-09-05 15:10:11 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:10:11 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Check if QCOW2 image already exists] *************************
+2025-09-05 15:10:20 [INFO] [Ansible STDOUT][HV 10.58.8.5] ok: [localhost -> 10.58.8.5]
+2025-09-05 15:10:20 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:10:20 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Copy base QCOW2 image if missing] ****************************
+2025-09-05 15:10:20 [INFO] [Ansible STDOUT][HV 10.58.8.11] ok: [localhost -> 10.58.8.11]
+2025-09-05 15:10:20 [INFO] [Ansible STDOUT][HV 10.58.8.11] 
+2025-09-05 15:10:20 [INFO] [Ansible STDOUT][HV 10.58.8.11] TASK [vm_deploy : Copy base QCOW2 image if missing] ****************************
+2025-09-05 15:10:37 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-09-05 15:10:37 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:10:37 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Backup qcow2] ************************************************
+2025-09-05 15:10:38 [INFO] [Ansible STDOUT][HV 10.58.8.11] changed: [localhost -> 10.58.8.11]
+2025-09-05 15:10:38 [INFO] [Ansible STDOUT][HV 10.58.8.11] 
+2025-09-05 15:10:38 [INFO] [Ansible STDOUT][HV 10.58.8.11] TASK [vm_deploy : Backup qcow2] ************************************************
+2025-09-05 15:10:47 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-09-05 15:10:47 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:10:47 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Resize qcow2] ************************************************
+2025-09-05 15:10:49 [INFO] [Ansible STDOUT][HV 10.58.8.11] changed: [localhost -> 10.58.8.11]
+2025-09-05 15:10:49 [INFO] [Ansible STDOUT][HV 10.58.8.11] 
+2025-09-05 15:10:49 [INFO] [Ansible STDOUT][HV 10.58.8.11] TASK [vm_deploy : Resize qcow2] ************************************************
+2025-09-05 15:10:57 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-09-05 15:10:57 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:10:57 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Expand qcow2 with virt-resize] *******************************
+2025-09-05 15:10:59 [INFO] [Ansible STDOUT][HV 10.58.8.11] changed: [localhost -> 10.58.8.11]
+2025-09-05 15:10:59 [INFO] [Ansible STDOUT][HV 10.58.8.11] 
+2025-09-05 15:10:59 [INFO] [Ansible STDOUT][HV 10.58.8.11] TASK [vm_deploy : Expand qcow2 with virt-resize] *******************************
+2025-09-05 15:12:22 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-09-05 15:12:22 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:12:22 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Remove backup qcow2] *****************************************
+2025-09-05 15:12:31 [INFO] [Ansible STDOUT][HV 10.58.8.11] changed: [localhost -> 10.58.8.11]
+2025-09-05 15:12:31 [INFO] [Ansible STDOUT][HV 10.58.8.11] 
+2025-09-05 15:12:31 [INFO] [Ansible STDOUT][HV 10.58.8.11] TASK [vm_deploy : Remove backup qcow2] *****************************************
+2025-09-05 15:12:32 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-09-05 15:12:32 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:12:32 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Get Partitions List] *****************************************
+2025-09-05 15:12:41 [INFO] [Ansible STDOUT][HV 10.58.8.11] changed: [localhost -> 10.58.8.11]
+2025-09-05 15:12:41 [INFO] [Ansible STDOUT][HV 10.58.8.11] 
+2025-09-05 15:12:41 [INFO] [Ansible STDOUT][HV 10.58.8.11] TASK [vm_deploy : Get Partitions List] *****************************************
+2025-09-05 15:12:44 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-09-05 15:12:44 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:12:44 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Identify root partition] *************************************
+2025-09-05 15:12:53 [INFO] [Ansible STDOUT][HV 10.58.8.11] changed: [localhost -> 10.58.8.11]
+2025-09-05 15:12:53 [INFO] [Ansible STDOUT][HV 10.58.8.11] 
+2025-09-05 15:12:53 [INFO] [Ansible STDOUT][HV 10.58.8.11] TASK [vm_deploy : Identify root partition] *************************************
+2025-09-05 15:12:55 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item=/dev/sda2: ext4)
+2025-09-05 15:12:55 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:12:55 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Set guestfish_mount] *****************************************
+2025-09-05 15:12:55 [INFO] [Ansible STDOUT][HV 10.58.8.5] ok: [localhost -> 10.58.8.5] => (item=/dev/sda2)
+2025-09-05 15:12:55 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:12:55 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Get LVM Name] ************************************************
+2025-09-05 15:13:05 [INFO] [Ansible STDOUT][HV 10.58.8.11] changed: [localhost -> 10.58.8.11] => (item=/dev/sda2: ext4)
+2025-09-05 15:13:05 [INFO] [Ansible STDOUT][HV 10.58.8.11] 
+2025-09-05 15:13:05 [INFO] [Ansible STDOUT][HV 10.58.8.11] TASK [vm_deploy : Set guestfish_mount] *****************************************
+2025-09-05 15:13:05 [INFO] [Ansible STDOUT][HV 10.58.8.11] ok: [localhost -> 10.58.8.11] => (item=/dev/sda2)
+2025-09-05 15:13:05 [INFO] [Ansible STDOUT][HV 10.58.8.11] 
+2025-09-05 15:13:05 [INFO] [Ansible STDOUT][HV 10.58.8.11] TASK [vm_deploy : Get LVM Name] ************************************************
+2025-09-05 15:13:07 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-09-05 15:13:07 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:13:07 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Resize LVMs] *************************************************
+2025-09-05 15:13:17 [INFO] [Ansible STDOUT][HV 10.58.8.11] changed: [localhost -> 10.58.8.11]
+2025-09-05 15:13:17 [INFO] [Ansible STDOUT][HV 10.58.8.11] 
+2025-09-05 15:13:17 [INFO] [Ansible STDOUT][HV 10.58.8.11] TASK [vm_deploy : Resize LVMs] *************************************************
+2025-09-05 15:13:19 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'lv': 'lv_home', 'mount': '/home', 'size_mb': 30720})
+2025-09-05 15:13:19 [INFO] [Ansible STDOUT][HV 10.58.8.5] skipping: [localhost] => (item={'lv': 'lv_opt', 'mount': '/opt', 'size_mb': 51200})
+2025-09-05 15:13:19 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:13:19 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Create Missing LVM] ******************************************
+2025-09-05 15:13:29 [INFO] [Ansible STDOUT][HV 10.58.8.11] changed: [localhost -> 10.58.8.11] => (item={'lv': 'lv_home', 'mount': '/home', 'size_mb': 30720})
+2025-09-05 15:13:29 [INFO] [Ansible STDOUT][HV 10.58.8.11] skipping: [localhost] => (item={'lv': 'lv_opt', 'mount': '/opt', 'size_mb': 51200})
+2025-09-05 15:13:29 [INFO] [Ansible STDOUT][HV 10.58.8.11] 
+2025-09-05 15:13:29 [INFO] [Ansible STDOUT][HV 10.58.8.11] TASK [vm_deploy : Create Missing LVM] ******************************************
+2025-09-05 15:13:33 [INFO] [Ansible STDOUT][HV 10.58.8.5] skipping: [localhost] => (item={'lv': 'lv_home', 'mount': '/home', 'size_mb': 30720})
+2025-09-05 15:13:33 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'lv': 'lv_opt', 'mount': '/opt', 'size_mb': 51200})
+2025-09-05 15:13:33 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:13:33 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Get the public key for the current user] *********************
+2025-09-05 15:13:34 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost]
+2025-09-05 15:13:34 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:13:34 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Set persistent interface name via udev rule] *****************
+2025-09-05 15:13:44 [INFO] [Ansible STDOUT][HV 10.58.8.11] skipping: [localhost] => (item={'lv': 'lv_home', 'mount': '/home', 'size_mb': 30720})
+2025-09-05 15:13:44 [INFO] [Ansible STDOUT][HV 10.58.8.11] changed: [localhost -> 10.58.8.11] => (item={'lv': 'lv_opt', 'mount': '/opt', 'size_mb': 51200})
+2025-09-05 15:13:44 [INFO] [Ansible STDOUT][HV 10.58.8.11] 
+2025-09-05 15:13:44 [INFO] [Ansible STDOUT][HV 10.58.8.11] TASK [vm_deploy : Get the public key for the current user] *********************
+2025-09-05 15:13:45 [INFO] [Ansible STDOUT][HV 10.58.8.11] changed: [localhost]
+2025-09-05 15:13:45 [INFO] [Ansible STDOUT][HV 10.58.8.11] 
+2025-09-05 15:13:45 [INFO] [Ansible STDOUT][HV 10.58.8.11] TASK [vm_deploy : Set persistent interface name via udev rule] *****************
+2025-09-05 15:13:51 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-09-05 15:13:51 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:13:51 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Create temporary files from templates] ***********************
+2025-09-05 15:14:06 [INFO] [Ansible STDOUT][HV 10.58.8.11] changed: [localhost -> 10.58.8.11]
+2025-09-05 15:14:06 [INFO] [Ansible STDOUT][HV 10.58.8.11] 
+2025-09-05 15:14:06 [INFO] [Ansible STDOUT][HV 10.58.8.11] TASK [vm_deploy : Create temporary files from templates] ***********************
+2025-09-05 15:15:39 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'ifcfg-enp1s0.j2', 'dest': 'ifcfg-enp1s0'})
+2025-09-05 15:15:39 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'network.j2', 'dest': 'network'})
+2025-09-05 15:15:39 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'hostname.j2', 'dest': 'hostname'})
+2025-09-05 15:15:39 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'authorized_keys.j2', 'dest': 'authorized_keys'})
+2025-09-05 15:15:39 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:15:39 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Copy files into image] ***************************************
+2025-09-05 15:15:49 [INFO] [Ansible STDOUT][HV 10.58.8.11] changed: [localhost -> 10.58.8.11] => (item={'src': 'ifcfg-enp1s0.j2', 'dest': 'ifcfg-enp1s0'})
+2025-09-05 15:15:49 [INFO] [Ansible STDOUT][HV 10.58.8.11] changed: [localhost -> 10.58.8.11] => (item={'src': 'network.j2', 'dest': 'network'})
+2025-09-05 15:15:49 [INFO] [Ansible STDOUT][HV 10.58.8.11] changed: [localhost -> 10.58.8.11] => (item={'src': 'hostname.j2', 'dest': 'hostname'})
+2025-09-05 15:15:49 [INFO] [Ansible STDOUT][HV 10.58.8.11] changed: [localhost -> 10.58.8.11] => (item={'src': 'authorized_keys.j2', 'dest': 'authorized_keys'})
+2025-09-05 15:15:49 [INFO] [Ansible STDOUT][HV 10.58.8.11] 
+2025-09-05 15:15:49 [INFO] [Ansible STDOUT][HV 10.58.8.11] TASK [vm_deploy : Copy files into image] ***************************************
+2025-09-05 15:16:30 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'ifcfg-enp1s0', 'target': '/etc/sysconfig/network-scripts/'})
+2025-09-05 15:16:30 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'network', 'target': '/etc/sysconfig/'})
+2025-09-05 15:16:30 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'hostname', 'target': '/etc/'})
+2025-09-05 15:16:30 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'authorized_keys', 'target': '/root/.ssh/'})
+2025-09-05 15:16:30 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:16:30 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Remove temporary files] **************************************
+2025-09-05 15:16:40 [INFO] [Ansible STDOUT][HV 10.58.8.11] changed: [localhost -> 10.58.8.11] => (item={'src': 'ifcfg-enp1s0', 'target': '/etc/sysconfig/network-scripts/'})
+2025-09-05 15:16:40 [INFO] [Ansible STDOUT][HV 10.58.8.11] changed: [localhost -> 10.58.8.11] => (item={'src': 'network', 'target': '/etc/sysconfig/'})
+2025-09-05 15:16:40 [INFO] [Ansible STDOUT][HV 10.58.8.11] changed: [localhost -> 10.58.8.11] => (item={'src': 'hostname', 'target': '/etc/'})
+2025-09-05 15:16:40 [INFO] [Ansible STDOUT][HV 10.58.8.11] changed: [localhost -> 10.58.8.11] => (item={'src': 'authorized_keys', 'target': '/root/.ssh/'})
+2025-09-05 15:16:40 [INFO] [Ansible STDOUT][HV 10.58.8.11] 
+2025-09-05 15:16:40 [INFO] [Ansible STDOUT][HV 10.58.8.11] TASK [vm_deploy : Remove temporary files] **************************************
+2025-09-05 15:17:12 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item=ifcfg-enp1s0)
+2025-09-05 15:17:12 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item=network)
+2025-09-05 15:17:12 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item=hostname)
+2025-09-05 15:17:12 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item=authorized_keys)
+2025-09-05 15:17:12 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:17:12 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Set ownership/permissions] ***********************************
+2025-09-05 15:17:23 [INFO] [Ansible STDOUT][HV 10.58.8.11] changed: [localhost -> 10.58.8.11] => (item=ifcfg-enp1s0)
+2025-09-05 15:17:23 [INFO] [Ansible STDOUT][HV 10.58.8.11] changed: [localhost -> 10.58.8.11] => (item=network)
+2025-09-05 15:17:23 [INFO] [Ansible STDOUT][HV 10.58.8.11] changed: [localhost -> 10.58.8.11] => (item=hostname)
+2025-09-05 15:17:23 [INFO] [Ansible STDOUT][HV 10.58.8.11] changed: [localhost -> 10.58.8.11] => (item=authorized_keys)
+2025-09-05 15:17:23 [INFO] [Ansible STDOUT][HV 10.58.8.11] 
+2025-09-05 15:17:23 [INFO] [Ansible STDOUT][HV 10.58.8.11] TASK [vm_deploy : Set ownership/permissions] ***********************************
+2025-09-05 15:18:24 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'cmd': 'chown 0 0 /etc/sysconfig/network-scripts/ifcfg-enp1s0'})
+2025-09-05 15:18:24 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'cmd': 'chown 0 0 /etc/sysconfig/network'})
+2025-09-05 15:18:24 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'cmd': 'chown 0 0 /etc/hostname'})
+2025-09-05 15:18:24 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'cmd': 'chown 0 0 /root/.ssh'})
+2025-09-05 15:18:24 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'cmd': 'chown 0 0 /root/.ssh/authorized_keys'})
+2025-09-05 15:18:24 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'cmd': 'chmod 0640 /root/.ssh/authorized_keys'})
+2025-09-05 15:18:24 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:18:24 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Deploy VM with virt-install] *********************************
+2025-09-05 15:18:24 [INFO] [Ansible STDOUT][HV 10.58.8.5] fatal: [localhost -> 10.58.8.5]: FAILED! => {"msg": "The task includes an option with an undefined variable. The error was: 'vm_bridge' is undefined. 'vm_bridge' is undefined\n\nThe error appears to be in '/home/manish/vm_deployment_automation/ansible-playbook/roles/vm_deploy/tasks/vm_creation.yml': line 154, column 7, but may\nbe elsewhere in the file depending on the exact syntax problem.\n\nThe offending line appears to be:\n\n\n    - name: Deploy VM with virt-install\n      ^ here\n"}
+2025-09-05 15:18:24 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:18:24 [INFO] [Ansible STDOUT][HV 10.58.8.5] PLAY RECAP *********************************************************************
+2025-09-05 15:18:24 [INFO] [Ansible STDOUT][HV 10.58.8.5] localhost                  : ok=21   changed=17   unreachable=0    failed=1    skipped=0    rescued=0    ignored=0
+2025-09-05 15:18:24 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:18:24 [ERROR] Ansible failed for HV 10.58.8.5 with exit code 2
+2025-09-05 15:18:24 [INFO] Updated VM Cluster_VM01 on HV 1 → Failed
+2025-09-05 15:18:38 [INFO] [Ansible STDOUT][HV 10.58.8.11] changed: [localhost -> 10.58.8.11] => (item={'cmd': 'chown 0 0 /etc/sysconfig/network-scripts/ifcfg-enp1s0'})
+2025-09-05 15:18:38 [INFO] [Ansible STDOUT][HV 10.58.8.11] changed: [localhost -> 10.58.8.11] => (item={'cmd': 'chown 0 0 /etc/sysconfig/network'})
+2025-09-05 15:18:38 [INFO] [Ansible STDOUT][HV 10.58.8.11] changed: [localhost -> 10.58.8.11] => (item={'cmd': 'chown 0 0 /etc/hostname'})
+2025-09-05 15:18:38 [INFO] [Ansible STDOUT][HV 10.58.8.11] changed: [localhost -> 10.58.8.11] => (item={'cmd': 'chown 0 0 /root/.ssh'})
+2025-09-05 15:18:38 [INFO] [Ansible STDOUT][HV 10.58.8.11] changed: [localhost -> 10.58.8.11] => (item={'cmd': 'chown 0 0 /root/.ssh/authorized_keys'})
+2025-09-05 15:18:38 [INFO] [Ansible STDOUT][HV 10.58.8.11] changed: [localhost -> 10.58.8.11] => (item={'cmd': 'chmod 0640 /root/.ssh/authorized_keys'})
+2025-09-05 15:18:38 [INFO] [Ansible STDOUT][HV 10.58.8.11] 
+2025-09-05 15:18:38 [INFO] [Ansible STDOUT][HV 10.58.8.11] TASK [vm_deploy : Deploy VM with virt-install] *********************************
+2025-09-05 15:18:38 [INFO] [Ansible STDOUT][HV 10.58.8.11] fatal: [localhost -> 10.58.8.11]: FAILED! => {"msg": "The task includes an option with an undefined variable. The error was: 'vm_bridge' is undefined. 'vm_bridge' is undefined\n\nThe error appears to be in '/home/manish/vm_deployment_automation/ansible-playbook/roles/vm_deploy/tasks/vm_creation.yml': line 154, column 7, but may\nbe elsewhere in the file depending on the exact syntax problem.\n\nThe offending line appears to be:\n\n\n    - name: Deploy VM with virt-install\n      ^ here\n"}
+2025-09-05 15:18:38 [INFO] [Ansible STDOUT][HV 10.58.8.11] 
+2025-09-05 15:18:38 [INFO] [Ansible STDOUT][HV 10.58.8.11] PLAY RECAP *********************************************************************
+2025-09-05 15:18:38 [INFO] [Ansible STDOUT][HV 10.58.8.11] localhost                  : ok=21   changed=17   unreachable=0    failed=1    skipped=0    rescued=0    ignored=0
+2025-09-05 15:18:38 [INFO] [Ansible STDOUT][HV 10.58.8.11] 
+2025-09-05 15:18:38 [ERROR] Ansible failed for HV 10.58.8.11 with exit code 2
+2025-09-05 15:18:38 [INFO] Updated VM Cluster_VM02 on HV 2 → Failed
+2025-09-05 15:21:41 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-09-05 15:21:41 [INFO] [33mPress CTRL+C to quit[0m
+2025-09-05 15:21:56 [INFO] Running Ansible: ansible-playbook destroy.yml -e vm_name=Cluster_VM01 -e target_server=10.58.8.5 -e target_server_username=root -e libvirt_user=root -e libvirt_group=root
+2025-09-05 15:21:57 [INFO] [Ansible STDOUT] 
+2025-09-05 15:21:57 [INFO] [Ansible STDOUT] PLAY [Start Process - Destroy VM] **********************************************
+2025-09-05 15:21:57 [INFO] [Ansible STDOUT] 
+2025-09-05 15:21:57 [INFO] [Ansible STDOUT] TASK [Destroy VM] **************************************************************
+2025-09-05 15:22:09 [INFO] [Ansible STDOUT] changed: [localhost -> 10.58.8.5]
+2025-09-05 15:22:09 [INFO] [Ansible STDOUT] 
+2025-09-05 15:22:09 [INFO] [Ansible STDOUT] PLAY RECAP *********************************************************************
+2025-09-05 15:22:09 [INFO] [Ansible STDOUT] localhost                  : ok=1    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+2025-09-05 15:22:09 [INFO] [Ansible STDOUT] 
+2025-09-05 15:22:09 [INFO] Running Ansible: ansible-playbook destroy.yml -e vm_name=Cluster_VM02 -e target_server=10.58.8.11 -e target_server_username=root -e libvirt_user=root -e libvirt_group=root
+2025-09-05 15:22:10 [INFO] [Ansible STDOUT] 
+2025-09-05 15:22:10 [INFO] [Ansible STDOUT] PLAY [Start Process - Destroy VM] **********************************************
+2025-09-05 15:22:10 [INFO] [Ansible STDOUT] 
+2025-09-05 15:22:10 [INFO] [Ansible STDOUT] TASK [Destroy VM] **************************************************************
+2025-09-05 15:22:21 [INFO] [Ansible STDOUT] changed: [localhost -> 10.58.8.11]
+2025-09-05 15:22:21 [INFO] [Ansible STDOUT] 
+2025-09-05 15:22:21 [INFO] [Ansible STDOUT] PLAY RECAP *********************************************************************
+2025-09-05 15:22:21 [INFO] [Ansible STDOUT] localhost                  : ok=1    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+2025-09-05 15:22:21 [INFO] [Ansible STDOUT] 
+2025-09-05 15:22:21 [INFO] 127.0.0.1 - - [05/Sep/2025 15:22:21] "[32mPOST /delete_vm HTTP/1.1[0m" 302 -
+2025-09-05 15:22:22 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-09-05 15:22:22 [INFO] Authentication (publickey) successful!
+2025-09-05 15:22:23 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-09-05 15:22:24 [INFO] Authentication (publickey) successful!
+2025-09-05 15:22:25 [INFO] 127.0.0.1 - - [05/Sep/2025 15:22:25] "GET /dashboard HTTP/1.1" 200 -
+2025-09-05 15:22:30 [INFO] 127.0.0.1 - - [05/Sep/2025 15:22:30] "GET /deploy_vm HTTP/1.1" 200 -
+2025-09-05 15:23:09 [INFO] Selected qcow2 image for cluster: /home/qcow2images/NSP_K8S_PLATFORM_RHEL8_23_11.qcow2
+2025-09-05 15:23:09 [INFO] Deployment plan: [{'hv': {'id': 1, 'name': 'HV_1', 'ip': '10.58.8.5', 'username': 'root', 'password': 'Bsnl@123'}, 'hv_id': 1, 'vms': [{'cpu': 8, 'ram': 8192, 'disk': 300, 'ipaddr': '192.168.23.10', 'prefix': '24', 'gateway': '192.168.23.1', 'qcow2_image': '/home/qcow2images/NSP_K8S_PLATFORM_RHEL8_23_11.qcow2', 'vg_name': 'vg1', 'vm_type': 'cluster', 'required_partitions': [{'lv': 'lv_home', 'mount': '/home', 'size_mb': 30720}, {'lv': 'lv_opt', 'mount': '/opt', 'size_mb': 51200}], 'name': 'Cluster_VM01'}]}, {'hv': {'id': 2, 'name': 'HV_2', 'ip': '10.58.8.11', 'username': 'root', 'password': 'Tcl@123'}, 'hv_id': 2, 'vms': [{'cpu': 8, 'ram': 8192, 'disk': 300, 'ipaddr': '192.168.23.10', 'prefix': '24', 'gateway': '192.168.23.1', 'qcow2_image': '/home/qcow2images/NSP_K8S_PLATFORM_RHEL8_23_11.qcow2', 'vg_name': 'vg1', 'vm_type': 'cluster', 'required_partitions': [{'lv': 'lv_home', 'mount': '/home', 'size_mb': 30720}, {'lv': 'lv_opt', 'mount': '/opt', 'size_mb': 51200}], 'name': 'Cluster_VM02'}]}]
+2025-09-05 15:23:09 [INFO] 127.0.0.1 - - [05/Sep/2025 15:23:09] "[32mPOST /deploy_vm HTTP/1.1[0m" 302 -
+2025-09-05 15:23:09 [INFO] Running Ansible: ansible-playbook playbook.yml -e target_server=10.58.8.5 -e target_server_username=root -e @vars/vm_vars_Cluster_VM_1.yml -e qcow2_image_src_dir=/home/qcow2images -e qcow2_image_dst_dir=/home/images -e vm_bridge=br0 -e vm_interface=enp1s0 -e libvirt_user=root -e libvirt_group=root -e user_ssh_pub_key=~/.ssh/id_rsa.pub --forks 5
+2025-09-05 15:23:09 [INFO] Running Ansible: ansible-playbook playbook.yml -e target_server=10.58.8.11 -e target_server_username=root -e @vars/vm_vars_Cluster_VM_2.yml -e qcow2_image_src_dir=/home/qcow2images -e qcow2_image_dst_dir=/home/images -e vm_bridge=br0 -e vm_interface=enp1s0 -e libvirt_user=root -e libvirt_group=root -e user_ssh_pub_key=~/.ssh/id_rsa.pub --forks 5
+2025-09-05 15:23:10 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-09-05 15:23:10 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:23:10 [INFO] [Ansible STDOUT][HV 10.58.8.5] PLAY [Deploy VM from QCOW2] ****************************************************
+2025-09-05 15:23:10 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:23:10 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Deploy VMs on this HV] ***************************************
+2025-09-05 15:23:10 [INFO] [Ansible STDOUT][HV 10.58.8.11] 
+2025-09-05 15:23:10 [INFO] [Ansible STDOUT][HV 10.58.8.11] PLAY [Deploy VM from QCOW2] ****************************************************
+2025-09-05 15:23:10 [INFO] [Ansible STDOUT][HV 10.58.8.11] 
+2025-09-05 15:23:10 [INFO] [Ansible STDOUT][HV 10.58.8.11] TASK [vm_deploy : Deploy VMs on this HV] ***************************************
+2025-09-05 15:23:10 [INFO] [Ansible STDOUT][HV 10.58.8.11] included: /home/manish/vm_deployment_automation/ansible-playbook/roles/vm_deploy/tasks/vm_creation.yml for localhost => (item={'cpu': 8, 'ram': 8192, 'disk': 300, 'ipaddr': '192.168.23.10', 'prefix': '24', 'gateway': '192.168.23.1', 'qcow2_image': '/home/qcow2images/NSP_K8S_PLATFORM_RHEL8_23_11.qcow2', 'vg_name': 'vg1', 'vm_type': 'cluster', 'required_partitions': [{'lv': 'lv_home', 'mount': '/home', 'size_mb': 30720}, {'lv': 'lv_opt', 'mount': '/opt', 'size_mb': 51200}], 'name': 'Cluster_VM02'})
+2025-09-05 15:23:10 [INFO] [Ansible STDOUT][HV 10.58.8.5] included: /home/manish/vm_deployment_automation/ansible-playbook/roles/vm_deploy/tasks/vm_creation.yml for localhost => (item={'cpu': 8, 'ram': 8192, 'disk': 300, 'ipaddr': '192.168.23.10', 'prefix': '24', 'gateway': '192.168.23.1', 'qcow2_image': '/home/qcow2images/NSP_K8S_PLATFORM_RHEL8_23_11.qcow2', 'vg_name': 'vg1', 'vm_type': 'cluster', 'required_partitions': [{'lv': 'lv_home', 'mount': '/home', 'size_mb': 30720}, {'lv': 'lv_opt', 'mount': '/opt', 'size_mb': 51200}], 'name': 'Cluster_VM01'})
+2025-09-05 15:23:10 [INFO] [Ansible STDOUT][HV 10.58.8.11] 
+2025-09-05 15:23:10 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:23:10 [INFO] [Ansible STDOUT][HV 10.58.8.11] TASK [vm_deploy : Ensure VM directory exists] **********************************
+2025-09-05 15:23:10 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Ensure VM directory exists] **********************************
+2025-09-05 15:23:10 [INFO] Authentication (publickey) successful!
+2025-09-05 15:23:11 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-09-05 15:23:12 [INFO] Authentication (publickey) successful!
+2025-09-05 15:23:13 [INFO] 127.0.0.1 - - [05/Sep/2025 15:23:13] "GET /dashboard HTTP/1.1" 200 -
+2025-09-05 15:23:21 [INFO] [Ansible STDOUT][HV 10.58.8.11] changed: [localhost -> 10.58.8.11]
+2025-09-05 15:23:21 [INFO] [Ansible STDOUT][HV 10.58.8.11] 
+2025-09-05 15:23:21 [INFO] [Ansible STDOUT][HV 10.58.8.11] TASK [vm_deploy : Define qcow2_vm_path fact] ***********************************
+2025-09-05 15:23:21 [INFO] [Ansible STDOUT][HV 10.58.8.11] ok: [localhost -> 10.58.8.11]
+2025-09-05 15:23:21 [INFO] [Ansible STDOUT][HV 10.58.8.11] 
+2025-09-05 15:23:21 [INFO] [Ansible STDOUT][HV 10.58.8.11] TASK [vm_deploy : Check if QCOW2 image already exists] *************************
+2025-09-05 15:23:22 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-09-05 15:23:22 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:23:22 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Define qcow2_vm_path fact] ***********************************
+2025-09-05 15:23:22 [INFO] [Ansible STDOUT][HV 10.58.8.5] ok: [localhost -> 10.58.8.5]
+2025-09-05 15:23:22 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:23:22 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Check if QCOW2 image already exists] *************************
+2025-09-05 15:23:33 [INFO] [Ansible STDOUT][HV 10.58.8.11] ok: [localhost -> 10.58.8.11]
+2025-09-05 15:23:33 [INFO] [Ansible STDOUT][HV 10.58.8.11] 
+2025-09-05 15:23:33 [INFO] [Ansible STDOUT][HV 10.58.8.11] TASK [vm_deploy : Copy base QCOW2 image if missing] ****************************
+2025-09-05 15:23:34 [INFO] [Ansible STDOUT][HV 10.58.8.5] ok: [localhost -> 10.58.8.5]
+2025-09-05 15:23:34 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:23:34 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Copy base QCOW2 image if missing] ****************************
+2025-09-05 15:23:51 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-09-05 15:23:51 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:23:51 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Backup qcow2] ************************************************
+2025-09-05 15:23:51 [INFO] [Ansible STDOUT][HV 10.58.8.11] changed: [localhost -> 10.58.8.11]
+2025-09-05 15:23:51 [INFO] [Ansible STDOUT][HV 10.58.8.11] 
+2025-09-05 15:23:51 [INFO] [Ansible STDOUT][HV 10.58.8.11] TASK [vm_deploy : Backup qcow2] ************************************************
+2025-09-05 15:24:03 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-09-05 15:24:03 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:24:03 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Resize qcow2] ************************************************
+2025-09-05 15:24:03 [INFO] [Ansible STDOUT][HV 10.58.8.11] changed: [localhost -> 10.58.8.11]
+2025-09-05 15:24:03 [INFO] [Ansible STDOUT][HV 10.58.8.11] 
+2025-09-05 15:24:03 [INFO] [Ansible STDOUT][HV 10.58.8.11] TASK [vm_deploy : Resize qcow2] ************************************************
+2025-09-05 15:24:14 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-09-05 15:24:14 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:24:14 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Expand qcow2 with virt-resize] *******************************
+2025-09-05 15:24:14 [INFO] [Ansible STDOUT][HV 10.58.8.11] changed: [localhost -> 10.58.8.11]
+2025-09-05 15:24:14 [INFO] [Ansible STDOUT][HV 10.58.8.11] 
+2025-09-05 15:24:14 [INFO] [Ansible STDOUT][HV 10.58.8.11] TASK [vm_deploy : Expand qcow2 with virt-resize] *******************************
+2025-09-05 15:25:36 [INFO] [Ansible STDOUT][HV 10.58.8.11] changed: [localhost -> 10.58.8.11]
+2025-09-05 15:25:36 [INFO] [Ansible STDOUT][HV 10.58.8.11] 
+2025-09-05 15:25:36 [INFO] [Ansible STDOUT][HV 10.58.8.11] TASK [vm_deploy : Remove backup qcow2] *****************************************
+2025-09-05 15:25:39 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-09-05 15:25:39 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:25:39 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Remove backup qcow2] *****************************************
+2025-09-05 15:25:47 [INFO] [Ansible STDOUT][HV 10.58.8.11] changed: [localhost -> 10.58.8.11]
+2025-09-05 15:25:47 [INFO] [Ansible STDOUT][HV 10.58.8.11] 
+2025-09-05 15:25:47 [INFO] [Ansible STDOUT][HV 10.58.8.11] TASK [vm_deploy : Get Partitions List] *****************************************
+2025-09-05 15:25:50 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-09-05 15:25:50 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:25:50 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Get Partitions List] *****************************************
+2025-09-05 15:26:00 [INFO] [Ansible STDOUT][HV 10.58.8.11] changed: [localhost -> 10.58.8.11]
+2025-09-05 15:26:00 [INFO] [Ansible STDOUT][HV 10.58.8.11] 
+2025-09-05 15:26:00 [INFO] [Ansible STDOUT][HV 10.58.8.11] TASK [vm_deploy : Identify root partition] *************************************
+2025-09-05 15:26:02 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-09-05 15:26:02 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:26:02 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Identify root partition] *************************************
+2025-09-05 15:26:14 [INFO] [Ansible STDOUT][HV 10.58.8.11] changed: [localhost -> 10.58.8.11] => (item=/dev/sda2: ext4)
+2025-09-05 15:26:14 [INFO] [Ansible STDOUT][HV 10.58.8.11] 
+2025-09-05 15:26:14 [INFO] [Ansible STDOUT][HV 10.58.8.11] TASK [vm_deploy : Set guestfish_mount] *****************************************
+2025-09-05 15:26:14 [INFO] [Ansible STDOUT][HV 10.58.8.11] ok: [localhost -> 10.58.8.11] => (item=/dev/sda2)
+2025-09-05 15:26:14 [INFO] [Ansible STDOUT][HV 10.58.8.11] 
+2025-09-05 15:26:14 [INFO] [Ansible STDOUT][HV 10.58.8.11] TASK [vm_deploy : Get LVM Name] ************************************************
+2025-09-05 15:26:15 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item=/dev/sda2: ext4)
+2025-09-05 15:26:15 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:26:15 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Set guestfish_mount] *****************************************
+2025-09-05 15:26:15 [INFO] [Ansible STDOUT][HV 10.58.8.5] ok: [localhost -> 10.58.8.5] => (item=/dev/sda2)
+2025-09-05 15:26:15 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:26:15 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Get LVM Name] ************************************************
+2025-09-05 15:26:29 [INFO] [Ansible STDOUT][HV 10.58.8.11] changed: [localhost -> 10.58.8.11]
+2025-09-05 15:26:29 [INFO] [Ansible STDOUT][HV 10.58.8.11] 
+2025-09-05 15:26:29 [INFO] [Ansible STDOUT][HV 10.58.8.11] TASK [vm_deploy : Resize LVMs] *************************************************
+2025-09-05 15:26:29 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-09-05 15:26:29 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:26:29 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Resize LVMs] *************************************************
+2025-09-05 15:26:41 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'lv': 'lv_home', 'mount': '/home', 'size_mb': 30720})
+2025-09-05 15:26:41 [INFO] [Ansible STDOUT][HV 10.58.8.5] skipping: [localhost] => (item={'lv': 'lv_opt', 'mount': '/opt', 'size_mb': 51200})
+2025-09-05 15:26:41 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:26:41 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Create Missing LVM] ******************************************
+2025-09-05 15:26:42 [INFO] [Ansible STDOUT][HV 10.58.8.11] changed: [localhost -> 10.58.8.11] => (item={'lv': 'lv_home', 'mount': '/home', 'size_mb': 30720})
+2025-09-05 15:26:42 [INFO] [Ansible STDOUT][HV 10.58.8.11] skipping: [localhost] => (item={'lv': 'lv_opt', 'mount': '/opt', 'size_mb': 51200})
+2025-09-05 15:26:42 [INFO] [Ansible STDOUT][HV 10.58.8.11] 
+2025-09-05 15:26:42 [INFO] [Ansible STDOUT][HV 10.58.8.11] TASK [vm_deploy : Create Missing LVM] ******************************************
+2025-09-05 15:26:57 [INFO] [Ansible STDOUT][HV 10.58.8.5] skipping: [localhost] => (item={'lv': 'lv_home', 'mount': '/home', 'size_mb': 30720})
+2025-09-05 15:26:57 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'lv': 'lv_opt', 'mount': '/opt', 'size_mb': 51200})
+2025-09-05 15:26:57 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:26:57 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Get the public key for the current user] *********************
+2025-09-05 15:26:57 [INFO] [Ansible STDOUT][HV 10.58.8.11] skipping: [localhost] => (item={'lv': 'lv_home', 'mount': '/home', 'size_mb': 30720})
+2025-09-05 15:26:57 [INFO] [Ansible STDOUT][HV 10.58.8.11] changed: [localhost -> 10.58.8.11] => (item={'lv': 'lv_opt', 'mount': '/opt', 'size_mb': 51200})
+2025-09-05 15:26:57 [INFO] [Ansible STDOUT][HV 10.58.8.11] 
+2025-09-05 15:26:57 [INFO] [Ansible STDOUT][HV 10.58.8.11] TASK [vm_deploy : Get the public key for the current user] *********************
+2025-09-05 15:26:58 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost]
+2025-09-05 15:26:58 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:26:58 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Set persistent interface name via udev rule] *****************
+2025-09-05 15:26:58 [INFO] [Ansible STDOUT][HV 10.58.8.11] changed: [localhost]
+2025-09-05 15:26:58 [INFO] [Ansible STDOUT][HV 10.58.8.11] 
+2025-09-05 15:26:58 [INFO] [Ansible STDOUT][HV 10.58.8.11] TASK [vm_deploy : Set persistent interface name via udev rule] *****************
+2025-09-05 15:27:16 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-09-05 15:27:16 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:27:16 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Create temporary files from templates] ***********************
+2025-09-05 15:27:16 [INFO] [Ansible STDOUT][HV 10.58.8.11] changed: [localhost -> 10.58.8.11]
+2025-09-05 15:27:16 [INFO] [Ansible STDOUT][HV 10.58.8.11] 
+2025-09-05 15:27:16 [INFO] [Ansible STDOUT][HV 10.58.8.11] TASK [vm_deploy : Create temporary files from templates] ***********************
+2025-09-05 15:28:30 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'ifcfg-enp1s0.j2', 'dest': 'ifcfg-enp1s0'})
+2025-09-05 15:28:30 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'network.j2', 'dest': 'network'})
+2025-09-05 15:28:30 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'hostname.j2', 'dest': 'hostname'})
+2025-09-05 15:28:30 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'authorized_keys.j2', 'dest': 'authorized_keys'})
+2025-09-05 15:28:30 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:28:30 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Copy files into image] ***************************************
+2025-09-05 15:28:31 [INFO] [Ansible STDOUT][HV 10.58.8.11] changed: [localhost -> 10.58.8.11] => (item={'src': 'ifcfg-enp1s0.j2', 'dest': 'ifcfg-enp1s0'})
+2025-09-05 15:28:31 [INFO] [Ansible STDOUT][HV 10.58.8.11] changed: [localhost -> 10.58.8.11] => (item={'src': 'network.j2', 'dest': 'network'})
+2025-09-05 15:28:31 [INFO] [Ansible STDOUT][HV 10.58.8.11] changed: [localhost -> 10.58.8.11] => (item={'src': 'hostname.j2', 'dest': 'hostname'})
+2025-09-05 15:28:31 [INFO] [Ansible STDOUT][HV 10.58.8.11] changed: [localhost -> 10.58.8.11] => (item={'src': 'authorized_keys.j2', 'dest': 'authorized_keys'})
+2025-09-05 15:28:31 [INFO] [Ansible STDOUT][HV 10.58.8.11] 
+2025-09-05 15:28:31 [INFO] [Ansible STDOUT][HV 10.58.8.11] TASK [vm_deploy : Copy files into image] ***************************************
+2025-09-05 15:29:20 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'ifcfg-enp1s0', 'target': '/etc/sysconfig/network-scripts/'})
+2025-09-05 15:29:20 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'network', 'target': '/etc/sysconfig/'})
+2025-09-05 15:29:20 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'hostname', 'target': '/etc/'})
+2025-09-05 15:29:20 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'authorized_keys', 'target': '/root/.ssh/'})
+2025-09-05 15:29:20 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:29:20 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Remove temporary files] **************************************
+2025-09-05 15:29:23 [INFO] [Ansible STDOUT][HV 10.58.8.11] changed: [localhost -> 10.58.8.11] => (item={'src': 'ifcfg-enp1s0', 'target': '/etc/sysconfig/network-scripts/'})
+2025-09-05 15:29:23 [INFO] [Ansible STDOUT][HV 10.58.8.11] changed: [localhost -> 10.58.8.11] => (item={'src': 'network', 'target': '/etc/sysconfig/'})
+2025-09-05 15:29:23 [INFO] [Ansible STDOUT][HV 10.58.8.11] changed: [localhost -> 10.58.8.11] => (item={'src': 'hostname', 'target': '/etc/'})
+2025-09-05 15:29:23 [INFO] [Ansible STDOUT][HV 10.58.8.11] changed: [localhost -> 10.58.8.11] => (item={'src': 'authorized_keys', 'target': '/root/.ssh/'})
+2025-09-05 15:29:23 [INFO] [Ansible STDOUT][HV 10.58.8.11] 
+2025-09-05 15:29:23 [INFO] [Ansible STDOUT][HV 10.58.8.11] TASK [vm_deploy : Remove temporary files] **************************************
+2025-09-05 15:30:01 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item=ifcfg-enp1s0)
+2025-09-05 15:30:01 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item=network)
+2025-09-05 15:30:01 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item=hostname)
+2025-09-05 15:30:01 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item=authorized_keys)
+2025-09-05 15:30:01 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:30:01 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Set ownership/permissions] ***********************************
+2025-09-05 15:30:05 [INFO] [Ansible STDOUT][HV 10.58.8.11] changed: [localhost -> 10.58.8.11] => (item=ifcfg-enp1s0)
+2025-09-05 15:30:05 [INFO] [Ansible STDOUT][HV 10.58.8.11] changed: [localhost -> 10.58.8.11] => (item=network)
+2025-09-05 15:30:05 [INFO] [Ansible STDOUT][HV 10.58.8.11] changed: [localhost -> 10.58.8.11] => (item=hostname)
+2025-09-05 15:30:05 [INFO] [Ansible STDOUT][HV 10.58.8.11] changed: [localhost -> 10.58.8.11] => (item=authorized_keys)
+2025-09-05 15:30:05 [INFO] [Ansible STDOUT][HV 10.58.8.11] 
+2025-09-05 15:30:05 [INFO] [Ansible STDOUT][HV 10.58.8.11] TASK [vm_deploy : Set ownership/permissions] ***********************************
+2025-09-05 15:31:14 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'cmd': 'chown 0 0 /etc/sysconfig/network-scripts/ifcfg-enp1s0'})
+2025-09-05 15:31:14 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'cmd': 'chown 0 0 /etc/sysconfig/network'})
+2025-09-05 15:31:14 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'cmd': 'chown 0 0 /etc/hostname'})
+2025-09-05 15:31:14 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'cmd': 'chown 0 0 /root/.ssh'})
+2025-09-05 15:31:14 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'cmd': 'chown 0 0 /root/.ssh/authorized_keys'})
+2025-09-05 15:31:14 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'cmd': 'chmod 0640 /root/.ssh/authorized_keys'})
+2025-09-05 15:31:14 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:31:14 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Deploy VM with virt-install] *********************************
+2025-09-05 15:31:20 [INFO] [Ansible STDOUT][HV 10.58.8.11] changed: [localhost -> 10.58.8.11] => (item={'cmd': 'chown 0 0 /etc/sysconfig/network-scripts/ifcfg-enp1s0'})
+2025-09-05 15:31:20 [INFO] [Ansible STDOUT][HV 10.58.8.11] changed: [localhost -> 10.58.8.11] => (item={'cmd': 'chown 0 0 /etc/sysconfig/network'})
+2025-09-05 15:31:20 [INFO] [Ansible STDOUT][HV 10.58.8.11] changed: [localhost -> 10.58.8.11] => (item={'cmd': 'chown 0 0 /etc/hostname'})
+2025-09-05 15:31:20 [INFO] [Ansible STDOUT][HV 10.58.8.11] changed: [localhost -> 10.58.8.11] => (item={'cmd': 'chown 0 0 /root/.ssh'})
+2025-09-05 15:31:20 [INFO] [Ansible STDOUT][HV 10.58.8.11] changed: [localhost -> 10.58.8.11] => (item={'cmd': 'chown 0 0 /root/.ssh/authorized_keys'})
+2025-09-05 15:31:20 [INFO] [Ansible STDOUT][HV 10.58.8.11] changed: [localhost -> 10.58.8.11] => (item={'cmd': 'chmod 0640 /root/.ssh/authorized_keys'})
+2025-09-05 15:31:20 [INFO] [Ansible STDOUT][HV 10.58.8.11] 
+2025-09-05 15:31:20 [INFO] [Ansible STDOUT][HV 10.58.8.11] TASK [vm_deploy : Deploy VM with virt-install] *********************************
+2025-09-05 15:31:25 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-09-05 15:31:25 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:31:25 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Enable autostart] ********************************************
+2025-09-05 15:31:33 [INFO] [Ansible STDOUT][HV 10.58.8.11] changed: [localhost -> 10.58.8.11]
+2025-09-05 15:31:33 [INFO] [Ansible STDOUT][HV 10.58.8.11] 
+2025-09-05 15:31:33 [INFO] [Ansible STDOUT][HV 10.58.8.11] TASK [vm_deploy : Enable autostart] ********************************************
+2025-09-05 15:31:36 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-09-05 15:31:36 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:31:36 [INFO] [Ansible STDOUT][HV 10.58.8.5] PLAY RECAP *********************************************************************
+2025-09-05 15:31:36 [INFO] [Ansible STDOUT][HV 10.58.8.5] localhost                  : ok=23   changed=19   unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+2025-09-05 15:31:36 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:31:36 [INFO] Ansible finished successfully for HV 10.58.8.5
+2025-09-05 15:31:36 [INFO] Updated VM Cluster_VM01 on HV 1 → Completed
+2025-09-05 15:31:43 [INFO] [Ansible STDOUT][HV 10.58.8.11] changed: [localhost -> 10.58.8.11]
+2025-09-05 15:31:43 [INFO] [Ansible STDOUT][HV 10.58.8.11] 
+2025-09-05 15:31:43 [INFO] [Ansible STDOUT][HV 10.58.8.11] PLAY RECAP *********************************************************************
+2025-09-05 15:31:43 [INFO] [Ansible STDOUT][HV 10.58.8.11] localhost                  : ok=23   changed=19   unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+2025-09-05 15:31:43 [INFO] [Ansible STDOUT][HV 10.58.8.11] 
+2025-09-05 15:31:43 [INFO] Ansible finished successfully for HV 10.58.8.11
+2025-09-05 15:31:43 [INFO] Updated VM Cluster_VM02 on HV 2 → Completed
+2025-09-05 15:32:59 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-09-05 15:33:00 [INFO] Authentication (publickey) successful!
+2025-09-05 15:33:01 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-09-05 15:33:02 [INFO] Authentication (publickey) successful!
+2025-09-05 15:33:04 [INFO] 127.0.0.1 - - [05/Sep/2025 15:33:04] "GET /dashboard HTTP/1.1" 200 -
+2025-09-05 15:33:12 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-09-05 15:33:12 [INFO] Authentication (publickey) successful!
+2025-09-05 15:33:14 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-09-05 15:33:14 [INFO] Authentication (publickey) successful!
+2025-09-05 15:33:16 [INFO] 127.0.0.1 - - [05/Sep/2025 15:33:16] "GET /dashboard HTTP/1.1" 200 -
+2025-09-05 15:33:19 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-09-05 15:33:20 [INFO] Authentication (publickey) successful!
+2025-09-05 15:33:21 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-09-05 15:33:22 [INFO] Authentication (publickey) successful!
+2025-09-05 15:33:25 [INFO] 127.0.0.1 - - [05/Sep/2025 15:33:25] "GET /dashboard HTTP/1.1" 200 -
+2025-09-05 15:33:25 [INFO] 127.0.0.1 - - [05/Sep/2025 15:33:25] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-09-05 15:33:35 [INFO] 127.0.0.1 - - [05/Sep/2025 15:33:35] "[32mPOST /delete_vm HTTP/1.1[0m" 302 -
+2025-09-05 15:33:35 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-09-05 15:33:36 [INFO] Authentication (publickey) successful!
+2025-09-05 15:33:37 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-09-05 15:33:38 [INFO] Authentication (publickey) successful!
+2025-09-05 15:33:40 [INFO] 127.0.0.1 - - [05/Sep/2025 15:33:40] "GET /dashboard HTTP/1.1" 200 -
+2025-09-05 15:33:54 [INFO] 127.0.0.1 - - [05/Sep/2025 15:33:54] "[32mPOST /delete_vm HTTP/1.1[0m" 302 -
+2025-09-05 15:33:55 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-09-05 15:33:55 [INFO] Authentication (publickey) successful!
+2025-09-05 15:33:56 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-09-05 15:33:57 [INFO] Authentication (publickey) successful!
+2025-09-05 15:33:59 [INFO] 127.0.0.1 - - [05/Sep/2025 15:33:59] "GET /dashboard HTTP/1.1" 200 -
+2025-09-05 15:36:23 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-09-05 15:36:23 [INFO] [33mPress CTRL+C to quit[0m
+2025-09-05 15:36:28 [INFO] 127.0.0.1 - - [05/Sep/2025 15:36:28] "[32mPOST /delete_hv HTTP/1.1[0m" 302 -
+2025-09-05 15:36:28 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-09-05 15:36:28 [INFO] Authentication (publickey) successful!
+2025-09-05 15:36:30 [INFO] 127.0.0.1 - - [05/Sep/2025 15:36:30] "GET /dashboard HTTP/1.1" 200 -
+2025-09-05 15:36:34 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-09-05 15:36:35 [INFO] Authentication (publickey) successful!
+2025-09-05 15:36:36 [INFO] 127.0.0.1 - - [05/Sep/2025 15:36:36] "GET /dashboard HTTP/1.1" 200 -
+2025-09-05 15:37:42 [INFO] Running Ansible: ansible-playbook destroy.yml -e vm_name=Cluster_VM01 -e target_server=10.58.8.5 -e target_server_username=root -e libvirt_user=root -e libvirt_group=root
+2025-09-05 15:37:42 [INFO] [Ansible STDOUT] 
+2025-09-05 15:37:42 [INFO] [Ansible STDOUT] PLAY [Start Process - Destroy VM] **********************************************
+2025-09-05 15:37:42 [INFO] [Ansible STDOUT] 
+2025-09-05 15:37:42 [INFO] [Ansible STDOUT] TASK [Destroy VM] **************************************************************
+2025-09-05 15:37:54 [INFO] [Ansible STDOUT] changed: [localhost -> 10.58.8.5]
+2025-09-05 15:37:54 [INFO] [Ansible STDOUT] 
+2025-09-05 15:37:54 [INFO] [Ansible STDOUT] PLAY RECAP *********************************************************************
+2025-09-05 15:37:54 [INFO] [Ansible STDOUT] localhost                  : ok=1    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+2025-09-05 15:37:54 [INFO] [Ansible STDOUT] 
+2025-09-05 15:37:54 [INFO] 127.0.0.1 - - [05/Sep/2025 15:37:54] "[32mPOST /delete_vm HTTP/1.1[0m" 302 -
+2025-09-05 15:37:54 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-09-05 15:37:55 [INFO] Authentication (publickey) successful!
+2025-09-05 15:37:55 [INFO] 127.0.0.1 - - [05/Sep/2025 15:37:55] "GET /dashboard HTTP/1.1" 200 -
+2025-09-05 15:38:20 [INFO] 127.0.0.1 - - [05/Sep/2025 15:38:20] "GET /deploy_vm HTTP/1.1" 200 -
+2025-09-05 15:38:30 [INFO] 127.0.0.1 - - [05/Sep/2025 15:38:30] "GET /add_hv HTTP/1.1" 200 -
+2025-09-05 15:38:38 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-09-05 15:38:39 [INFO] Authentication (publickey) successful!
+2025-09-05 15:38:39 [INFO] 127.0.0.1 - - [05/Sep/2025 15:38:39] "[32mPOST /add_hv HTTP/1.1[0m" 302 -
+2025-09-05 15:38:40 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-09-05 15:38:40 [INFO] Authentication (publickey) successful!
+2025-09-05 15:38:41 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-09-05 15:38:42 [INFO] Authentication (publickey) successful!
+2025-09-05 15:38:43 [INFO] 127.0.0.1 - - [05/Sep/2025 15:38:43] "GET /dashboard HTTP/1.1" 200 -
+2025-09-05 15:38:44 [INFO] 127.0.0.1 - - [05/Sep/2025 15:38:44] "GET /deploy_vm HTTP/1.1" 200 -
+2025-09-05 15:38:45 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-09-05 15:38:46 [INFO] Authentication (publickey) successful!
+2025-09-05 15:38:47 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-09-05 15:38:47 [INFO] Authentication (publickey) successful!
+2025-09-05 15:38:49 [INFO] 127.0.0.1 - - [05/Sep/2025 15:38:49] "GET /dashboard HTTP/1.1" 200 -
+2025-09-05 15:38:49 [INFO] 127.0.0.1 - - [05/Sep/2025 15:38:49] "GET /deploy_vm HTTP/1.1" 200 -
+2025-09-05 15:38:51 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-09-05 15:38:51 [INFO] Authentication (publickey) successful!
+2025-09-05 15:38:52 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-09-05 15:38:52 [INFO] Authentication (publickey) successful!
+2025-09-05 15:38:54 [INFO] 127.0.0.1 - - [05/Sep/2025 15:38:54] "GET /dashboard HTTP/1.1" 200 -
+2025-09-05 15:38:58 [INFO] 127.0.0.1 - - [05/Sep/2025 15:38:58] "GET /deploy_vm HTTP/1.1" 200 -
+2025-09-05 15:39:26 [INFO] Selected qcow2 image for cluster: /home/qcow2images/NSP_K8S_PLATFORM_RHEL8_23_11.qcow2
+2025-09-05 15:39:26 [INFO] Deployment plan: [{'hv': {'id': 1, 'name': 'HV_1', 'ip': '10.58.8.5', 'username': 'root', 'password': 'Bsnl@123'}, 'hv_id': 1, 'vms': [{'cpu': 8, 'ram': 8192, 'disk': 300, 'ipaddr': '192.168.23.10', 'prefix': '24', 'gateway': '192.168.23.1', 'qcow2_image': '/home/qcow2images/NSP_K8S_PLATFORM_RHEL8_23_11.qcow2', 'vg_name': 'vg1', 'vm_type': 'cluster', 'required_partitions': [{'lv': 'lv_home', 'mount': '/home', 'size_mb': 30720}], 'name': 'Cluster_VM01'}, {'cpu': 8, 'ram': 8192, 'disk': 300, 'ipaddr': '192.168.23.10', 'prefix': '24', 'gateway': '192.168.23.1', 'qcow2_image': '/home/qcow2images/NSP_K8S_PLATFORM_RHEL8_23_11.qcow2', 'vg_name': 'vg1', 'vm_type': 'cluster', 'required_partitions': [{'lv': 'lv_home', 'mount': '/home', 'size_mb': 30720}], 'name': 'Cluster_VM02'}]}]
+2025-09-05 15:39:26 [INFO] 127.0.0.1 - - [05/Sep/2025 15:39:26] "[32mPOST /deploy_vm HTTP/1.1[0m" 302 -
+2025-09-05 15:39:26 [INFO] Running Ansible: ansible-playbook playbook.yml -e target_server=10.58.8.5 -e target_server_username=root -e @vars/vm_vars_Cluster_VM_1.yml -e qcow2_image_src_dir=/home/qcow2images -e qcow2_image_dst_dir=/home/images -e vm_bridge=br0 -e vm_interface=enp1s0 -e libvirt_user=root -e libvirt_group=root -e user_ssh_pub_key=~/.ssh/id_rsa.pub --forks 5
+2025-09-05 15:39:26 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-09-05 15:39:26 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:39:26 [INFO] [Ansible STDOUT][HV 10.58.8.5] PLAY [Deploy VM from QCOW2] ****************************************************
+2025-09-05 15:39:26 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:39:26 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Deploy VMs on this HV] ***************************************
+2025-09-05 15:39:26 [INFO] [Ansible STDOUT][HV 10.58.8.5] included: /home/manish/vm_deployment_automation/ansible-playbook/roles/vm_deploy/tasks/vm_creation.yml for localhost => (item={'cpu': 8, 'ram': 8192, 'disk': 300, 'ipaddr': '192.168.23.10', 'prefix': '24', 'gateway': '192.168.23.1', 'qcow2_image': '/home/qcow2images/NSP_K8S_PLATFORM_RHEL8_23_11.qcow2', 'vg_name': 'vg1', 'vm_type': 'cluster', 'required_partitions': [{'lv': 'lv_home', 'mount': '/home', 'size_mb': 30720}], 'name': 'Cluster_VM01'})
+2025-09-05 15:39:26 [INFO] [Ansible STDOUT][HV 10.58.8.5] included: /home/manish/vm_deployment_automation/ansible-playbook/roles/vm_deploy/tasks/vm_creation.yml for localhost => (item={'cpu': 8, 'ram': 8192, 'disk': 300, 'ipaddr': '192.168.23.10', 'prefix': '24', 'gateway': '192.168.23.1', 'qcow2_image': '/home/qcow2images/NSP_K8S_PLATFORM_RHEL8_23_11.qcow2', 'vg_name': 'vg1', 'vm_type': 'cluster', 'required_partitions': [{'lv': 'lv_home', 'mount': '/home', 'size_mb': 30720}], 'name': 'Cluster_VM02'})
+2025-09-05 15:39:26 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:39:26 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Ensure VM directory exists] **********************************
+2025-09-05 15:39:27 [INFO] Authentication (publickey) successful!
+2025-09-05 15:39:28 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-09-05 15:39:28 [INFO] Authentication (publickey) successful!
+2025-09-05 15:39:30 [INFO] 127.0.0.1 - - [05/Sep/2025 15:39:30] "GET /dashboard HTTP/1.1" 200 -
+2025-09-05 15:39:36 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-09-05 15:39:36 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:39:36 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Define qcow2_vm_path fact] ***********************************
+2025-09-05 15:39:37 [INFO] [Ansible STDOUT][HV 10.58.8.5] ok: [localhost -> 10.58.8.5]
+2025-09-05 15:39:37 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:39:37 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Check if QCOW2 image already exists] *************************
+2025-09-05 15:39:50 [INFO] [Ansible STDOUT][HV 10.58.8.5] ok: [localhost -> 10.58.8.5]
+2025-09-05 15:39:50 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:39:50 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Copy base QCOW2 image if missing] ****************************
+2025-09-05 15:40:08 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-09-05 15:40:08 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:40:08 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Backup qcow2] ************************************************
+2025-09-05 15:40:21 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-09-05 15:40:21 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:40:21 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Resize qcow2] ************************************************
+2025-09-05 15:40:33 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-09-05 15:40:33 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:40:33 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Expand qcow2 with virt-resize] *******************************
+2025-09-05 15:42:00 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-09-05 15:42:00 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:42:00 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Remove backup qcow2] *****************************************
+2025-09-05 15:42:13 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-09-05 15:42:13 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:42:13 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Get Partitions List] *****************************************
+2025-09-05 15:42:26 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-09-05 15:42:26 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:42:26 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Identify root partition] *************************************
+2025-09-05 15:42:38 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item=/dev/sda2: ext4)
+2025-09-05 15:42:38 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:42:38 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Set guestfish_mount] *****************************************
+2025-09-05 15:42:39 [INFO] [Ansible STDOUT][HV 10.58.8.5] ok: [localhost -> 10.58.8.5] => (item=/dev/sda2)
+2025-09-05 15:42:39 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:42:39 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Get LVM Name] ************************************************
+2025-09-05 15:42:50 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-09-05 15:42:50 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:42:50 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Resize LVMs] *************************************************
+2025-09-05 15:43:02 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'lv': 'lv_home', 'mount': '/home', 'size_mb': 30720})
+2025-09-05 15:43:02 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:43:02 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Create Missing LVM] ******************************************
+2025-09-05 15:43:02 [INFO] [Ansible STDOUT][HV 10.58.8.5] skipping: [localhost] => (item={'lv': 'lv_home', 'mount': '/home', 'size_mb': 30720})
+2025-09-05 15:43:02 [INFO] [Ansible STDOUT][HV 10.58.8.5] skipping: [localhost]
+2025-09-05 15:43:02 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:43:02 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Get the public key for the current user] *********************
+2025-09-05 15:43:02 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost]
+2025-09-05 15:43:02 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:43:02 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Set persistent interface name via udev rule] *****************
+2025-09-05 15:43:17 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-09-05 15:43:17 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:43:17 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Create temporary files from templates] ***********************
+2025-09-05 15:44:23 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'ifcfg-enp1s0.j2', 'dest': 'ifcfg-enp1s0'})
+2025-09-05 15:44:23 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'network.j2', 'dest': 'network'})
+2025-09-05 15:44:23 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'hostname.j2', 'dest': 'hostname'})
+2025-09-05 15:44:23 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'authorized_keys.j2', 'dest': 'authorized_keys'})
+2025-09-05 15:44:23 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:44:23 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Copy files into image] ***************************************
+2025-09-05 15:45:09 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'ifcfg-enp1s0', 'target': '/etc/sysconfig/network-scripts/'})
+2025-09-05 15:45:09 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'network', 'target': '/etc/sysconfig/'})
+2025-09-05 15:45:09 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'hostname', 'target': '/etc/'})
+2025-09-05 15:45:09 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'authorized_keys', 'target': '/root/.ssh/'})
+2025-09-05 15:45:09 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:45:09 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Remove temporary files] **************************************
+2025-09-05 15:45:52 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item=ifcfg-enp1s0)
+2025-09-05 15:45:52 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item=network)
+2025-09-05 15:45:52 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item=hostname)
+2025-09-05 15:45:52 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item=authorized_keys)
+2025-09-05 15:45:52 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:45:52 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Set ownership/permissions] ***********************************
+2025-09-05 15:47:02 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'cmd': 'chown 0 0 /etc/sysconfig/network-scripts/ifcfg-enp1s0'})
+2025-09-05 15:47:02 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'cmd': 'chown 0 0 /etc/sysconfig/network'})
+2025-09-05 15:47:02 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'cmd': 'chown 0 0 /etc/hostname'})
+2025-09-05 15:47:02 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'cmd': 'chown 0 0 /root/.ssh'})
+2025-09-05 15:47:02 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'cmd': 'chown 0 0 /root/.ssh/authorized_keys'})
+2025-09-05 15:47:02 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'cmd': 'chmod 0640 /root/.ssh/authorized_keys'})
+2025-09-05 15:47:02 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:47:02 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Deploy VM with virt-install] *********************************
+2025-09-05 15:47:12 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-09-05 15:47:12 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:47:12 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Enable autostart] ********************************************
+2025-09-05 15:47:22 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-09-05 15:47:22 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:47:22 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Ensure VM directory exists] **********************************
+2025-09-05 15:47:31 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-09-05 15:47:31 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:47:31 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Define qcow2_vm_path fact] ***********************************
+2025-09-05 15:47:31 [INFO] [Ansible STDOUT][HV 10.58.8.5] ok: [localhost -> 10.58.8.5]
+2025-09-05 15:47:31 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:47:31 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Check if QCOW2 image already exists] *************************
+2025-09-05 15:47:41 [INFO] [Ansible STDOUT][HV 10.58.8.5] ok: [localhost -> 10.58.8.5]
+2025-09-05 15:47:41 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:47:41 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Copy base QCOW2 image if missing] ****************************
+2025-09-05 15:47:59 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-09-05 15:47:59 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:47:59 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Backup qcow2] ************************************************
+2025-09-05 15:48:12 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-09-05 15:48:12 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:48:12 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Resize qcow2] ************************************************
+2025-09-05 15:48:23 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-09-05 15:48:23 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:48:23 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Expand qcow2 with virt-resize] *******************************
+2025-09-05 15:49:48 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-09-05 15:49:48 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:49:48 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Remove backup qcow2] *****************************************
+2025-09-05 15:50:04 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-09-05 15:50:04 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:50:04 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Get Partitions List] *****************************************
+2025-09-05 15:50:21 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-09-05 15:50:21 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:50:21 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Identify root partition] *************************************
+2025-09-05 15:50:36 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item=/dev/sda2: ext4)
+2025-09-05 15:50:36 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:50:36 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Set guestfish_mount] *****************************************
+2025-09-05 15:50:36 [INFO] [Ansible STDOUT][HV 10.58.8.5] ok: [localhost -> 10.58.8.5] => (item=/dev/sda2)
+2025-09-05 15:50:36 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:50:36 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Get LVM Name] ************************************************
+2025-09-05 15:50:52 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-09-05 15:50:52 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:50:52 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Resize LVMs] *************************************************
+2025-09-05 15:51:03 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'lv': 'lv_home', 'mount': '/home', 'size_mb': 30720})
+2025-09-05 15:51:03 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:51:03 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Create Missing LVM] ******************************************
+2025-09-05 15:51:03 [INFO] [Ansible STDOUT][HV 10.58.8.5] skipping: [localhost] => (item={'lv': 'lv_home', 'mount': '/home', 'size_mb': 30720})
+2025-09-05 15:51:03 [INFO] [Ansible STDOUT][HV 10.58.8.5] skipping: [localhost]
+2025-09-05 15:51:03 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:51:03 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Get the public key for the current user] *********************
+2025-09-05 15:51:04 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost]
+2025-09-05 15:51:04 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:51:04 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Set persistent interface name via udev rule] *****************
+2025-09-05 15:51:17 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-09-05 15:51:17 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:51:17 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Create temporary files from templates] ***********************
+2025-09-05 15:52:25 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'ifcfg-enp1s0.j2', 'dest': 'ifcfg-enp1s0'})
+2025-09-05 15:52:25 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'network.j2', 'dest': 'network'})
+2025-09-05 15:52:25 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'hostname.j2', 'dest': 'hostname'})
+2025-09-05 15:52:25 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'authorized_keys.j2', 'dest': 'authorized_keys'})
+2025-09-05 15:52:25 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:52:25 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Copy files into image] ***************************************
+2025-09-05 15:53:10 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'ifcfg-enp1s0', 'target': '/etc/sysconfig/network-scripts/'})
+2025-09-05 15:53:10 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'network', 'target': '/etc/sysconfig/'})
+2025-09-05 15:53:10 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'hostname', 'target': '/etc/'})
+2025-09-05 15:53:10 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'authorized_keys', 'target': '/root/.ssh/'})
+2025-09-05 15:53:10 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:53:10 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Remove temporary files] **************************************
+2025-09-05 15:53:48 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item=ifcfg-enp1s0)
+2025-09-05 15:53:48 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item=network)
+2025-09-05 15:53:48 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item=hostname)
+2025-09-05 15:53:48 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item=authorized_keys)
+2025-09-05 15:53:48 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:53:48 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Set ownership/permissions] ***********************************
+2025-09-05 15:55:02 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'cmd': 'chown 0 0 /etc/sysconfig/network-scripts/ifcfg-enp1s0'})
+2025-09-05 15:55:02 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'cmd': 'chown 0 0 /etc/sysconfig/network'})
+2025-09-05 15:55:02 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'cmd': 'chown 0 0 /etc/hostname'})
+2025-09-05 15:55:02 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'cmd': 'chown 0 0 /root/.ssh'})
+2025-09-05 15:55:02 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'cmd': 'chown 0 0 /root/.ssh/authorized_keys'})
+2025-09-05 15:55:02 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'cmd': 'chmod 0640 /root/.ssh/authorized_keys'})
+2025-09-05 15:55:02 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:55:02 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Deploy VM with virt-install] *********************************
+2025-09-05 15:55:14 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-09-05 15:55:14 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:55:14 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Enable autostart] ********************************************
+2025-09-05 15:55:26 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-09-05 15:55:26 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:55:26 [INFO] [Ansible STDOUT][HV 10.58.8.5] PLAY RECAP *********************************************************************
+2025-09-05 15:55:26 [INFO] [Ansible STDOUT][HV 10.58.8.5] localhost                  : ok=44   changed=36   unreachable=0    failed=0    skipped=2    rescued=0    ignored=0
+2025-09-05 15:55:26 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-09-05 15:55:26 [INFO] Ansible finished successfully for HV 10.58.8.5
+2025-09-05 15:55:26 [INFO] Updated VM Cluster_VM01 on HV 1 → Completed
+2025-09-05 15:55:26 [INFO] Updated VM Cluster_VM02 on HV 1 → Completed
+2025-09-06 17:16:46 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-09-06 17:16:46 [INFO] [33mPress CTRL+C to quit[0m
+2025-09-06 17:16:56 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-09-06 17:16:57 [INFO] Authentication (publickey) successful!
+2025-09-06 17:16:58 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-09-06 17:16:59 [INFO] Authentication (publickey) successful!
+2025-09-06 17:17:00 [INFO] 127.0.0.1 - - [06/Sep/2025 17:17:00] "GET /dashboard HTTP/1.1" 200 -
+2025-09-06 17:17:00 [INFO] 127.0.0.1 - - [06/Sep/2025 17:17:00] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-09-06 17:17:10 [INFO] Running Ansible: ansible-playbook destroy.yml -e vm_name=Cluster_VM01 -e target_server=10.58.8.5 -e target_server_username=root -e libvirt_user=root -e libvirt_group=root
+2025-09-06 17:17:13 [INFO] [Ansible STDOUT] 
+2025-09-06 17:17:13 [INFO] [Ansible STDOUT] PLAY [Start Process - Destroy VM] **********************************************
+2025-09-06 17:17:13 [INFO] [Ansible STDOUT] 
+2025-09-06 17:17:13 [INFO] [Ansible STDOUT] TASK [Destroy VM] **************************************************************
+2025-09-06 17:17:21 [INFO] [Ansible STDOUT] changed: [localhost -> 10.58.8.5]
+2025-09-06 17:17:21 [INFO] [Ansible STDOUT] 
+2025-09-06 17:17:21 [INFO] [Ansible STDOUT] PLAY RECAP *********************************************************************
+2025-09-06 17:17:21 [INFO] [Ansible STDOUT] localhost                  : ok=1    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+2025-09-06 17:17:21 [INFO] [Ansible STDOUT] 
+2025-09-06 17:17:21 [INFO] Running Ansible: ansible-playbook destroy.yml -e vm_name=Cluster_VM02 -e target_server=10.58.8.5 -e target_server_username=root -e libvirt_user=root -e libvirt_group=root
+2025-09-06 17:17:25 [INFO] [Ansible STDOUT] 
+2025-09-06 17:17:25 [INFO] [Ansible STDOUT] PLAY [Start Process - Destroy VM] **********************************************
+2025-09-06 17:17:25 [INFO] [Ansible STDOUT] 
+2025-09-06 17:17:25 [INFO] [Ansible STDOUT] TASK [Destroy VM] **************************************************************
+2025-09-06 17:17:33 [INFO] [Ansible STDOUT] changed: [localhost -> 10.58.8.5]
+2025-09-06 17:17:33 [INFO] [Ansible STDOUT] 
+2025-09-06 17:17:33 [INFO] [Ansible STDOUT] PLAY RECAP *********************************************************************
+2025-09-06 17:17:33 [INFO] [Ansible STDOUT] localhost                  : ok=1    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+2025-09-06 17:17:33 [INFO] [Ansible STDOUT] 
+2025-09-06 17:17:34 [INFO] 127.0.0.1 - - [06/Sep/2025 17:17:34] "[32mPOST /delete_vm HTTP/1.1[0m" 302 -
+2025-09-06 17:17:34 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-09-06 17:17:34 [INFO] Authentication (publickey) successful!
+2025-09-06 17:17:35 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-09-06 17:17:36 [INFO] Authentication (publickey) successful!
+2025-09-06 17:17:37 [INFO] 127.0.0.1 - - [06/Sep/2025 17:17:37] "GET /dashboard HTTP/1.1" 200 -
+2025-10-30 11:49:52 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-10-30 11:49:52 [INFO] [33mPress CTRL+C to quit[0m
+2025-10-30 11:50:12 [INFO] 127.0.0.1 - - [30/Oct/2025 11:50:12] "GET / HTTP/1.1" 200 -
+2025-10-30 11:50:13 [INFO] 127.0.0.1 - - [30/Oct/2025 11:50:13] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-10-30 11:50:16 [INFO] 127.0.0.1 - - [30/Oct/2025 11:50:16] "GET /add_hv HTTP/1.1" 200 -
+2025-10-30 11:50:35 [INFO] 127.0.0.1 - - [30/Oct/2025 11:50:35] "GET /dashboard HTTP/1.1" 200 -
+2025-10-30 11:50:38 [INFO] 127.0.0.1 - - [30/Oct/2025 11:50:38] "[31m[1mPOST /add_hv HTTP/1.1[0m" 400 -
+2025-10-30 11:50:39 [INFO] 127.0.0.1 - - [30/Oct/2025 11:50:39] "[31m[1mPOST /add_hv HTTP/1.1[0m" 400 -
+2025-10-30 11:51:19 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 11:51:20 [INFO] Authentication (publickey) successful!
+2025-10-30 11:51:20 [INFO] 127.0.0.1 - - [30/Oct/2025 11:51:20] "[32mPOST /add_hv HTTP/1.1[0m" 302 -
+2025-10-30 11:51:20 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 11:51:21 [INFO] Authentication (publickey) successful!
+2025-10-30 11:51:23 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 11:51:23 [INFO] Authentication (publickey) failed.
+2025-10-30 11:51:23 [INFO] Authentication (publickey) failed.
+2025-10-30 11:51:24 [INFO] Authentication (password) successful!
+2025-10-30 11:51:25 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 11:51:26 [INFO] Authentication (publickey) successful!
+2025-10-30 11:51:27 [INFO] 127.0.0.1 - - [30/Oct/2025 11:51:27] "GET /dashboard HTTP/1.1" 200 -
+2025-10-30 11:51:34 [INFO] 127.0.0.1 - - [30/Oct/2025 11:51:34] "GET / HTTP/1.1" 200 -
+2025-10-30 11:51:35 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 11:51:36 [INFO] Authentication (publickey) successful!
+2025-10-30 11:51:37 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 11:51:38 [INFO] Authentication (publickey) failed.
+2025-10-30 11:51:38 [INFO] Authentication (publickey) failed.
+2025-10-30 11:51:39 [INFO] Authentication (password) successful!
+2025-10-30 11:51:40 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 11:51:41 [INFO] Authentication (publickey) successful!
+2025-10-30 11:51:42 [INFO] 127.0.0.1 - - [30/Oct/2025 11:51:42] "GET /dashboard HTTP/1.1" 200 -
+2025-10-30 11:52:11 [INFO] 127.0.0.1 - - [30/Oct/2025 11:52:11] "GET /deploy_vm HTTP/1.1" 200 -
+2025-10-30 11:53:08 [INFO] Selected qcow2 image for cluster: /home/qcow2images/NSP_K8S_PLATFORM_RHEL8_23_11.qcow2
+2025-10-30 11:53:08 [INFO] Deployment plan: [{'hv': {'id': 1, 'name': 'HV_1', 'ip': '10.58.8.5', 'username': 'root', 'password': 'Bsnl@123'}, 'hv_id': 1, 'vms': [{'cpu': 8, 'ram': 8192, 'disk': 500, 'ipaddr': '192.168.23.10', 'prefix': '24', 'gateway': '192.168.23.1', 'qcow2_image': '/home/qcow2images/NSP_K8S_PLATFORM_RHEL8_23_11.qcow2', 'vg_name': 'vg1', 'vm_type': 'cluster', 'required_partitions': [{'lv': 'lv_home', 'mount': '/home', 'size_mb': 102400}, {'lv': 'lv_opt', 'mount': '/opt', 'size_mb': 204800}], 'name': 'Cluster_VM01'}, {'cpu': 8, 'ram': 8192, 'disk': 500, 'ipaddr': '192.168.23.10', 'prefix': '24', 'gateway': '192.168.23.1', 'qcow2_image': '/home/qcow2images/NSP_K8S_PLATFORM_RHEL8_23_11.qcow2', 'vg_name': 'vg1', 'vm_type': 'cluster', 'required_partitions': [{'lv': 'lv_home', 'mount': '/home', 'size_mb': 102400}, {'lv': 'lv_opt', 'mount': '/opt', 'size_mb': 204800}], 'name': 'Cluster_VM02'}]}]
+2025-10-30 11:53:08 [INFO] 127.0.0.1 - - [30/Oct/2025 11:53:08] "[32mPOST /deploy_vm HTTP/1.1[0m" 302 -
+2025-10-30 11:53:08 [INFO] Running Ansible: ansible-playbook playbook.yml -e target_server=10.58.8.5 -e target_server_username=root -e @vars/vm_vars_Cluster_VM_1.yml -e qcow2_image_src_dir=/home/qcow2images -e qcow2_image_dst_dir=/home/images -e vm_bridge=br0 -e vm_interface=enp1s0 -e libvirt_user=root -e libvirt_group=root -e user_ssh_pub_key=~/.ssh/id_rsa.pub --forks 5
+2025-10-30 11:53:08 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 11:53:09 [INFO] Authentication (publickey) successful!
+2025-10-30 11:53:10 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 11:53:10 [INFO] [Ansible STDOUT][HV 10.58.8.5] PLAY [Deploy VM from QCOW2] ****************************************************
+2025-10-30 11:53:10 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 11:53:10 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Deploy VMs on this HV] ***************************************
+2025-10-30 11:53:10 [INFO] [Ansible STDOUT][HV 10.58.8.5] included: /home/manish/vm_deployment_automation/ansible-playbook/roles/vm_deploy/tasks/vm_creation.yml for localhost => (item={'cpu': 8, 'ram': 8192, 'disk': 500, 'ipaddr': '192.168.23.10', 'prefix': '24', 'gateway': '192.168.23.1', 'qcow2_image': '/home/qcow2images/NSP_K8S_PLATFORM_RHEL8_23_11.qcow2', 'vg_name': 'vg1', 'vm_type': 'cluster', 'required_partitions': [{'lv': 'lv_home', 'mount': '/home', 'size_mb': 102400}, {'lv': 'lv_opt', 'mount': '/opt', 'size_mb': 204800}], 'name': 'Cluster_VM01'})
+2025-10-30 11:53:10 [INFO] [Ansible STDOUT][HV 10.58.8.5] included: /home/manish/vm_deployment_automation/ansible-playbook/roles/vm_deploy/tasks/vm_creation.yml for localhost => (item={'cpu': 8, 'ram': 8192, 'disk': 500, 'ipaddr': '192.168.23.10', 'prefix': '24', 'gateway': '192.168.23.1', 'qcow2_image': '/home/qcow2images/NSP_K8S_PLATFORM_RHEL8_23_11.qcow2', 'vg_name': 'vg1', 'vm_type': 'cluster', 'required_partitions': [{'lv': 'lv_home', 'mount': '/home', 'size_mb': 102400}, {'lv': 'lv_opt', 'mount': '/opt', 'size_mb': 204800}], 'name': 'Cluster_VM02'})
+2025-10-30 11:53:10 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 11:53:10 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Ensure VM directory exists] **********************************
+2025-10-30 11:53:10 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 11:53:11 [INFO] Authentication (publickey) failed.
+2025-10-30 11:53:11 [INFO] Authentication (publickey) failed.
+2025-10-30 11:53:11 [INFO] Authentication (password) successful!
+2025-10-30 11:53:13 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 11:53:13 [INFO] Authentication (publickey) successful!
+2025-10-30 11:53:15 [INFO] 127.0.0.1 - - [30/Oct/2025 11:53:15] "GET /dashboard HTTP/1.1" 200 -
+2025-10-30 11:53:18 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-10-30 11:53:18 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 11:53:18 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Define qcow2_vm_path fact] ***********************************
+2025-10-30 11:53:19 [INFO] [Ansible STDOUT][HV 10.58.8.5] ok: [localhost -> 10.58.8.5]
+2025-10-30 11:53:19 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 11:53:19 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Check if QCOW2 image already exists] *************************
+2025-10-30 11:53:27 [INFO] [Ansible STDOUT][HV 10.58.8.5] ok: [localhost -> 10.58.8.5]
+2025-10-30 11:53:27 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 11:53:27 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Copy base QCOW2 image if missing] ****************************
+2025-10-30 11:53:48 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-10-30 11:53:48 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 11:53:48 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Backup qcow2] ************************************************
+2025-10-30 11:53:57 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-10-30 11:53:57 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 11:53:57 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Resize qcow2] ************************************************
+2025-10-30 11:54:04 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-10-30 11:54:04 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 11:54:04 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Expand qcow2 with virt-resize] *******************************
+2025-10-30 11:55:25 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-10-30 11:55:25 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 11:55:25 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Remove backup qcow2] *****************************************
+2025-10-30 11:55:32 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-10-30 11:55:32 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 11:55:32 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Get Partitions List] *****************************************
+2025-10-30 11:55:42 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-10-30 11:55:42 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 11:55:42 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Identify root partition] *************************************
+2025-10-30 11:55:50 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item=/dev/sda2: ext4)
+2025-10-30 11:55:50 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 11:55:50 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Set guestfish_mount] *****************************************
+2025-10-30 11:55:51 [INFO] [Ansible STDOUT][HV 10.58.8.5] ok: [localhost -> 10.58.8.5] => (item=/dev/sda2)
+2025-10-30 11:55:51 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 11:55:51 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Get LVM Name] ************************************************
+2025-10-30 11:56:00 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-10-30 11:56:00 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 11:56:00 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Resize LVMs] *************************************************
+2025-10-30 11:56:09 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'lv': 'lv_home', 'mount': '/home', 'size_mb': 102400})
+2025-10-30 11:56:09 [INFO] [Ansible STDOUT][HV 10.58.8.5] skipping: [localhost] => (item={'lv': 'lv_opt', 'mount': '/opt', 'size_mb': 204800})
+2025-10-30 11:56:09 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 11:56:09 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Create Missing LVM] ******************************************
+2025-10-30 11:56:21 [INFO] [Ansible STDOUT][HV 10.58.8.5] skipping: [localhost] => (item={'lv': 'lv_home', 'mount': '/home', 'size_mb': 102400})
+2025-10-30 11:56:21 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'lv': 'lv_opt', 'mount': '/opt', 'size_mb': 204800})
+2025-10-30 11:56:21 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 11:56:21 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Get the public key for the current user] *********************
+2025-10-30 11:56:24 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost]
+2025-10-30 11:56:24 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 11:56:24 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Set persistent interface name via udev rule] *****************
+2025-10-30 11:56:35 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-10-30 11:56:35 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 11:56:35 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Create temporary files from templates] ***********************
+2025-10-30 11:57:21 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'ifcfg-enp1s0.j2', 'dest': 'ifcfg-enp1s0'})
+2025-10-30 11:57:21 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'network.j2', 'dest': 'network'})
+2025-10-30 11:57:21 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'hostname.j2', 'dest': 'hostname'})
+2025-10-30 11:57:21 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'authorized_keys.j2', 'dest': 'authorized_keys'})
+2025-10-30 11:57:21 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 11:57:21 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Copy files into image] ***************************************
+2025-10-30 11:57:56 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'ifcfg-enp1s0', 'target': '/etc/sysconfig/network-scripts/'})
+2025-10-30 11:57:56 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'network', 'target': '/etc/sysconfig/'})
+2025-10-30 11:57:56 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'hostname', 'target': '/etc/'})
+2025-10-30 11:57:56 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'authorized_keys', 'target': '/root/.ssh/'})
+2025-10-30 11:57:56 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 11:57:56 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Remove temporary files] **************************************
+2025-10-30 11:58:24 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item=ifcfg-enp1s0)
+2025-10-30 11:58:24 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item=network)
+2025-10-30 11:58:24 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item=hostname)
+2025-10-30 11:58:24 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item=authorized_keys)
+2025-10-30 11:58:24 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 11:58:24 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Set ownership/permissions] ***********************************
+2025-10-30 11:59:17 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'cmd': 'chown 0 0 /etc/sysconfig/network-scripts/ifcfg-enp1s0'})
+2025-10-30 11:59:17 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'cmd': 'chown 0 0 /etc/sysconfig/network'})
+2025-10-30 11:59:17 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'cmd': 'chown 0 0 /etc/hostname'})
+2025-10-30 11:59:17 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'cmd': 'chown 0 0 /root/.ssh'})
+2025-10-30 11:59:17 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'cmd': 'chown 0 0 /root/.ssh/authorized_keys'})
+2025-10-30 11:59:17 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'cmd': 'chmod 0640 /root/.ssh/authorized_keys'})
+2025-10-30 11:59:17 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 11:59:17 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Deploy VM with virt-install] *********************************
+2025-10-30 11:59:19 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 11:59:20 [INFO] Authentication (publickey) successful!
+2025-10-30 11:59:22 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 11:59:23 [INFO] Authentication (publickey) failed.
+2025-10-30 11:59:23 [INFO] Authentication (publickey) failed.
+2025-10-30 11:59:24 [INFO] 127.0.0.1 - - [30/Oct/2025 11:59:24] "GET / HTTP/1.1" 200 -
+2025-10-30 11:59:24 [INFO] Authentication (password) successful!
+2025-10-30 11:59:25 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 11:59:25 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 11:59:27 [INFO] Authentication (publickey) successful!
+2025-10-30 11:59:28 [INFO] Authentication (publickey) successful!
+2025-10-30 11:59:28 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-10-30 11:59:28 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 11:59:28 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Enable autostart] ********************************************
+2025-10-30 11:59:30 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 11:59:30 [INFO] 127.0.0.1 - - [30/Oct/2025 11:59:30] "GET /dashboard HTTP/1.1" 200 -
+2025-10-30 11:59:30 [INFO] Authentication (publickey) failed.
+2025-10-30 11:59:30 [INFO] Authentication (publickey) failed.
+2025-10-30 11:59:31 [INFO] Authentication (password) successful!
+2025-10-30 11:59:32 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 11:59:33 [INFO] Authentication (publickey) successful!
+2025-10-30 11:59:35 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-10-30 11:59:35 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 11:59:35 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Ensure VM directory exists] **********************************
+2025-10-30 11:59:35 [INFO] 127.0.0.1 - - [30/Oct/2025 11:59:35] "GET /dashboard HTTP/1.1" 200 -
+2025-10-30 11:59:39 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 11:59:40 [INFO] Authentication (publickey) successful!
+2025-10-30 11:59:41 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-10-30 11:59:41 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 11:59:41 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Define qcow2_vm_path fact] ***********************************
+2025-10-30 11:59:41 [INFO] [Ansible STDOUT][HV 10.58.8.5] ok: [localhost -> 10.58.8.5]
+2025-10-30 11:59:41 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 11:59:41 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Check if QCOW2 image already exists] *************************
+2025-10-30 11:59:42 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 11:59:43 [INFO] Authentication (publickey) failed.
+2025-10-30 11:59:43 [INFO] Authentication (publickey) failed.
+2025-10-30 11:59:43 [INFO] Authentication (password) successful!
+2025-10-30 11:59:44 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 11:59:45 [INFO] Authentication (publickey) successful!
+2025-10-30 11:59:47 [INFO] 127.0.0.1 - - [30/Oct/2025 11:59:47] "GET /dashboard HTTP/1.1" 200 -
+2025-10-30 11:59:47 [INFO] 127.0.0.1 - - [30/Oct/2025 11:59:47] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-10-30 11:59:48 [INFO] [Ansible STDOUT][HV 10.58.8.5] ok: [localhost -> 10.58.8.5]
+2025-10-30 11:59:48 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 11:59:48 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Copy base QCOW2 image if missing] ****************************
+2025-10-30 12:00:03 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-10-30 12:00:03 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:00:03 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Backup qcow2] ************************************************
+2025-10-30 12:00:12 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-10-30 12:00:12 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:00:12 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Resize qcow2] ************************************************
+2025-10-30 12:00:20 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-10-30 12:00:20 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:00:20 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Expand qcow2 with virt-resize] *******************************
+2025-10-30 12:00:44 [INFO] 127.0.0.1 - - [30/Oct/2025 12:00:44] "[32mPOST /delete_vm HTTP/1.1[0m" 302 -
+2025-10-30 12:00:45 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 12:00:45 [INFO] Authentication (publickey) successful!
+2025-10-30 12:00:48 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 12:00:49 [INFO] Authentication (publickey) failed.
+2025-10-30 12:00:49 [INFO] Authentication (publickey) failed.
+2025-10-30 12:00:49 [INFO] Authentication (password) successful!
+2025-10-30 12:00:50 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 12:00:51 [INFO] Authentication (publickey) successful!
+2025-10-30 12:00:53 [INFO] 127.0.0.1 - - [30/Oct/2025 12:00:53] "GET /dashboard HTTP/1.1" 200 -
+2025-10-30 12:01:40 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-10-30 12:01:40 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:01:40 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Remove backup qcow2] *****************************************
+2025-10-30 12:01:47 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-10-30 12:01:47 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:01:47 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Get Partitions List] *****************************************
+2025-10-30 12:01:56 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-10-30 12:01:56 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:01:56 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Identify root partition] *************************************
+2025-10-30 12:02:05 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item=/dev/sda2: ext4)
+2025-10-30 12:02:05 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:02:05 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Set guestfish_mount] *****************************************
+2025-10-30 12:02:05 [INFO] [Ansible STDOUT][HV 10.58.8.5] ok: [localhost -> 10.58.8.5] => (item=/dev/sda2)
+2025-10-30 12:02:05 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:02:05 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Get LVM Name] ************************************************
+2025-10-30 12:02:14 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-10-30 12:02:14 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:02:14 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Resize LVMs] *************************************************
+2025-10-30 12:02:24 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'lv': 'lv_home', 'mount': '/home', 'size_mb': 102400})
+2025-10-30 12:02:24 [INFO] [Ansible STDOUT][HV 10.58.8.5] skipping: [localhost] => (item={'lv': 'lv_opt', 'mount': '/opt', 'size_mb': 204800})
+2025-10-30 12:02:24 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:02:24 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Create Missing LVM] ******************************************
+2025-10-30 12:02:36 [INFO] [Ansible STDOUT][HV 10.58.8.5] skipping: [localhost] => (item={'lv': 'lv_home', 'mount': '/home', 'size_mb': 102400})
+2025-10-30 12:02:36 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'lv': 'lv_opt', 'mount': '/opt', 'size_mb': 204800})
+2025-10-30 12:02:36 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:02:36 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Get the public key for the current user] *********************
+2025-10-30 12:02:39 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost]
+2025-10-30 12:02:39 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:02:39 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Set persistent interface name via udev rule] *****************
+2025-10-30 12:02:51 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-10-30 12:02:51 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:02:51 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Create temporary files from templates] ***********************
+2025-10-30 12:03:39 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'ifcfg-enp1s0.j2', 'dest': 'ifcfg-enp1s0'})
+2025-10-30 12:03:39 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'network.j2', 'dest': 'network'})
+2025-10-30 12:03:39 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'hostname.j2', 'dest': 'hostname'})
+2025-10-30 12:03:39 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'authorized_keys.j2', 'dest': 'authorized_keys'})
+2025-10-30 12:03:39 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:03:39 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Copy files into image] ***************************************
+2025-10-30 12:04:17 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'ifcfg-enp1s0', 'target': '/etc/sysconfig/network-scripts/'})
+2025-10-30 12:04:17 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'network', 'target': '/etc/sysconfig/'})
+2025-10-30 12:04:17 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'hostname', 'target': '/etc/'})
+2025-10-30 12:04:17 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'authorized_keys', 'target': '/root/.ssh/'})
+2025-10-30 12:04:17 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:04:17 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Remove temporary files] **************************************
+2025-10-30 12:04:45 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item=ifcfg-enp1s0)
+2025-10-30 12:04:45 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item=network)
+2025-10-30 12:04:45 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item=hostname)
+2025-10-30 12:04:45 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item=authorized_keys)
+2025-10-30 12:04:45 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:04:45 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Set ownership/permissions] ***********************************
+2025-10-30 12:05:37 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'cmd': 'chown 0 0 /etc/sysconfig/network-scripts/ifcfg-enp1s0'})
+2025-10-30 12:05:37 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'cmd': 'chown 0 0 /etc/sysconfig/network'})
+2025-10-30 12:05:37 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'cmd': 'chown 0 0 /etc/hostname'})
+2025-10-30 12:05:37 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'cmd': 'chown 0 0 /root/.ssh'})
+2025-10-30 12:05:37 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'cmd': 'chown 0 0 /root/.ssh/authorized_keys'})
+2025-10-30 12:05:37 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'cmd': 'chmod 0640 /root/.ssh/authorized_keys'})
+2025-10-30 12:05:37 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:05:37 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Deploy VM with virt-install] *********************************
+2025-10-30 12:05:45 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-10-30 12:05:45 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:05:45 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Enable autostart] ********************************************
+2025-10-30 12:05:52 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-10-30 12:05:52 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:05:52 [INFO] [Ansible STDOUT][HV 10.58.8.5] PLAY RECAP *********************************************************************
+2025-10-30 12:05:52 [INFO] [Ansible STDOUT][HV 10.58.8.5] localhost                  : ok=46   changed=38   unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+2025-10-30 12:05:52 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:05:52 [INFO] Ansible finished successfully for HV 10.58.8.5
+2025-10-30 12:05:52 [INFO] Updated VM Cluster_VM01 on HV 1 → Completed
+2025-10-30 12:05:52 [INFO] Updated VM Cluster_VM02 on HV 1 → Completed
+2025-10-30 12:05:57 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 12:05:57 [INFO] Authentication (publickey) successful!
+2025-10-30 12:06:00 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 12:06:00 [INFO] Authentication (publickey) failed.
+2025-10-30 12:06:00 [INFO] Authentication (publickey) failed.
+2025-10-30 12:06:00 [INFO] Authentication (password) successful!
+2025-10-30 12:06:02 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 12:06:02 [INFO] Authentication (publickey) successful!
+2025-10-30 12:06:04 [INFO] 127.0.0.1 - - [30/Oct/2025 12:06:04] "GET /dashboard HTTP/1.1" 200 -
+2025-10-30 12:07:11 [INFO] 127.0.0.1 - - [30/Oct/2025 12:07:11] "GET / HTTP/1.1" 200 -
+2025-10-30 12:07:15 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 12:07:15 [INFO] Authentication (publickey) successful!
+2025-10-30 12:07:17 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 12:07:18 [INFO] Authentication (publickey) failed.
+2025-10-30 12:07:18 [INFO] Authentication (publickey) failed.
+2025-10-30 12:07:18 [INFO] Authentication (password) successful!
+2025-10-30 12:07:19 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 12:07:20 [INFO] Authentication (publickey) successful!
+2025-10-30 12:07:22 [INFO] 127.0.0.1 - - [30/Oct/2025 12:07:22] "GET /dashboard HTTP/1.1" 200 -
+2025-10-30 12:13:16 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-10-30 12:13:16 [INFO] [33mPress CTRL+C to quit[0m
+2025-10-30 12:14:16 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-10-30 12:14:16 [INFO] [33mPress CTRL+C to quit[0m
+2025-10-30 12:14:19 [INFO] 127.0.0.1 - - [30/Oct/2025 12:14:19] "GET / HTTP/1.1" 200 -
+2025-10-30 12:14:21 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 12:14:21 [INFO] Authentication (publickey) successful!
+2025-10-30 12:14:23 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 12:14:24 [INFO] Authentication (publickey) failed.
+2025-10-30 12:14:24 [INFO] Authentication (publickey) failed.
+2025-10-30 12:14:24 [INFO] Authentication (password) successful!
+2025-10-30 12:14:26 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 12:14:26 [INFO] Authentication (publickey) successful!
+2025-10-30 12:14:28 [INFO] 127.0.0.1 - - [30/Oct/2025 12:14:28] "GET /dashboard HTTP/1.1" 200 -
+2025-10-30 12:14:50 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-10-30 12:14:50 [INFO] [33mPress CTRL+C to quit[0m
+2025-10-30 12:14:53 [INFO] 127.0.0.1 - - [30/Oct/2025 12:14:53] "GET /dashboard HTTP/1.1" 200 -
+2025-10-30 12:14:55 [INFO] 127.0.0.1 - - [30/Oct/2025 12:14:55] "GET /add_hv HTTP/1.1" 200 -
+2025-10-30 12:15:02 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 12:15:03 [INFO] Authentication (publickey) successful!
+2025-10-30 12:15:03 [INFO] 127.0.0.1 - - [30/Oct/2025 12:15:03] "[32mPOST /add_hv HTTP/1.1[0m" 302 -
+2025-10-30 12:15:03 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 12:15:04 [INFO] Authentication (publickey) successful!
+2025-10-30 12:15:06 [INFO] 127.0.0.1 - - [30/Oct/2025 12:15:06] "GET /dashboard HTTP/1.1" 200 -
+2025-10-30 12:15:24 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 12:15:24 [INFO] Authentication (publickey) successful!
+2025-10-30 12:15:26 [INFO] 127.0.0.1 - - [30/Oct/2025 12:15:26] "GET /dashboard HTTP/1.1" 200 -
+2025-10-30 12:15:32 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 12:15:32 [INFO] Authentication (publickey) successful!
+2025-10-30 12:15:34 [INFO] 127.0.0.1 - - [30/Oct/2025 12:15:34] "GET /dashboard HTTP/1.1" 200 -
+2025-10-30 12:15:40 [INFO] 127.0.0.1 - - [30/Oct/2025 12:15:40] "GET /deploy_vm HTTP/1.1" 200 -
+2025-10-30 12:18:13 [INFO] Selected qcow2 image for cluster: /home/qcow2images/NSP_K8S_PLATFORM_RHEL8_23_11.qcow2
+2025-10-30 12:18:13 [INFO] Deployment plan: [{'hv': {'id': 1, 'name': 'HV_1', 'ip': '10.58.8.5', 'username': 'root', 'password': 'Bsnl@123'}, 'hv_id': 1, 'vms': [{'cpu': 8, 'ram': 8192, 'disk': 500, 'ipaddr': '192.168.23.10', 'prefix': '24', 'gateway': '192.168.23.1', 'qcow2_image': '/home/qcow2images/NSP_K8S_PLATFORM_RHEL8_23_11.qcow2', 'vg_name': 'vg1', 'vm_type': 'cluster', 'required_partitions': [{'lv': 'lv_home', 'mount': '/home', 'size_mb': 102400}, {'lv': 'lv_opt', 'mount': '/opt', 'size_mb': 204800}], 'name': 'Cluster_VM01'}, {'cpu': 8, 'ram': 8192, 'disk': 500, 'ipaddr': '192.168.23.10', 'prefix': '24', 'gateway': '192.168.23.1', 'qcow2_image': '/home/qcow2images/NSP_K8S_PLATFORM_RHEL8_23_11.qcow2', 'vg_name': 'vg1', 'vm_type': 'cluster', 'required_partitions': [{'lv': 'lv_home', 'mount': '/home', 'size_mb': 102400}, {'lv': 'lv_opt', 'mount': '/opt', 'size_mb': 204800}], 'name': 'Cluster_VM02'}]}]
+2025-10-30 12:18:13 [INFO] 127.0.0.1 - - [30/Oct/2025 12:18:13] "[32mPOST /deploy_vm HTTP/1.1[0m" 302 -
+2025-10-30 12:18:13 [INFO] Running Ansible: ansible-playbook playbook.yml -e target_server=10.58.8.5 -e target_server_username=root -e @vars/vm_vars_Cluster_VM_1.yml -e qcow2_image_src_dir=/home/qcow2images -e qcow2_image_dst_dir=/home/images -e vm_bridge=br0 -e vm_interface=enp1s0 -e libvirt_user=root -e libvirt_group=root -e user_ssh_pub_key=~/.ssh/id_rsa.pub --forks 5
+2025-10-30 12:18:13 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 12:18:14 [INFO] Authentication (publickey) successful!
+2025-10-30 12:18:15 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:18:15 [INFO] [Ansible STDOUT][HV 10.58.8.5] PLAY [Deploy VM from QCOW2] ****************************************************
+2025-10-30 12:18:15 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:18:15 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Deploy VMs on this HV] ***************************************
+2025-10-30 12:18:15 [INFO] [Ansible STDOUT][HV 10.58.8.5] included: /home/manish/vm_deployment_automation/ansible-playbook/roles/vm_deploy/tasks/vm_creation.yml for localhost => (item={'cpu': 8, 'ram': 8192, 'disk': 500, 'ipaddr': '192.168.23.10', 'prefix': '24', 'gateway': '192.168.23.1', 'qcow2_image': '/home/qcow2images/NSP_K8S_PLATFORM_RHEL8_23_11.qcow2', 'vg_name': 'vg1', 'vm_type': 'cluster', 'required_partitions': [{'lv': 'lv_home', 'mount': '/home', 'size_mb': 102400}, {'lv': 'lv_opt', 'mount': '/opt', 'size_mb': 204800}], 'name': 'Cluster_VM01'})
+2025-10-30 12:18:15 [INFO] [Ansible STDOUT][HV 10.58.8.5] included: /home/manish/vm_deployment_automation/ansible-playbook/roles/vm_deploy/tasks/vm_creation.yml for localhost => (item={'cpu': 8, 'ram': 8192, 'disk': 500, 'ipaddr': '192.168.23.10', 'prefix': '24', 'gateway': '192.168.23.1', 'qcow2_image': '/home/qcow2images/NSP_K8S_PLATFORM_RHEL8_23_11.qcow2', 'vg_name': 'vg1', 'vm_type': 'cluster', 'required_partitions': [{'lv': 'lv_home', 'mount': '/home', 'size_mb': 102400}, {'lv': 'lv_opt', 'mount': '/opt', 'size_mb': 204800}], 'name': 'Cluster_VM02'})
+2025-10-30 12:18:15 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:18:15 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Ensure VM directory exists] **********************************
+2025-10-30 12:18:15 [INFO] 127.0.0.1 - - [30/Oct/2025 12:18:15] "GET /dashboard HTTP/1.1" 200 -
+2025-10-30 12:18:23 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-10-30 12:18:23 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:18:23 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Define qcow2_vm_path fact] ***********************************
+2025-10-30 12:18:23 [INFO] [Ansible STDOUT][HV 10.58.8.5] ok: [localhost -> 10.58.8.5]
+2025-10-30 12:18:23 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:18:23 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Check if QCOW2 image already exists] *************************
+2025-10-30 12:18:41 [INFO] [Ansible STDOUT][HV 10.58.8.5] ok: [localhost -> 10.58.8.5]
+2025-10-30 12:18:41 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:18:41 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Copy base QCOW2 image if missing] ****************************
+2025-10-30 12:18:41 [INFO] [Ansible STDOUT][HV 10.58.8.5] skipping: [localhost]
+2025-10-30 12:18:41 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:18:41 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Backup qcow2] ************************************************
+2025-10-30 12:18:41 [INFO] [Ansible STDOUT][HV 10.58.8.5] skipping: [localhost]
+2025-10-30 12:18:41 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:18:41 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Resize qcow2] ************************************************
+2025-10-30 12:18:41 [INFO] [Ansible STDOUT][HV 10.58.8.5] skipping: [localhost]
+2025-10-30 12:18:41 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:18:41 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Expand qcow2 with virt-resize] *******************************
+2025-10-30 12:18:41 [INFO] [Ansible STDOUT][HV 10.58.8.5] skipping: [localhost]
+2025-10-30 12:18:41 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:18:41 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Remove backup qcow2] *****************************************
+2025-10-30 12:18:41 [INFO] [Ansible STDOUT][HV 10.58.8.5] skipping: [localhost]
+2025-10-30 12:18:41 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:18:41 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Get Partitions List] *****************************************
+2025-10-30 12:18:51 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-10-30 12:18:51 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:18:51 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Identify root partition] *************************************
+2025-10-30 12:19:00 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item=/dev/sda2: ext4)
+2025-10-30 12:19:00 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:19:00 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Set guestfish_mount] *****************************************
+2025-10-30 12:19:00 [INFO] [Ansible STDOUT][HV 10.58.8.5] ok: [localhost -> 10.58.8.5] => (item=/dev/sda2)
+2025-10-30 12:19:00 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:19:00 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Get LVM Name] ************************************************
+2025-10-30 12:19:10 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-10-30 12:19:10 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:19:10 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Resize LVMs] *************************************************
+2025-10-30 12:19:28 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'lv': 'lv_home', 'mount': '/home', 'size_mb': 102400})
+2025-10-30 12:19:28 [INFO] [Ansible STDOUT][HV 10.58.8.5] failed: [localhost -> 10.58.8.5] (item={'lv': 'lv_opt', 'mount': '/opt', 'size_mb': 204800}) => {"ansible_loop_var": "subitem", "changed": true, "cmd": "guestfish -a /home/images/Cluster_VM01/Cluster_VM01.qcow2 <<'EOF'\nrun\nlvresize /dev/vg1/lv_opt 204800\nmount /dev/vg1/lv_opt /\nxfs-growfs /\nEOF\n", "delta": "0:00:02.038208", "end": "2025-10-30 12:17:09.907285", "msg": "non-zero return code", "rc": 1, "start": "2025-10-30 12:17:07.869077", "stderr": "*stdin*:4: libguestfs: error: xfs_growfs: /: xfs_growfs: /sysroot/ is not a mounted XFS filesystem", "stderr_lines": ["*stdin*:4: libguestfs: error: xfs_growfs: /: xfs_growfs: /sysroot/ is not a mounted XFS filesystem"], "stdout": "", "stdout_lines": [], "subitem": {"lv": "lv_opt", "mount": "/opt", "size_mb": 204800}}
+2025-10-30 12:19:28 [INFO] [Ansible STDOUT][HV 10.58.8.5] ...ignoring
+2025-10-30 12:19:28 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:19:28 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Create Missing LVM] ******************************************
+2025-10-30 12:19:28 [INFO] [Ansible STDOUT][HV 10.58.8.5] skipping: [localhost] => (item={'lv': 'lv_home', 'mount': '/home', 'size_mb': 102400})
+2025-10-30 12:19:28 [INFO] [Ansible STDOUT][HV 10.58.8.5] skipping: [localhost] => (item={'lv': 'lv_opt', 'mount': '/opt', 'size_mb': 204800})
+2025-10-30 12:19:28 [INFO] [Ansible STDOUT][HV 10.58.8.5] skipping: [localhost]
+2025-10-30 12:19:28 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:19:28 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Get the public key for the current user] *********************
+2025-10-30 12:19:30 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost]
+2025-10-30 12:19:30 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:19:30 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Set persistent interface name via udev rule] *****************
+2025-10-30 12:19:41 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-10-30 12:19:41 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:19:41 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Create temporary files from templates] ***********************
+2025-10-30 12:20:26 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'ifcfg-enp1s0.j2', 'dest': 'ifcfg-enp1s0'})
+2025-10-30 12:20:26 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'network.j2', 'dest': 'network'})
+2025-10-30 12:20:26 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'hostname.j2', 'dest': 'hostname'})
+2025-10-30 12:20:26 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'authorized_keys.j2', 'dest': 'authorized_keys'})
+2025-10-30 12:20:26 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:20:26 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Copy files into image] ***************************************
+2025-10-30 12:21:01 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'ifcfg-enp1s0', 'target': '/etc/sysconfig/network-scripts/'})
+2025-10-30 12:21:01 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'network', 'target': '/etc/sysconfig/'})
+2025-10-30 12:21:01 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'hostname', 'target': '/etc/'})
+2025-10-30 12:21:01 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'authorized_keys', 'target': '/root/.ssh/'})
+2025-10-30 12:21:01 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:21:01 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Remove temporary files] **************************************
+2025-10-30 12:21:27 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item=ifcfg-enp1s0)
+2025-10-30 12:21:27 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item=network)
+2025-10-30 12:21:27 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item=hostname)
+2025-10-30 12:21:27 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item=authorized_keys)
+2025-10-30 12:21:27 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:21:27 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Set ownership/permissions] ***********************************
+2025-10-30 12:22:20 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'cmd': 'chown 0 0 /etc/sysconfig/network-scripts/ifcfg-enp1s0'})
+2025-10-30 12:22:20 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'cmd': 'chown 0 0 /etc/sysconfig/network'})
+2025-10-30 12:22:20 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'cmd': 'chown 0 0 /etc/hostname'})
+2025-10-30 12:22:20 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'cmd': 'chown 0 0 /root/.ssh'})
+2025-10-30 12:22:20 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'cmd': 'chown 0 0 /root/.ssh/authorized_keys'})
+2025-10-30 12:22:20 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'cmd': 'chmod 0640 /root/.ssh/authorized_keys'})
+2025-10-30 12:22:20 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:22:20 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Deploy VM with virt-install] *********************************
+2025-10-30 12:22:28 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-10-30 12:22:28 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:22:28 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Enable autostart] ********************************************
+2025-10-30 12:22:36 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-10-30 12:22:36 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:22:36 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Ensure VM directory exists] **********************************
+2025-10-30 12:22:43 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-10-30 12:22:43 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:22:43 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Define qcow2_vm_path fact] ***********************************
+2025-10-30 12:22:43 [INFO] [Ansible STDOUT][HV 10.58.8.5] ok: [localhost -> 10.58.8.5]
+2025-10-30 12:22:43 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:22:43 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Check if QCOW2 image already exists] *************************
+2025-10-30 12:22:56 [INFO] [Ansible STDOUT][HV 10.58.8.5] ok: [localhost -> 10.58.8.5]
+2025-10-30 12:22:56 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:22:56 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Copy base QCOW2 image if missing] ****************************
+2025-10-30 12:22:56 [INFO] [Ansible STDOUT][HV 10.58.8.5] skipping: [localhost]
+2025-10-30 12:22:56 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:22:56 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Backup qcow2] ************************************************
+2025-10-30 12:22:56 [INFO] [Ansible STDOUT][HV 10.58.8.5] skipping: [localhost]
+2025-10-30 12:22:56 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:22:56 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Resize qcow2] ************************************************
+2025-10-30 12:22:56 [INFO] [Ansible STDOUT][HV 10.58.8.5] skipping: [localhost]
+2025-10-30 12:22:56 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:22:56 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Expand qcow2 with virt-resize] *******************************
+2025-10-30 12:22:56 [INFO] [Ansible STDOUT][HV 10.58.8.5] skipping: [localhost]
+2025-10-30 12:22:56 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:22:56 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Remove backup qcow2] *****************************************
+2025-10-30 12:22:57 [INFO] [Ansible STDOUT][HV 10.58.8.5] skipping: [localhost]
+2025-10-30 12:22:57 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:22:57 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Get Partitions List] *****************************************
+2025-10-30 12:23:05 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-10-30 12:23:05 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:23:05 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Identify root partition] *************************************
+2025-10-30 12:23:14 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item=/dev/sda2: ext4)
+2025-10-30 12:23:14 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:23:14 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Set guestfish_mount] *****************************************
+2025-10-30 12:23:14 [INFO] [Ansible STDOUT][HV 10.58.8.5] ok: [localhost -> 10.58.8.5] => (item=/dev/sda2)
+2025-10-30 12:23:14 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:23:14 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Get LVM Name] ************************************************
+2025-10-30 12:23:23 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-10-30 12:23:23 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:23:23 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Resize LVMs] *************************************************
+2025-10-30 12:23:40 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'lv': 'lv_home', 'mount': '/home', 'size_mb': 102400})
+2025-10-30 12:23:40 [INFO] [Ansible STDOUT][HV 10.58.8.5] failed: [localhost -> 10.58.8.5] (item={'lv': 'lv_opt', 'mount': '/opt', 'size_mb': 204800}) => {"ansible_loop_var": "subitem", "changed": true, "cmd": "guestfish -a /home/images/Cluster_VM02/Cluster_VM02.qcow2 <<'EOF'\nrun\nlvresize /dev/vg1/lv_opt 204800\nmount /dev/vg1/lv_opt /\nxfs-growfs /\nEOF\n", "delta": "0:00:02.114127", "end": "2025-10-30 12:21:22.319156", "msg": "non-zero return code", "rc": 1, "start": "2025-10-30 12:21:20.205029", "stderr": "*stdin*:4: libguestfs: error: xfs_growfs: /: xfs_growfs: /sysroot/ is not a mounted XFS filesystem", "stderr_lines": ["*stdin*:4: libguestfs: error: xfs_growfs: /: xfs_growfs: /sysroot/ is not a mounted XFS filesystem"], "stdout": "", "stdout_lines": [], "subitem": {"lv": "lv_opt", "mount": "/opt", "size_mb": 204800}}
+2025-10-30 12:23:40 [INFO] [Ansible STDOUT][HV 10.58.8.5] ...ignoring
+2025-10-30 12:23:40 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:23:40 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Create Missing LVM] ******************************************
+2025-10-30 12:23:40 [INFO] [Ansible STDOUT][HV 10.58.8.5] skipping: [localhost] => (item={'lv': 'lv_home', 'mount': '/home', 'size_mb': 102400})
+2025-10-30 12:23:40 [INFO] [Ansible STDOUT][HV 10.58.8.5] skipping: [localhost] => (item={'lv': 'lv_opt', 'mount': '/opt', 'size_mb': 204800})
+2025-10-30 12:23:40 [INFO] [Ansible STDOUT][HV 10.58.8.5] skipping: [localhost]
+2025-10-30 12:23:40 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:23:40 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Get the public key for the current user] *********************
+2025-10-30 12:23:41 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost]
+2025-10-30 12:23:41 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:23:41 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Set persistent interface name via udev rule] *****************
+2025-10-30 12:23:53 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-10-30 12:23:53 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:23:53 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Create temporary files from templates] ***********************
+2025-10-30 12:24:36 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'ifcfg-enp1s0.j2', 'dest': 'ifcfg-enp1s0'})
+2025-10-30 12:24:36 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'network.j2', 'dest': 'network'})
+2025-10-30 12:24:36 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'hostname.j2', 'dest': 'hostname'})
+2025-10-30 12:24:36 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'authorized_keys.j2', 'dest': 'authorized_keys'})
+2025-10-30 12:24:36 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:24:36 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Copy files into image] ***************************************
+2025-10-30 12:37:15 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 12:37:16 [INFO] Authentication (publickey) successful!
+2025-10-30 12:37:18 [INFO] 127.0.0.1 - - [30/Oct/2025 12:37:18] "GET /dashboard HTTP/1.1" 200 -
+2025-10-30 12:42:32 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'ifcfg-enp1s0', 'target': '/etc/sysconfig/network-scripts/'})
+2025-10-30 12:42:41 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-10-30 12:42:41 [INFO] [33mPress CTRL+C to quit[0m
+2025-10-30 12:42:53 [INFO] Running Ansible: ansible-playbook destroy.yml -e vm_name=Cluster_VM01 -e target_server=10.58.8.5 -e target_server_username=root -e libvirt_user=root -e libvirt_group=root
+2025-10-30 12:42:54 [INFO] [Ansible STDOUT] 
+2025-10-30 12:42:54 [INFO] [Ansible STDOUT] PLAY [Start Process - Destroy VM] **********************************************
+2025-10-30 12:42:54 [INFO] [Ansible STDOUT] 
+2025-10-30 12:42:54 [INFO] [Ansible STDOUT] TASK [Destroy VM] **************************************************************
+2025-10-30 12:43:03 [INFO] [Ansible STDOUT] changed: [localhost -> 10.58.8.5]
+2025-10-30 12:43:03 [INFO] [Ansible STDOUT] 
+2025-10-30 12:43:03 [INFO] [Ansible STDOUT] PLAY RECAP *********************************************************************
+2025-10-30 12:43:03 [INFO] [Ansible STDOUT] localhost                  : ok=1    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+2025-10-30 12:43:03 [INFO] [Ansible STDOUT] 
+2025-10-30 12:43:03 [INFO] Running Ansible: ansible-playbook destroy.yml -e vm_name=Cluster_VM02 -e target_server=10.58.8.5 -e target_server_username=root -e libvirt_user=root -e libvirt_group=root
+2025-10-30 12:43:03 [INFO] [Ansible STDOUT] 
+2025-10-30 12:43:03 [INFO] [Ansible STDOUT] PLAY [Start Process - Destroy VM] **********************************************
+2025-10-30 12:43:03 [INFO] [Ansible STDOUT] 
+2025-10-30 12:43:03 [INFO] [Ansible STDOUT] TASK [Destroy VM] **************************************************************
+2025-10-30 12:43:12 [INFO] [Ansible STDOUT] changed: [localhost -> 10.58.8.5]
+2025-10-30 12:43:12 [INFO] [Ansible STDOUT] 
+2025-10-30 12:43:12 [INFO] [Ansible STDOUT] PLAY RECAP *********************************************************************
+2025-10-30 12:43:12 [INFO] [Ansible STDOUT] localhost                  : ok=1    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+2025-10-30 12:43:12 [INFO] [Ansible STDOUT] 
+2025-10-30 12:43:13 [INFO] 127.0.0.1 - - [30/Oct/2025 12:43:13] "[32mPOST /delete_vm HTTP/1.1[0m" 302 -
+2025-10-30 12:43:13 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 12:43:13 [INFO] Authentication (publickey) successful!
+2025-10-30 12:43:15 [INFO] 127.0.0.1 - - [30/Oct/2025 12:43:15] "GET /dashboard HTTP/1.1" 200 -
+2025-10-30 12:45:27 [INFO] 127.0.0.1 - - [30/Oct/2025 12:45:27] "GET /deploy_vm HTTP/1.1" 200 -
+2025-10-30 12:46:04 [INFO] Selected qcow2 image for cluster: /home/qcow2images/NSP_K8S_PLATFORM_RHEL8_23_11.qcow2
+2025-10-30 12:46:04 [INFO] Deployment plan: [{'hv': {'id': 1, 'name': 'HV_1', 'ip': '10.58.8.5', 'username': 'root', 'password': 'Bsnl@123'}, 'hv_id': 1, 'vms': [{'cpu': 8, 'ram': 8192, 'disk': 500, 'ipaddr': '192.168.23.10', 'prefix': '24', 'gateway': '192.168.23.1', 'qcow2_image': '/home/qcow2images/NSP_K8S_PLATFORM_RHEL8_23_11.qcow2', 'vg_name': 'vg1', 'vm_type': 'cluster', 'required_partitions': [{'lv': 'lv_home', 'mount': '/home', 'size_mb': 102400}, {'lv': 'lv_opt', 'mount': '/opt', 'size_mb': 204800}], 'name': 'Cluster_VM01'}, {'cpu': 8, 'ram': 8192, 'disk': 500, 'ipaddr': '192.168.23.10', 'prefix': '24', 'gateway': '192.168.23.1', 'qcow2_image': '/home/qcow2images/NSP_K8S_PLATFORM_RHEL8_23_11.qcow2', 'vg_name': 'vg1', 'vm_type': 'cluster', 'required_partitions': [{'lv': 'lv_home', 'mount': '/home', 'size_mb': 102400}, {'lv': 'lv_opt', 'mount': '/opt', 'size_mb': 204800}], 'name': 'Cluster_VM02'}]}]
+2025-10-30 12:46:04 [INFO] 127.0.0.1 - - [30/Oct/2025 12:46:04] "[32mPOST /deploy_vm HTTP/1.1[0m" 302 -
+2025-10-30 12:46:04 [INFO] Running Ansible: ansible-playbook playbook.yml -e target_server=10.58.8.5 -e target_server_username=root -e @vars/vm_vars_Cluster_VM_1.yml -e qcow2_image_src_dir=/home/qcow2images -e qcow2_image_dst_dir=/home/images -e vm_bridge=br0 -e vm_interface=enp1s0 -e libvirt_user=root -e libvirt_group=root -e user_ssh_pub_key=~/.ssh/id_rsa.pub --forks 5
+2025-10-30 12:46:04 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 12:46:05 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:46:05 [INFO] [Ansible STDOUT][HV 10.58.8.5] PLAY [Deploy VM from QCOW2] ****************************************************
+2025-10-30 12:46:05 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:46:05 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Deploy VMs on this HV] ***************************************
+2025-10-30 12:46:05 [INFO] Authentication (publickey) successful!
+2025-10-30 12:46:05 [INFO] [Ansible STDOUT][HV 10.58.8.5] included: /home/manish/vm_deployment_automation/ansible-playbook/roles/vm_deploy/tasks/vm_creation.yml for localhost => (item={'cpu': 8, 'ram': 8192, 'disk': 500, 'ipaddr': '192.168.23.10', 'prefix': '24', 'gateway': '192.168.23.1', 'qcow2_image': '/home/qcow2images/NSP_K8S_PLATFORM_RHEL8_23_11.qcow2', 'vg_name': 'vg1', 'vm_type': 'cluster', 'required_partitions': [{'lv': 'lv_home', 'mount': '/home', 'size_mb': 102400}, {'lv': 'lv_opt', 'mount': '/opt', 'size_mb': 204800}], 'name': 'Cluster_VM01'})
+2025-10-30 12:46:05 [INFO] [Ansible STDOUT][HV 10.58.8.5] included: /home/manish/vm_deployment_automation/ansible-playbook/roles/vm_deploy/tasks/vm_creation.yml for localhost => (item={'cpu': 8, 'ram': 8192, 'disk': 500, 'ipaddr': '192.168.23.10', 'prefix': '24', 'gateway': '192.168.23.1', 'qcow2_image': '/home/qcow2images/NSP_K8S_PLATFORM_RHEL8_23_11.qcow2', 'vg_name': 'vg1', 'vm_type': 'cluster', 'required_partitions': [{'lv': 'lv_home', 'mount': '/home', 'size_mb': 102400}, {'lv': 'lv_opt', 'mount': '/opt', 'size_mb': 204800}], 'name': 'Cluster_VM02'})
+2025-10-30 12:46:05 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:46:05 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Ensure VM directory exists] **********************************
+2025-10-30 12:46:07 [INFO] 127.0.0.1 - - [30/Oct/2025 12:46:07] "GET /dashboard HTTP/1.1" 200 -
+2025-10-30 12:46:13 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-10-30 12:46:13 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:46:13 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Define qcow2_vm_path fact] ***********************************
+2025-10-30 12:46:13 [INFO] [Ansible STDOUT][HV 10.58.8.5] ok: [localhost -> 10.58.8.5]
+2025-10-30 12:46:13 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:46:13 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Check if QCOW2 image already exists] *************************
+2025-10-30 12:46:21 [INFO] [Ansible STDOUT][HV 10.58.8.5] ok: [localhost -> 10.58.8.5]
+2025-10-30 12:46:21 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:46:21 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Copy base QCOW2 image if missing] ****************************
+2025-10-30 12:46:36 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-10-30 12:46:36 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:46:36 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Backup qcow2] ************************************************
+2025-10-30 12:46:45 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-10-30 12:46:45 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:46:45 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Resize qcow2] ************************************************
+2025-10-30 12:46:53 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-10-30 12:46:53 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:46:53 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Expand qcow2 with virt-resize] *******************************
+2025-10-30 12:48:15 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-10-30 12:48:15 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:48:15 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Remove backup qcow2] *****************************************
+2025-10-30 12:48:24 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-10-30 12:48:24 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:48:24 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Get Partitions List] *****************************************
+2025-10-30 12:48:35 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-10-30 12:48:35 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:48:35 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Identify root partition] *************************************
+2025-10-30 12:48:45 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item=/dev/sda2: ext4)
+2025-10-30 12:48:45 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:48:45 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Set guestfish_mount] *****************************************
+2025-10-30 12:48:45 [INFO] [Ansible STDOUT][HV 10.58.8.5] ok: [localhost -> 10.58.8.5] => (item=/dev/sda2)
+2025-10-30 12:48:45 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:48:45 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Get LVM Name] ************************************************
+2025-10-30 12:48:56 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-10-30 12:48:56 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:48:56 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Resize LVMs] *************************************************
+2025-10-30 12:49:08 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'lv': 'lv_home', 'mount': '/home', 'size_mb': 102400})
+2025-10-30 12:49:08 [INFO] [Ansible STDOUT][HV 10.58.8.5] skipping: [localhost] => (item={'lv': 'lv_opt', 'mount': '/opt', 'size_mb': 204800})
+2025-10-30 12:49:08 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:49:08 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Create Missing LVM] ******************************************
+2025-10-30 12:49:21 [INFO] [Ansible STDOUT][HV 10.58.8.5] skipping: [localhost] => (item={'lv': 'lv_home', 'mount': '/home', 'size_mb': 102400})
+2025-10-30 12:49:21 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'lv': 'lv_opt', 'mount': '/opt', 'size_mb': 204800})
+2025-10-30 12:49:21 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:49:21 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Get the public key for the current user] *********************
+2025-10-30 12:49:22 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost]
+2025-10-30 12:49:22 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:49:22 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Set persistent interface name via udev rule] *****************
+2025-10-30 12:49:35 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-10-30 12:49:35 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:49:35 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Create temporary files from templates] ***********************
+2025-10-30 12:50:33 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'ifcfg-enp1s0.j2', 'dest': 'ifcfg-enp1s0'})
+2025-10-30 12:50:33 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'network.j2', 'dest': 'network'})
+2025-10-30 12:50:33 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'hostname.j2', 'dest': 'hostname'})
+2025-10-30 12:50:33 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'authorized_keys.j2', 'dest': 'authorized_keys'})
+2025-10-30 12:50:33 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:50:33 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Copy files into image] ***************************************
+2025-10-30 12:51:15 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'ifcfg-enp1s0', 'target': '/etc/sysconfig/network-scripts/'})
+2025-10-30 12:51:15 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'network', 'target': '/etc/sysconfig/'})
+2025-10-30 12:51:15 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'hostname', 'target': '/etc/'})
+2025-10-30 12:51:15 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'authorized_keys', 'target': '/root/.ssh/'})
+2025-10-30 12:51:15 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:51:15 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Remove temporary files] **************************************
+2025-10-30 12:51:50 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item=ifcfg-enp1s0)
+2025-10-30 12:51:50 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item=network)
+2025-10-30 12:51:50 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item=hostname)
+2025-10-30 12:51:50 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item=authorized_keys)
+2025-10-30 12:51:50 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:51:50 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Set ownership/permissions] ***********************************
+2025-10-30 12:52:53 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'cmd': 'chown 0 0 /etc/sysconfig/network-scripts/ifcfg-enp1s0'})
+2025-10-30 12:52:53 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'cmd': 'chown 0 0 /etc/sysconfig/network'})
+2025-10-30 12:52:53 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'cmd': 'chown 0 0 /etc/hostname'})
+2025-10-30 12:52:53 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'cmd': 'chown 0 0 /root/.ssh'})
+2025-10-30 12:52:53 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'cmd': 'chown 0 0 /root/.ssh/authorized_keys'})
+2025-10-30 12:52:53 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'cmd': 'chmod 0640 /root/.ssh/authorized_keys'})
+2025-10-30 12:52:53 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:52:53 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Deploy VM with virt-install] *********************************
+2025-10-30 12:53:03 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-10-30 12:53:03 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:53:03 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Enable autostart] ********************************************
+2025-10-30 12:53:12 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-10-30 12:53:12 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:53:12 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Ensure VM directory exists] **********************************
+2025-10-30 12:53:20 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-10-30 12:53:20 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:53:20 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Define qcow2_vm_path fact] ***********************************
+2025-10-30 12:53:20 [INFO] [Ansible STDOUT][HV 10.58.8.5] ok: [localhost -> 10.58.8.5]
+2025-10-30 12:53:20 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:53:20 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Check if QCOW2 image already exists] *************************
+2025-10-30 12:53:28 [INFO] [Ansible STDOUT][HV 10.58.8.5] ok: [localhost -> 10.58.8.5]
+2025-10-30 12:53:28 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:53:28 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Copy base QCOW2 image if missing] ****************************
+2025-10-30 12:53:45 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-10-30 12:53:45 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:53:45 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Backup qcow2] ************************************************
+2025-10-30 12:53:54 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-10-30 12:53:54 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:53:54 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Resize qcow2] ************************************************
+2025-10-30 12:54:03 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-10-30 12:54:03 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:54:03 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Expand qcow2 with virt-resize] *******************************
+2025-10-30 12:55:17 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-10-30 12:55:17 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:55:17 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Remove backup qcow2] *****************************************
+2025-10-30 12:55:26 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-10-30 12:55:26 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:55:26 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Get Partitions List] *****************************************
+2025-10-30 12:55:37 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-10-30 12:55:37 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:55:37 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Identify root partition] *************************************
+2025-10-30 12:55:48 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item=/dev/sda2: ext4)
+2025-10-30 12:55:48 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:55:48 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Set guestfish_mount] *****************************************
+2025-10-30 12:55:48 [INFO] [Ansible STDOUT][HV 10.58.8.5] ok: [localhost -> 10.58.8.5] => (item=/dev/sda2)
+2025-10-30 12:55:48 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:55:48 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Get LVM Name] ************************************************
+2025-10-30 12:56:00 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-10-30 12:56:00 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:56:00 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Resize LVMs] *************************************************
+2025-10-30 12:56:11 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'lv': 'lv_home', 'mount': '/home', 'size_mb': 102400})
+2025-10-30 12:56:11 [INFO] [Ansible STDOUT][HV 10.58.8.5] skipping: [localhost] => (item={'lv': 'lv_opt', 'mount': '/opt', 'size_mb': 204800})
+2025-10-30 12:56:11 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:56:11 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Create Missing LVM] ******************************************
+2025-10-30 12:56:25 [INFO] [Ansible STDOUT][HV 10.58.8.5] skipping: [localhost] => (item={'lv': 'lv_home', 'mount': '/home', 'size_mb': 102400})
+2025-10-30 12:56:25 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'lv': 'lv_opt', 'mount': '/opt', 'size_mb': 204800})
+2025-10-30 12:56:25 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:56:25 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Get the public key for the current user] *********************
+2025-10-30 12:56:26 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost]
+2025-10-30 12:56:26 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:56:26 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Set persistent interface name via udev rule] *****************
+2025-10-30 12:56:39 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-10-30 12:56:39 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:56:39 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Create temporary files from templates] ***********************
+2025-10-30 12:57:38 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'ifcfg-enp1s0.j2', 'dest': 'ifcfg-enp1s0'})
+2025-10-30 12:57:38 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'network.j2', 'dest': 'network'})
+2025-10-30 12:57:38 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'hostname.j2', 'dest': 'hostname'})
+2025-10-30 12:57:38 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'authorized_keys.j2', 'dest': 'authorized_keys'})
+2025-10-30 12:57:38 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:57:38 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Copy files into image] ***************************************
+2025-10-30 12:58:20 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'ifcfg-enp1s0', 'target': '/etc/sysconfig/network-scripts/'})
+2025-10-30 12:58:20 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'network', 'target': '/etc/sysconfig/'})
+2025-10-30 12:58:20 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'hostname', 'target': '/etc/'})
+2025-10-30 12:58:20 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'authorized_keys', 'target': '/root/.ssh/'})
+2025-10-30 12:58:20 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:58:20 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Remove temporary files] **************************************
+2025-10-30 12:58:55 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item=ifcfg-enp1s0)
+2025-10-30 12:58:55 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item=network)
+2025-10-30 12:58:55 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item=hostname)
+2025-10-30 12:58:55 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item=authorized_keys)
+2025-10-30 12:58:55 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:58:55 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Set ownership/permissions] ***********************************
+2025-10-30 12:59:59 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'cmd': 'chown 0 0 /etc/sysconfig/network-scripts/ifcfg-enp1s0'})
+2025-10-30 12:59:59 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'cmd': 'chown 0 0 /etc/sysconfig/network'})
+2025-10-30 12:59:59 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'cmd': 'chown 0 0 /etc/hostname'})
+2025-10-30 12:59:59 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'cmd': 'chown 0 0 /root/.ssh'})
+2025-10-30 12:59:59 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'cmd': 'chown 0 0 /root/.ssh/authorized_keys'})
+2025-10-30 12:59:59 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'cmd': 'chmod 0640 /root/.ssh/authorized_keys'})
+2025-10-30 12:59:59 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 12:59:59 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Deploy VM with virt-install] *********************************
+2025-10-30 13:00:09 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-10-30 13:00:09 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 13:00:09 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Enable autostart] ********************************************
+2025-10-30 13:00:18 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-10-30 13:00:18 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 13:00:18 [INFO] [Ansible STDOUT][HV 10.58.8.5] PLAY RECAP *********************************************************************
+2025-10-30 13:00:18 [INFO] [Ansible STDOUT][HV 10.58.8.5] localhost                  : ok=46   changed=38   unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+2025-10-30 13:00:18 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 13:00:18 [INFO] Ansible finished successfully for HV 10.58.8.5
+2025-10-30 13:00:18 [INFO] Updated VM Cluster_VM01 on HV 1 → Completed
+2025-10-30 13:00:18 [INFO] Updated VM Cluster_VM02 on HV 1 → Completed
+2025-10-30 14:27:22 [INFO] Running Ansible: ansible-playbook destroy.yml -e vm_name=Cluster_VM01 -e target_server=10.58.8.5 -e target_server_username=root -e libvirt_user=root -e libvirt_group=root
+2025-10-30 14:27:23 [INFO] [Ansible STDOUT] 
+2025-10-30 14:27:23 [INFO] [Ansible STDOUT] PLAY [Start Process - Destroy VM] **********************************************
+2025-10-30 14:27:23 [INFO] [Ansible STDOUT] 
+2025-10-30 14:27:23 [INFO] [Ansible STDOUT] TASK [Destroy VM] **************************************************************
+2025-10-30 14:27:32 [INFO] [Ansible STDOUT] changed: [localhost -> 10.58.8.5]
+2025-10-30 14:27:32 [INFO] [Ansible STDOUT] 
+2025-10-30 14:27:32 [INFO] [Ansible STDOUT] PLAY RECAP *********************************************************************
+2025-10-30 14:27:32 [INFO] [Ansible STDOUT] localhost                  : ok=1    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+2025-10-30 14:27:32 [INFO] [Ansible STDOUT] 
+2025-10-30 14:27:32 [INFO] Running Ansible: ansible-playbook destroy.yml -e vm_name=Cluster_VM02 -e target_server=10.58.8.5 -e target_server_username=root -e libvirt_user=root -e libvirt_group=root
+2025-10-30 14:27:32 [INFO] [Ansible STDOUT] 
+2025-10-30 14:27:32 [INFO] [Ansible STDOUT] PLAY [Start Process - Destroy VM] **********************************************
+2025-10-30 14:27:32 [INFO] [Ansible STDOUT] 
+2025-10-30 14:27:32 [INFO] [Ansible STDOUT] TASK [Destroy VM] **************************************************************
+2025-10-30 14:27:40 [INFO] [Ansible STDOUT] changed: [localhost -> 10.58.8.5]
+2025-10-30 14:27:40 [INFO] [Ansible STDOUT] 
+2025-10-30 14:27:40 [INFO] [Ansible STDOUT] PLAY RECAP *********************************************************************
+2025-10-30 14:27:40 [INFO] [Ansible STDOUT] localhost                  : ok=1    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+2025-10-30 14:27:40 [INFO] [Ansible STDOUT] 
+2025-10-30 14:27:40 [INFO] 127.0.0.1 - - [30/Oct/2025 14:27:40] "[32mPOST /delete_vm HTTP/1.1[0m" 302 -
+2025-10-30 14:27:40 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 14:27:41 [INFO] Authentication (publickey) successful!
+2025-10-30 14:27:43 [INFO] 127.0.0.1 - - [30/Oct/2025 14:27:43] "GET /dashboard HTTP/1.1" 200 -
+2025-10-30 14:52:48 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-10-30 14:52:48 [INFO] [33mPress CTRL+C to quit[0m
+2025-10-30 14:52:54 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 14:52:54 [INFO] Authentication (publickey) successful!
+2025-10-30 14:52:56 [INFO] 127.0.0.1 - - [30/Oct/2025 14:52:56] "GET /dashboard HTTP/1.1" 200 -
+2025-10-30 15:36:32 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-10-30 15:36:32 [INFO] [33mPress CTRL+C to quit[0m
+2025-10-30 15:36:37 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 15:36:38 [INFO] Authentication (publickey) successful!
+2025-10-30 15:36:43 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 15:36:43 [INFO] Authentication (publickey) successful!
+2025-10-30 15:36:45 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 15:36:45 [INFO] Authentication (publickey) successful!
+2025-10-30 15:36:47 [INFO] 127.0.0.1 - - [30/Oct/2025 15:36:47] "GET /dashboard HTTP/1.1" 200 -
+2025-10-30 15:37:33 [INFO] 127.0.0.1 - - [30/Oct/2025 15:37:33] "[32mPOST /delete_hv HTTP/1.1[0m" 302 -
+2025-10-30 15:37:33 [INFO] 127.0.0.1 - - [30/Oct/2025 15:37:33] "GET /dashboard HTTP/1.1" 200 -
+2025-10-30 15:37:36 [INFO] 127.0.0.1 - - [30/Oct/2025 15:37:36] "GET / HTTP/1.1" 200 -
+2025-10-30 15:37:37 [INFO] 127.0.0.1 - - [30/Oct/2025 15:37:37] "GET /dashboard HTTP/1.1" 200 -
+2025-10-30 15:37:37 [INFO] 127.0.0.1 - - [30/Oct/2025 15:37:37] "GET /add_hv HTTP/1.1" 200 -
+2025-10-30 15:37:48 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 15:37:49 [INFO] Authentication (publickey) successful!
+2025-10-30 15:37:49 [INFO] 127.0.0.1 - - [30/Oct/2025 15:37:49] "[32mPOST /add_hv HTTP/1.1[0m" 302 -
+2025-10-30 15:37:49 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 15:37:49 [INFO] Authentication (publickey) successful!
+2025-10-30 15:37:54 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 15:37:54 [INFO] Authentication (publickey) successful!
+2025-10-30 15:37:56 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 15:37:56 [INFO] Authentication (publickey) successful!
+2025-10-30 15:37:58 [INFO] 127.0.0.1 - - [30/Oct/2025 15:37:58] "GET /dashboard HTTP/1.1" 200 -
+2025-10-30 17:48:31 [INFO] 127.0.0.1 - - [30/Oct/2025 17:48:31] "GET /deploy_vm HTTP/1.1" 200 -
+2025-10-30 17:49:36 [INFO] Selected qcow2 image for cluster: /home/qcow2images/NSP_K8S_PLATFORM_RHEL8_23_11.qcow2
+2025-10-30 17:49:36 [INFO] Deployment plan: [{'hv': {'id': 2, 'name': 'HV_1', 'ip': '10.58.8.5', 'username': 'root', 'password': 'Bsnl@123'}, 'hv_id': 2, 'vms': [{'cpu': 8, 'ram': 8192, 'disk': 500, 'ipaddr': '192.168.23.10', 'prefix': '24', 'gateway': '192.168.23.1', 'qcow2_image': '/home/qcow2images/NSP_K8S_PLATFORM_RHEL8_23_11.qcow2', 'vg_name': 'vg1', 'vm_type': 'cluster', 'required_partitions': [{'lv': 'lv_home', 'mount': '/home', 'size_mb': 102400}, {'lv': 'lv_opt', 'mount': '/opt', 'size_mb': 204800}], 'name': 'Cluster_VM01'}, {'cpu': 8, 'ram': 8192, 'disk': 500, 'ipaddr': '192.168.23.10', 'prefix': '24', 'gateway': '192.168.23.1', 'qcow2_image': '/home/qcow2images/NSP_K8S_PLATFORM_RHEL8_23_11.qcow2', 'vg_name': 'vg1', 'vm_type': 'cluster', 'required_partitions': [{'lv': 'lv_home', 'mount': '/home', 'size_mb': 102400}, {'lv': 'lv_opt', 'mount': '/opt', 'size_mb': 204800}], 'name': 'Cluster_VM02'}]}]
+2025-10-30 17:49:36 [INFO] 127.0.0.1 - - [30/Oct/2025 17:49:36] "[32mPOST /deploy_vm HTTP/1.1[0m" 302 -
+2025-10-30 17:49:36 [INFO] Running Ansible: ansible-playbook playbook.yml -e target_server=10.58.8.5 -e target_server_username=root -e @vars/vm_vars_Cluster_VM_2.yml -e qcow2_image_src_dir=/home/qcow2images -e qcow2_image_dst_dir=/home/images -e vm_bridge=br0 -e vm_interface=enp1s0 -e libvirt_user=root -e libvirt_group=root -e user_ssh_pub_key=~/.ssh/id_rsa.pub --forks 5
+2025-10-30 17:49:36 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 17:49:37 [INFO] Authentication (publickey) successful!
+2025-10-30 17:49:37 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 17:49:37 [INFO] [Ansible STDOUT][HV 10.58.8.5] PLAY [Deploy VM from QCOW2] ****************************************************
+2025-10-30 17:49:37 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 17:49:37 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Deploy VMs on this HV] ***************************************
+2025-10-30 17:49:37 [INFO] [Ansible STDOUT][HV 10.58.8.5] included: /home/manish/vm_deployment_automation/ansible-playbook/roles/vm_deploy/tasks/vm_creation.yml for localhost => (item={'cpu': 8, 'ram': 8192, 'disk': 500, 'ipaddr': '192.168.23.10', 'prefix': '24', 'gateway': '192.168.23.1', 'qcow2_image': '/home/qcow2images/NSP_K8S_PLATFORM_RHEL8_23_11.qcow2', 'vg_name': 'vg1', 'vm_type': 'cluster', 'required_partitions': [{'lv': 'lv_home', 'mount': '/home', 'size_mb': 102400}, {'lv': 'lv_opt', 'mount': '/opt', 'size_mb': 204800}], 'name': 'Cluster_VM01'})
+2025-10-30 17:49:37 [INFO] [Ansible STDOUT][HV 10.58.8.5] included: /home/manish/vm_deployment_automation/ansible-playbook/roles/vm_deploy/tasks/vm_creation.yml for localhost => (item={'cpu': 8, 'ram': 8192, 'disk': 500, 'ipaddr': '192.168.23.10', 'prefix': '24', 'gateway': '192.168.23.1', 'qcow2_image': '/home/qcow2images/NSP_K8S_PLATFORM_RHEL8_23_11.qcow2', 'vg_name': 'vg1', 'vm_type': 'cluster', 'required_partitions': [{'lv': 'lv_home', 'mount': '/home', 'size_mb': 102400}, {'lv': 'lv_opt', 'mount': '/opt', 'size_mb': 204800}], 'name': 'Cluster_VM02'})
+2025-10-30 17:49:37 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 17:49:37 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Ensure VM directory exists] **********************************
+2025-10-30 17:49:41 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 17:49:41 [INFO] Authentication (publickey) successful!
+2025-10-30 17:49:44 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 17:49:44 [INFO] Authentication (publickey) successful!
+2025-10-30 17:49:44 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-10-30 17:49:44 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 17:49:44 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Define qcow2_vm_path fact] ***********************************
+2025-10-30 17:49:44 [INFO] [Ansible STDOUT][HV 10.58.8.5] ok: [localhost -> 10.58.8.5]
+2025-10-30 17:49:44 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 17:49:44 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Check if QCOW2 image already exists] *************************
+2025-10-30 17:49:46 [INFO] 127.0.0.1 - - [30/Oct/2025 17:49:46] "GET /dashboard HTTP/1.1" 200 -
+2025-10-30 17:49:51 [INFO] [Ansible STDOUT][HV 10.58.8.5] ok: [localhost -> 10.58.8.5]
+2025-10-30 17:49:51 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 17:49:51 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Copy base QCOW2 image if missing] ****************************
+2025-10-30 17:50:06 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-10-30 17:50:06 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 17:50:06 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Backup qcow2] ************************************************
+2025-10-30 17:50:14 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-10-30 17:50:14 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 17:50:14 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Resize qcow2] ************************************************
+2025-10-30 17:50:21 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-10-30 17:50:21 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 17:50:21 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Expand qcow2 with virt-resize] *******************************
+2025-10-30 17:51:33 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-10-30 17:51:33 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 17:51:33 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Remove backup qcow2] *****************************************
+2025-10-30 17:51:40 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-10-30 17:51:40 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 17:51:40 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Get Partitions List] *****************************************
+2025-10-30 17:51:49 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-10-30 17:51:49 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 17:51:49 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Identify root partition] *************************************
+2025-10-30 17:51:58 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item=/dev/sda2: ext4)
+2025-10-30 17:51:58 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 17:51:58 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Set guestfish_mount] *****************************************
+2025-10-30 17:51:58 [INFO] [Ansible STDOUT][HV 10.58.8.5] ok: [localhost -> 10.58.8.5] => (item=/dev/sda2)
+2025-10-30 17:51:58 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 17:51:58 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Get LVM Name] ************************************************
+2025-10-30 17:52:07 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-10-30 17:52:07 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 17:52:07 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Resize LVMs] *************************************************
+2025-10-30 17:52:17 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'lv': 'lv_home', 'mount': '/home', 'size_mb': 102400})
+2025-10-30 17:52:17 [INFO] [Ansible STDOUT][HV 10.58.8.5] skipping: [localhost] => (item={'lv': 'lv_opt', 'mount': '/opt', 'size_mb': 204800})
+2025-10-30 17:52:17 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 17:52:17 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Create Missing LVM] ******************************************
+2025-10-30 17:52:29 [INFO] [Ansible STDOUT][HV 10.58.8.5] skipping: [localhost] => (item={'lv': 'lv_home', 'mount': '/home', 'size_mb': 102400})
+2025-10-30 17:52:29 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'lv': 'lv_opt', 'mount': '/opt', 'size_mb': 204800})
+2025-10-30 17:52:29 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 17:52:29 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Get the public key for the current user] *********************
+2025-10-30 17:52:30 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost]
+2025-10-30 17:52:30 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 17:52:30 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Set persistent interface name via udev rule] *****************
+2025-10-30 17:52:42 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-10-30 17:52:42 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 17:52:42 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Create temporary files from templates] ***********************
+2025-10-30 17:53:30 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'ifcfg-enp1s0.j2', 'dest': 'ifcfg-enp1s0'})
+2025-10-30 17:53:30 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'network.j2', 'dest': 'network'})
+2025-10-30 17:53:30 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'hostname.j2', 'dest': 'hostname'})
+2025-10-30 17:53:30 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'authorized_keys.j2', 'dest': 'authorized_keys'})
+2025-10-30 17:53:30 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 17:53:30 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Copy files into image] ***************************************
+2025-10-30 17:54:05 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'ifcfg-enp1s0', 'target': '/etc/sysconfig/network-scripts/'})
+2025-10-30 17:54:05 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'network', 'target': '/etc/sysconfig/'})
+2025-10-30 17:54:05 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'hostname', 'target': '/etc/'})
+2025-10-30 17:54:05 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'src': 'authorized_keys', 'target': '/root/.ssh/'})
+2025-10-30 17:54:05 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 17:54:05 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Remove temporary files] **************************************
+2025-10-30 17:54:32 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item=ifcfg-enp1s0)
+2025-10-30 17:54:32 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item=network)
+2025-10-30 17:54:32 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item=hostname)
+2025-10-30 17:54:32 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item=authorized_keys)
+2025-10-30 17:54:32 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 17:54:32 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Set ownership/permissions] ***********************************
+2025-10-30 17:55:25 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'cmd': 'chown 0 0 /etc/sysconfig/network-scripts/ifcfg-enp1s0'})
+2025-10-30 17:55:25 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'cmd': 'chown 0 0 /etc/sysconfig/network'})
+2025-10-30 17:55:25 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'cmd': 'chown 0 0 /etc/hostname'})
+2025-10-30 17:55:25 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'cmd': 'chown 0 0 /root/.ssh'})
+2025-10-30 17:55:25 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'cmd': 'chown 0 0 /root/.ssh/authorized_keys'})
+2025-10-30 17:55:25 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5] => (item={'cmd': 'chmod 0640 /root/.ssh/authorized_keys'})
+2025-10-30 17:55:25 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 17:55:25 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Deploy VM with virt-install] *********************************
+2025-10-30 17:55:33 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-10-30 17:55:33 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 17:55:33 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Enable autostart] ********************************************
+2025-10-30 17:55:40 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-10-30 17:55:40 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 17:55:40 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Ensure VM directory exists] **********************************
+2025-10-30 17:55:47 [INFO] [Ansible STDOUT][HV 10.58.8.5] changed: [localhost -> 10.58.8.5]
+2025-10-30 17:55:47 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 17:55:47 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Define qcow2_vm_path fact] ***********************************
+2025-10-30 17:55:47 [INFO] [Ansible STDOUT][HV 10.58.8.5] ok: [localhost -> 10.58.8.5]
+2025-10-30 17:55:47 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 17:55:47 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Check if QCOW2 image already exists] *************************
+2025-10-30 17:55:54 [INFO] [Ansible STDOUT][HV 10.58.8.5] ok: [localhost -> 10.58.8.5]
+2025-10-30 17:55:54 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 17:55:54 [INFO] [Ansible STDOUT][HV 10.58.8.5] TASK [vm_deploy : Copy base QCOW2 image if missing] ****************************
+2025-10-30 18:51:57 [INFO] [Ansible STDOUT][HV 10.58.8.5] fatal: [localhost -> 10.58.8.5]: FAILED! => {"msg": "Failed to connect to the host via ssh: ssh: connect to host 10.58.8.5 port 22: Connection timed out"}
+2025-10-30 18:51:57 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 18:51:57 [INFO] [Ansible STDOUT][HV 10.58.8.5] PLAY RECAP *********************************************************************
+2025-10-30 18:51:57 [INFO] [Ansible STDOUT][HV 10.58.8.5] localhost                  : ok=27   changed=20   unreachable=0    failed=1    skipped=0    rescued=0    ignored=0
+2025-10-30 18:51:57 [INFO] [Ansible STDOUT][HV 10.58.8.5] 
+2025-10-30 18:51:57 [ERROR] [Ansible STDERR][HV 10.58.8.5] [WARNING]: Unhandled error in Python interpreter discovery for host localhost:
+2025-10-30 18:51:57 [ERROR] [Ansible STDERR][HV 10.58.8.5] Data could not be sent to remote host "10.58.8.5". Make sure this host can be
+2025-10-30 18:51:57 [ERROR] [Ansible STDERR][HV 10.58.8.5] reached over ssh: ssh: connect to host 10.58.8.5 port 22: Connection timed out
+2025-10-30 18:51:57 [ERROR] [Ansible STDERR][HV 10.58.8.5] [WARNING]: sftp transfer mechanism failed on [10.58.8.5]. Use ANSIBLE_DEBUG=1
+2025-10-30 18:51:57 [ERROR] [Ansible STDERR][HV 10.58.8.5] to see detailed information
+2025-10-30 18:51:57 [ERROR] [Ansible STDERR][HV 10.58.8.5] [WARNING]: scp transfer mechanism failed on [10.58.8.5]. Use ANSIBLE_DEBUG=1 to
+2025-10-30 18:51:57 [ERROR] [Ansible STDERR][HV 10.58.8.5] see detailed information
+2025-10-30 18:51:57 [ERROR] Ansible failed for HV 10.58.8.5 with exit code 2
+2025-10-30 18:51:57 [INFO] Updated VM Cluster_VM01 on HV 2 → Failed
+2025-10-30 18:51:57 [INFO] Updated VM Cluster_VM02 on HV 2 → Failed
+2025-10-30 19:32:28 [INFO] Running Ansible: ansible-playbook destroy.yml -e vm_name=Cluster_VM01 -e target_server=10.58.8.5 -e target_server_username=root -e libvirt_user=root -e libvirt_group=root
+2025-10-30 19:32:33 [INFO] [Ansible STDOUT] 
+2025-10-30 19:32:33 [INFO] [Ansible STDOUT] PLAY [Start Process - Destroy VM] **********************************************
+2025-10-30 19:32:33 [INFO] [Ansible STDOUT] 
+2025-10-30 19:32:33 [INFO] [Ansible STDOUT] TASK [Destroy VM] **************************************************************
+2025-10-30 19:32:43 [INFO] [Ansible STDOUT] fatal: [localhost -> 10.58.8.5]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: Connection timed out during banner exchange\r\nConnection to 10.58.8.5 port 22 timed out", "unreachable": true}
+2025-10-30 19:32:43 [INFO] [Ansible STDOUT] 
+2025-10-30 19:32:43 [INFO] [Ansible STDOUT] PLAY RECAP *********************************************************************
+2025-10-30 19:32:43 [INFO] [Ansible STDOUT] localhost                  : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0
+2025-10-30 19:32:43 [INFO] [Ansible STDOUT] 
+2025-10-30 19:32:44 [INFO] Running Ansible: ansible-playbook destroy.yml -e vm_name=Cluster_VM02 -e target_server=10.58.8.5 -e target_server_username=root -e libvirt_user=root -e libvirt_group=root
+2025-10-30 19:32:47 [INFO] [Ansible STDOUT] 
+2025-10-30 19:32:47 [INFO] [Ansible STDOUT] PLAY [Start Process - Destroy VM] **********************************************
+2025-10-30 19:32:47 [INFO] [Ansible STDOUT] 
+2025-10-30 19:32:47 [INFO] [Ansible STDOUT] TASK [Destroy VM] **************************************************************
+2025-10-30 19:32:58 [INFO] [Ansible STDOUT] fatal: [localhost -> 10.58.8.5]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ssh: connect to host 10.58.8.5 port 22: Connection timed out", "unreachable": true}
+2025-10-30 19:32:58 [INFO] [Ansible STDOUT] 
+2025-10-30 19:32:58 [INFO] [Ansible STDOUT] PLAY RECAP *********************************************************************
+2025-10-30 19:32:58 [INFO] [Ansible STDOUT] localhost                  : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0
+2025-10-30 19:32:58 [INFO] [Ansible STDOUT] 
+2025-10-30 19:32:58 [INFO] 127.0.0.1 - - [30/Oct/2025 19:32:58] "[32mPOST /delete_vm HTTP/1.1[0m" 302 -
+2025-10-30 19:32:58 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 19:33:00 [INFO] Authentication (publickey) successful!
+2025-10-30 19:33:06 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 19:33:07 [INFO] Authentication (publickey) successful!
+2025-10-30 19:33:09 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 19:33:10 [INFO] Authentication (publickey) successful!
+2025-10-30 19:33:12 [INFO] 127.0.0.1 - - [30/Oct/2025 19:33:12] "GET /dashboard HTTP/1.1" 200 -
+2025-10-30 19:33:37 [INFO] Running Ansible: ansible-playbook destroy.yml -e vm_name=Cluster_VM01 -e target_server=10.58.8.5 -e target_server_username=root -e libvirt_user=root -e libvirt_group=root
+2025-10-30 19:33:40 [INFO] [Ansible STDOUT] 
+2025-10-30 19:33:40 [INFO] [Ansible STDOUT] PLAY [Start Process - Destroy VM] **********************************************
+2025-10-30 19:33:40 [INFO] [Ansible STDOUT] 
+2025-10-30 19:33:40 [INFO] [Ansible STDOUT] TASK [Destroy VM] **************************************************************
+2025-10-30 19:33:49 [INFO] [Ansible STDOUT] changed: [localhost -> 10.58.8.5]
+2025-10-30 19:33:49 [INFO] [Ansible STDOUT] 
+2025-10-30 19:33:49 [INFO] [Ansible STDOUT] PLAY RECAP *********************************************************************
+2025-10-30 19:33:49 [INFO] [Ansible STDOUT] localhost                  : ok=1    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+2025-10-30 19:33:49 [INFO] [Ansible STDOUT] 
+2025-10-30 19:33:50 [INFO] Running Ansible: ansible-playbook destroy.yml -e vm_name=Cluster_VM02 -e target_server=10.58.8.5 -e target_server_username=root -e libvirt_user=root -e libvirt_group=root
+2025-10-30 19:33:51 [INFO] [Ansible STDOUT] 
+2025-10-30 19:33:51 [INFO] [Ansible STDOUT] PLAY [Start Process - Destroy VM] **********************************************
+2025-10-30 19:33:51 [INFO] [Ansible STDOUT] 
+2025-10-30 19:33:51 [INFO] [Ansible STDOUT] TASK [Destroy VM] **************************************************************
+2025-10-30 19:33:59 [INFO] [Ansible STDOUT] changed: [localhost -> 10.58.8.5]
+2025-10-30 19:33:59 [INFO] [Ansible STDOUT] 
+2025-10-30 19:33:59 [INFO] [Ansible STDOUT] PLAY RECAP *********************************************************************
+2025-10-30 19:33:59 [INFO] [Ansible STDOUT] localhost                  : ok=1    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+2025-10-30 19:33:59 [INFO] [Ansible STDOUT] 
+2025-10-30 19:33:59 [INFO] 127.0.0.1 - - [30/Oct/2025 19:33:59] "[32mPOST /delete_vm HTTP/1.1[0m" 302 -
+2025-10-30 19:33:59 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 19:34:00 [INFO] Authentication (publickey) successful!
+2025-10-30 19:34:04 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 19:34:05 [INFO] Authentication (publickey) successful!
+2025-10-30 19:34:06 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 19:34:07 [INFO] Authentication (publickey) successful!
+2025-10-30 19:34:09 [INFO] 127.0.0.1 - - [30/Oct/2025 19:34:09] "GET /dashboard HTTP/1.1" 200 -
+2025-10-30 19:41:34 [INFO] 127.0.0.1 - - [30/Oct/2025 19:41:34] "[32mPOST /delete_hv HTTP/1.1[0m" 302 -
+2025-10-30 19:41:34 [INFO] 127.0.0.1 - - [30/Oct/2025 19:41:34] "GET /dashboard HTTP/1.1" 200 -
+2025-10-30 19:41:41 [INFO] 127.0.0.1 - - [30/Oct/2025 19:41:41] "GET /add_hv HTTP/1.1" 200 -
+2025-10-30 19:41:52 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 19:41:53 [INFO] Authentication (publickey) successful!
+2025-10-30 19:41:53 [INFO] 127.0.0.1 - - [30/Oct/2025 19:41:53] "[32mPOST /add_hv HTTP/1.1[0m" 302 -
+2025-10-30 19:41:53 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 19:41:54 [INFO] Authentication (publickey) successful!
+2025-10-30 19:41:58 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 19:41:59 [INFO] Authentication (publickey) successful!
+2025-10-30 19:42:00 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 19:42:01 [INFO] Authentication (publickey) successful!
+2025-10-30 19:42:03 [INFO] 127.0.0.1 - - [30/Oct/2025 19:42:03] "GET /dashboard HTTP/1.1" 200 -
+2025-10-30 19:47:12 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 19:47:12 [INFO] Authentication (publickey) successful!
+2025-10-30 19:47:17 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 19:47:17 [INFO] Authentication (publickey) successful!
+2025-10-30 19:47:19 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 19:47:19 [INFO] Authentication (publickey) successful!
+2025-10-30 19:47:21 [INFO] 127.0.0.1 - - [30/Oct/2025 19:47:21] "GET /dashboard HTTP/1.1" 200 -
+2025-10-30 19:48:08 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-10-30 19:48:08 [INFO] [33mPress CTRL+C to quit[0m
+2025-10-30 19:48:14 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 19:48:14 [INFO] Authentication (publickey) successful!
+2025-10-30 19:48:19 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 19:48:19 [INFO] Authentication (publickey) successful!
+2025-10-30 19:48:21 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 19:48:21 [INFO] Authentication (publickey) successful!
+2025-10-30 19:48:23 [INFO] 127.0.0.1 - - [30/Oct/2025 19:48:23] "GET /dashboard HTTP/1.1" 200 -
+2025-10-30 19:49:18 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-10-30 19:49:18 [INFO] [33mPress CTRL+C to quit[0m
+2025-10-30 19:49:21 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 19:49:22 [INFO] Authentication (publickey) successful!
+2025-10-30 19:49:26 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 19:49:26 [INFO] Authentication (publickey) successful!
+2025-10-30 19:49:28 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 19:49:28 [INFO] Authentication (publickey) successful!
+2025-10-30 19:49:30 [INFO] 127.0.0.1 - - [30/Oct/2025 19:49:30] "GET /dashboard HTTP/1.1" 200 -
+2025-10-30 19:49:41 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-10-30 19:49:41 [INFO] [33mPress CTRL+C to quit[0m
+2025-10-30 19:49:43 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 19:49:43 [INFO] Authentication (publickey) successful!
+2025-10-30 19:49:48 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 19:49:48 [INFO] Authentication (publickey) successful!
+2025-10-30 19:49:50 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 19:49:51 [INFO] Authentication (publickey) successful!
+2025-10-30 19:49:53 [INFO] 127.0.0.1 - - [30/Oct/2025 19:49:53] "GET /dashboard HTTP/1.1" 200 -
+2025-10-30 19:53:47 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-10-30 19:53:47 [INFO] [33mPress CTRL+C to quit[0m
+2025-10-30 19:53:50 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 19:53:50 [INFO] Authentication (publickey) successful!
+2025-10-30 19:53:55 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 19:53:55 [INFO] Authentication (publickey) successful!
+2025-10-30 19:53:57 [INFO] Connected (version 2.0, client OpenSSH_8.0)
+2025-10-30 19:53:57 [INFO] Authentication (publickey) successful!
+2025-10-30 19:53:59 [INFO] 127.0.0.1 - - [30/Oct/2025 19:53:59] "GET /dashboard HTTP/1.1" 200 -
+2025-10-30 19:54:18 [INFO] 127.0.0.1 - - [30/Oct/2025 19:54:18] "GET /add_hv HTTP/1.1" 200 -

@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container" style="max-width: 300px; margin: auto;">
+    <h3 style="margin-bottom: 20px;">Deploy a VM</h3>
+    <form method="POST" style="display: flex; flex-direction: column; gap: 12px;">
+        
+        <input type="text" name="name" placeholder="VM Name" required>
+        <input type="text" name="ip_addr" placeholder="IP Address" required>
+        <input type="text" name="subnetprefix" placeholder="Subnet Prefix" required>
+        <input type="text" name="vm_gateway" placeholder="Gateway" required>
+
+        <select name="hv_id">
+            <option value="all" selected>-- All Hypervisors --</option>
+            {% for hv in hypervisors %}
+                <option value="{{ hv.id }}">{{ hv.ip }}</option>
+            {% endfor %}
+        </select>
+
+        <select id="vm_type" name="vm_type" required onchange="toggleVmCount()">
+            <label for="vm_type">Select VM Type:</label>
+            <option value="">-- Select VM Type --</option>
+            <option value="deployer">Deployer</option>
+            <option value="nfm-p">NFM-P</option>
+            <option value="cluster">NSP-CLUSTER</option>
+            <option value="other">Other</option>
+        </select>
+        
+        <div id="vm_count_field" style="display:none; margin-top:10px;">
+            <label for="vm_count">Enter VM Count:</label>
+            <input type="number" id="vm_count" name="vm_count" min="1">
+        </div>
+
+        <script>
+        function toggleVmCount() {
+            const select = document.getElementById("vm_type");
+            const vmCountField = document.getElementById("vm_count_field");
+        
+            if (select.value && select.value !== "nfm-p" && select.value !== "deployer") {
+                vmCountField.style.display = "block";
+            } else {
+                vmCountField.style.display = "none";
+            }
+        }
+        </script>
+
+        <input type="number" name="cpu" placeholder="CPU Cores">
+        <input type="number" name="memory" placeholder="Memory (GB)" >
+        <input type="number" name="disksize" placeholder="Image Size (GB)">
+		
+        <div style="margin-top:20px;">
+            <h4>Required Partitions</h4>
+            <table id="partitions_table" style="width:100%; border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <th>LV Name</th>
+                        <th>Mount Point</th>
+                        <th>Size (GB)</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="partitions_body">
+                    <tr>
+                        <td><input type="text" name="lv[]" placeholder="Enter LVM Name" required></td>
+                        <td><input type="text" name="mount[]" placeholder="Enter Mount Point" required></td>
+                        <td><input type="number" name="size_g[]" placeholder="Enter Disk Size" required></td>
+                        <td><button type="button" onclick="removeRow(this)">X</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <button type="button" onclick="addRow()" style="margin-top:10px;">+ Add Partition</button>
+        </div>
+        
+        <script>
+        function addRow() {
+            const tbody = document.getElementById("partitions_body");
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td><input type="text" name="lv[]" placeholder="Enter LVM Name" required></td>
+                <td><input type="text" name="mount[]" placeholder="Enter Mount Point" required></td>
+                <td><input type="number" name="size_g[]" placeholder="Enter Disk Size" required></td>
+                <td><button type="button" onclick="removeRow(this)">X</button></td>
+            `;
+            tbody.appendChild(row);
+        }
+        function removeRow(btn) {
+            btn.closest("tr").remove();
+        }
+        </script>
+
+        <script>
+        document.querySelector("form").addEventListener("submit", function(event) {
+            const imageSize = parseInt(document.querySelector("input[name='disksize']").value) || 0;
+            const sizeInputs = document.querySelectorAll("input[name='size_g[]']");
+            let totalLvmSize = 0;
+        
+            sizeInputs.forEach(input => {
+                totalLvmSize += parseInt(input.value) || 0;
+            });
+        
+            if (totalLvmSize > imageSize) {
+                alert("Total LVM size (" + totalLvmSize + " GB) cannot exceed Image size (" + imageSize + " GB).");
+                event.preventDefault(); 
+            }
+        });
+        </script>
+        
+
+        <button type="submit" style="padding: 10px; background: #007bff; color: white; border: none; border-radius: 6px; cursor: pointer;">
+            Deploy VM
+        </button>
+    </form>
+</div>
+{% endblock %}

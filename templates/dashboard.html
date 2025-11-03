@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% block content %}
+<h4>Dashboard</h4>
+
+<h5>Hypervisors</h5>
+
+<form method="POST" action="{{ url_for('delete_hv') }}"
+      onsubmit="return confirm('Are you sure you want to delete selected Hypervisors?');">
+  <table class="table table-bordered">
+    <tr>
+      <th><input type="checkbox" id="select-all-hv"></th>
+      <th>Hypervisor</th>
+      <th>Total CPU</th>
+      <th>Used CPU</th>
+      <th>Remaining CPU</th>
+      <th>Total Mem (GB)</th>
+      <th>Used Mem (GB)</th>
+      <th>Remaining Mem (GB)</th>
+      <th>Total Disk (GB)</th>
+      <th>Used Disk (GB)</th>
+      <th>Remaining Disk (GB)</th>
+    </tr>
+    {% for hv, res in hv_resources.items() %}
+    <tr>
+      <td>
+        <input type="checkbox" name="selected_hvs" value="{{ res.id }}::{{ hv }}">
+      </td>
+      <td>{{ hv }}</td>
+      <td>{{ res.total_cpu }}</td>
+      <td>{{ res.used_cpu }}</td>
+      <td>{{ res.remaining_cpu }}</td>
+      <td>{{ (res.total_mem // 1024) }}</td>
+      <td>{{ (res.used_mem // 1024) }}</td>
+      <td>{{ (res.remaining_mem // 1024) }}</td>
+      <td>{{ (res.total_disk // 1024) }}</td>
+      <td>{{ (res.used_disk // 1024) }}</td>
+      <td>{{ (res.remaining_disk // 1024) }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  <button type="submit" class="button button2">Delete Selected HVs</button>
+</form>
+
+<script>
+const selectAllHv = document.getElementById('select-all-hv');
+if (selectAllHv) {
+  selectAllHv.addEventListener('click', function() {
+    let checkboxes = document.querySelectorAll('input[name="selected_hvs"]');
+    checkboxes.forEach(cb => cb.checked = this.checked);
+  });
+}
+</script>
+
+
+<h5>VMs</h5>
+<form method="POST" action="{{ url_for('delete_vm') }}"
+      onsubmit="return confirm('Are you sure you want to delete selected VMs?');">
+  <table class="table table-bordered">
+    <tr>
+      <th><input type="checkbox" id="select-all"></th>
+      <th>VM Name</th>
+      <th>CPU</th>
+      <th>Memory (GB)</th>
+      <th>Disk Size (GB)</th>
+      <th>Status</th>
+      <th>IP Address</th>
+    </tr>
+    {% for vm in hv_vm_resources %}
+    <tr>
+      <td>
+        <input type="checkbox" name="selected_vms"
+               value="{{ vm.name }}::{{ vm.hv_ip }}">
+      </td>
+      <td>{{ vm.name }}</td>
+      <td>{{ vm.cpu }}</td>
+      <td>{{ vm.memory }}</td>
+      <td>{{ vm.disk }}</td>
+      <td>{{ vm.status }}</td>
+      <td>{{ vm.ip_addr }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  <button type="submit" class="button button2">Delete Selected VMs</button>
+</form>
+
+<script>
+const selectAllVm = document.getElementById('select-all');
+if (selectAllVm) {
+  selectAllVm.addEventListener('click', function() {
+    let checkboxes = document.querySelectorAll('input[name="selected_vms"]');
+    checkboxes.forEach(cb => cb.checked = this.checked);
+  });
+}
+</script>
+
+
+<h5>Remaining Resources</h5>
+<ul>
+    <li>CPU Cores: {{ remaining.cpu }}</li>
+    <li>Memory GB: {{ (remaining.memory // 1024) }}</li>
+    <li>Disk GB: {{ (remaining.disk // 1024) }}</li>
+</ul>
+
+{% endblock %}

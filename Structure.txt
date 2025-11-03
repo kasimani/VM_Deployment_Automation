@@ -1,0 +1,9 @@
+hypervisor-vm-app/
+│── app.py
+│── templates/
+│   ├── base.html
+│   ├── index.html
+│   ├── add_hv.html
+│   ├── deploy_vm.html
+│   └── dashboard.html
+│── hv.db   (auto-created SQLite DB)

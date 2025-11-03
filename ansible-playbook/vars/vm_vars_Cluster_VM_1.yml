@@ -1,0 +1,29 @@
+vms:
+- cpu: 8
+  ram: 8192
+  disk: 500
+  ipaddr: 192.168.23.10
+  prefix: '24'
+  gateway: 192.168.23.1
+  qcow2_image: /home/qcow2images/NSP_K8S_PLATFORM_RHEL8_23_11.qcow2
+  vg_name: vg1
+  vm_type: cluster
+  required_partitions: &id001
+  - lv: lv_home
+    mount: /home
+    size_mb: 102400
+  - lv: lv_opt
+    mount: /opt
+    size_mb: 204800
+  name: Cluster_VM01
+- cpu: 8
+  ram: 8192
+  disk: 500
+  ipaddr: 192.168.23.10
+  prefix: '24'
+  gateway: 192.168.23.1
+  qcow2_image: /home/qcow2images/NSP_K8S_PLATFORM_RHEL8_23_11.qcow2
+  vg_name: vg1
+  vm_type: cluster
+  required_partitions: *id001
+  name: Cluster_VM02

@@ -1,0 +1,19 @@
+- name: Start Process - Destroy VM
+  hosts: localhost
+  gather_facts: no
+  vars:
+    target_server: "{{ target_server }}"
+    target_server_username: "{{ target_server_username }}"
+    vm_name: "{{ vm_name }}"
+
+  tasks:
+  - name: Destroy VM
+    shell: |
+      virsh autostart --disable {{ vm_name }} || true
+      virsh destroy {{ vm_name }} || true
+      virsh undefine {{ vm_name }} --remove-all-storage || true
+      rm -rf /home/images/{{ vm_name }}
+    #ignore_errors: yes
+    delegate_to: "{{ target_server }}"
+    remote_user: "{{ target_server_username }}"
+

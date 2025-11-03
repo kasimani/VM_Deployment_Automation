@@ -1,0 +1,52 @@
+---
+- name: Deploy RHEL 8 Minimal via HP iLO
+  hosts: all
+  gather_facts: false
+  vars:
+    iso_url: "http://192.168.1.10/isos/rhel-8.8-minimal.iso"
+  tasks:
+
+    - name: Power off the server
+      community.general.hponcfg:
+        ilo_hostname: "{{ ilo_ip }}"
+        ilo_username: "{{ ilo_user }}"
+        ilo_password: "{{ ilo_password }}"
+        action: power
+        state: off
+
+    - name: Mount RHEL ISO via Virtual Media
+      community.general.hponcfg:
+        ilo_hostname: "{{ ilo_ip }}"
+        ilo_username: "{{ ilo_user }}"
+        ilo_password: "{{ ilo_password }}"
+        action: cdrom
+        cdrom_url: "{{ iso_url }}"
+        connect: true
+
+    - name: Set server to boot from CD
+      community.general.hponcfg:
+        ilo_hostname: "{{ ilo_ip }}"
+        ilo_username: "{{ ilo_user }}"
+        ilo_password: "{{ ilo_password }}"
+        action: boot
+        boot_device: CD
+
+    - name: Power on the server
+      community.general.hponcfg:
+        ilo_hostname: "{{ ilo_ip }}"
+        ilo_username: "{{ ilo_user }}"
+        ilo_password: "{{ ilo_password }}"
+        action: power
+        state: on
+
+    - name: Wait for 10 minutes for installation to start
+      ansible.builtin.pause:
+        minutes: 10
+
+    - name: Change boot order to HDD after installation
+      community.general.hponcfg:
+        ilo_hostname: "{{ ilo_ip }}"
+        ilo_username: "{{ ilo_user }}"
+        ilo_password: "{{ ilo_password }}"
+        action: boot
+        boot_device: HDD

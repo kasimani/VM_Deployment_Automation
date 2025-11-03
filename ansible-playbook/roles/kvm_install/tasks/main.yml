@@ -1,0 +1,119 @@
+---
+- name: Prepare images and start VMs 
+  hosts: localhost
+  gather_facts: false
+
+- name: Create bond0
+  community.general.nmcli:
+    conn_name: bond0
+    ifname: bond0
+    type: bond
+    mode: active-backup
+    state: present
+
+- name: Add slave interfaces to bond0
+  community.general.nmcli:
+    conn_name: "{{ item }}"
+    ifname: "{{ item }}"
+    type: ethernet
+    master: bond0
+    state: present
+  loop:
+    - enp1s0
+    - enp2s0
+
+- name: Create bridge br0 on bond0
+  community.general.nmcli:
+    conn_name: br0
+    ifname: br0
+    type: bridge
+    state: present
+
+- name: Add bond0 as port of br0
+  community.general.nmcli:
+    conn_name: bond0
+    master: br0
+    state: present
+
+- name: Assign static IP to br0
+  community.general.nmcli:
+    conn_name: br0
+    type: bridge
+    ip4: 192.168.1.100/24
+    gw4: 192.168.1.1
+    state: present
+
+- name: Bring up br0
+  community.general.nmcli:
+    conn_name: br0
+    state: up
+
+- name: Ensure mount directories exist
+  file:
+    path: "/home/ISO/{{ item }}"
+    state: directory
+  loop:
+    - BaseOS
+    - AppStream
+
+- name: Bind mount BaseOS and AppStream repos
+  mount:
+    path: "/home/ISO/{{ item }}"
+    src: "/home/softwares/rhel-8.x-x86_64-dvd.iso"
+    fstype: none
+    opts: bind
+    state: mounted
+  loop:
+    - BaseOS
+    - AppStream
+
+- name: Configure local BaseOS repo
+  yum_repository:
+    file: /etc/yum.repos.d/local.repo
+    name: rhel8_BaseOS
+    description: RHEL 8 BaseOS
+    baseurl: "file:///home/ISO/BaseOS/"
+    enabled: yes
+    gpgcheck: no
+
+- name: Configure local AppStream repo
+  yum_repository:
+    file: /etc/yum.repos.d/local.repo
+    name: rhel8_AppStream
+    description: RHEL 8 AppStream
+    baseurl: "file:///home/ISO/AppStream/"
+    enabled: yes
+    gpgcheck: no
+
+- block:
+    - name: Check if required OS packages are installed
+      command: rpm -q qemu-kvm libvirt bridge-utils libguestfs-tools python3-libvirt
+      register: rpm_check
+      ignore_errors: true
+
+    - name: Print rpm_check when verbosity >= 1
+      debug:
+        var: rpm_check
+      verbosity: 1
+
+    - name: If RedHat, install packages for RedHat OS family distros
+      yum:
+        name:
+          - qemu-kvm
+          - libvirt
+          - bridge-utils
+          - libguestfs-tools
+          - python3-libvirt
+        state: present
+      when:
+        - ansible_os_family == "RedHat"
+        - rpm_check.rc != 0
+
+    - name: Make sure libvirtd has started
+      service:
+        name: libvirtd
+        enabled: yes
+        state: started
+
+  delegate_to: "{{ target_server }}"
+  remote_user: "{{ target_server_username }}"

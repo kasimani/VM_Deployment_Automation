@@ -1,0 +1,166 @@
+- name: VM Preparation & Deployment
+  block:
+
+    - name: Ensure VM directory exists
+      file:
+        path: "{{ qcow2_image_dst_dir }}/{{ vm.name }}"
+        state: directory
+        mode: '0755'
+        recurse: yes
+
+    - name: Define qcow2_vm_path fact
+      set_fact:
+        qcow2_vm_path: "{{ qcow2_image_dst_dir }}/{{ vm.name }}/{{ vm.name }}.qcow2"
+
+    - name: Check if QCOW2 image already exists
+      stat:
+        path: "{{ qcow2_vm_path }}"
+      register: qcow2_image_path
+      
+
+    - name: Copy base QCOW2 image if missing
+      copy:
+        src: "{{ vm.qcow2_image }}"
+        dest: "{{ qcow2_vm_path }}"
+        remote_src: yes
+      when: not qcow2_image_path.stat.exists
+
+    - name: Resize qcow2 if newly copied
+      block:
+        - name: Backup qcow2
+          command: cp {{ qcow2_vm_path }} {{ qcow2_vm_path }}-ORI
+
+        - name: Resize qcow2
+          command: qemu-img resize {{ qcow2_vm_path }} {{ vm.disk }}G
+
+        - name: Expand qcow2 with virt-resize
+          command: virt-resize --expand /dev/sda3 {{ qcow2_vm_path }}-ORI {{ qcow2_vm_path }}
+
+        - name: Remove backup qcow2
+          file:
+            path: "{{ qcow2_vm_path }}-ORI"
+            state: absent
+      when: not qcow2_image_path.stat.exists
+
+    - name: Get Partitions List
+      shell: "guestfish -r -a {{ qcow2_vm_path }} run : list-filesystems | grep 'sda2'"
+      register: partitions_list
+
+    - name: Identify root partition
+      shell: "guestfish -r -a {{ qcow2_vm_path }} run : mount {{ item.split(':')[0] }} / : ls /"
+      register: partitions
+      loop: "{{ partitions_list.stdout_lines }}"
+
+    - name: Set guestfish_mount
+      set_fact:
+        guestfish_mount: "{{ item.item.split(':')[0] }}"
+      loop: "{{ partitions.results }}"
+      when: "'etc' in item.stdout or 'root' in item.stdout"
+      loop_control:
+        label: "{{ item.item.split(':')[0] }}"
+
+    - name: Get LVM Name
+      shell: "guestfish -r -a {{ qcow2_vm_path }} run : list-filesystems | grep -Ev '(unknown|swap|/dev/sd)' | cut -d'/' -f4 | cut -d':' -f1"
+      register: lvm_list
+
+    - name: Resize LVMs
+      shell: |
+        guestfish -a {{ qcow2_vm_path }} <<'EOF'
+        run
+        lvresize /dev/{{ vm.vg_name }}/{{ subitem.lv }} {{ subitem.size_mb }}
+        mount /dev/{{ vm.vg_name }}/{{ subitem.lv }} /
+        xfs-growfs /
+        EOF
+      loop: "{{ vm.required_partitions | default([]) }}"
+      loop_control:
+        loop_var: subitem
+      when: subitem.lv in lvm_list.stdout_lines
+      ignore_errors: yes
+
+    - name: Create Missing LVM
+      shell: |
+        guestfish --rw -a {{ qcow2_vm_path }} -i <<'EOF'
+        lvcreate {{ subitem.lv }} {{ vm.vg_name }} {{ subitem.size_mb }}
+        mkfs ext4 /dev/{{ vm.vg_name }}/{{ subitem.lv }}
+        write-append /etc/fstab "/dev/mapper/{{ vm.vg_name }}-{{ subitem.lv }}  {{ subitem.mount }}   ext4     defaults        0 0"
+        EOF
+      loop: "{{ vm.required_partitions | default([]) }}"
+      loop_control:
+        loop_var: subitem
+      when: subitem.lv not in lvm_list.stdout_lines
+
+    - name: Get the public key for the current user
+      local_action: command cat "{{ user_ssh_pub_key }}"
+      register: current_user_ssh_key
+
+    - name: Set persistent interface name via udev rule
+      shell: |
+        guestfish --rw -a {{ qcow2_vm_path }} -i <<EOF
+        mkdir-p /etc/udev/rules.d
+        write /etc/udev/rules.d/76-custom-net.rules 'SUBSYSTEM=="net", ACTION=="add", NAME="enp1s0"'
+        EOF
+      tags: persistent
+
+    - name: Create temporary files from templates
+      template:
+        src: "{{ subitem.src }}"
+        dest: "{{ qcow2_image_dst_dir }}/{{ vm.name }}/{{ subitem.dest }}"
+      loop:
+        - { src: "ifcfg-{{ vm_interface }}.j2", dest: "ifcfg-{{ vm_interface }}" }
+        - { src: "network.j2", dest: "network" }
+        - { src: "hostname.j2", dest: "hostname" }
+        - { src: "authorized_keys.j2", dest: "authorized_keys" }
+      loop_control:
+        loop_var: subitem
+
+    - name: Copy files into image
+      command: >
+        guestfish --rw -a {{ qcow2_vm_path }} -m {{ guestfish_mount }}
+        copy-in {{ qcow2_image_dst_dir }}/{{ vm.name }}/{{ subitem.src }}
+        {{ subitem.target }}
+      loop:
+        - { src: "ifcfg-{{ vm_interface }}", target: "/etc/sysconfig/network-scripts/" }
+        - { src: "network", target: "/etc/sysconfig/" }
+        - { src: "hostname", target: "/etc/" }
+        - { src: "authorized_keys", target: "/root/.ssh/" }
+      loop_control:
+        loop_var: subitem
+
+    - name: Remove temporary files
+      file:
+        path: "{{ qcow2_image_dst_dir }}/{{ vm.name }}/{{ subitem }}"
+        state: absent
+      loop:
+        - "ifcfg-{{ vm_interface }}"
+        - "network"
+        - "hostname"
+        - "authorized_keys"
+      loop_control:
+        loop_var: subitem
+
+    - name: Set ownership/permissions
+      command: >
+        guestfish --rw -a {{ qcow2_vm_path }} -m {{ guestfish_mount }} {{ subitem.cmd }}
+      loop:
+        - { cmd: "chown 0 0 /etc/sysconfig/network-scripts/ifcfg-{{ vm_interface }}" }
+        - { cmd: "chown 0 0 /etc/sysconfig/network" }
+        - { cmd: "chown 0 0 /etc/hostname" }
+        - { cmd: "chown 0 0 /root/.ssh" }
+        - { cmd: "chown 0 0 /root/.ssh/authorized_keys" }
+        - { cmd: "chmod 0640 /root/.ssh/authorized_keys" }
+      loop_control:
+        loop_var: subitem
+
+    - name: Deploy VM with virt-install
+      command: >
+        virt-install --connect qemu:///system -n {{ vm.name }}
+        -r {{ vm.ram }} --os-type=linux --os-variant=rhel7
+        --disk path={{ qcow2_vm_path }},device=disk,bus=virtio,format=qcow2
+        --vcpus={{ vm.cpu }} --graphics vnc,listen=0.0.0.0
+        -w bridge={{ vm_bridge }} --noautoconsole --import
+
+    - name: Enable autostart
+      command: virsh autostart {{ vm.name }}
+
+  delegate_to: "{{ target_server }}"
+  remote_user: "{{ target_server_username }}"
