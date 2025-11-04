@@ -1,0 +1,3 @@
+User should have option to select HVs to install the instances for any Cluster setup
+Provision to resize disk partition on a Virtual machine
+Provision to install VSR instance
