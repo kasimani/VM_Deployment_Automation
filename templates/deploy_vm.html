@@ -32,27 +32,22 @@
         </div>
 
         <script>
-          // Simple “Select All” logic
         const hvAll = document.getElementById('hv_all');
         const hvItems = document.querySelectorAll('.hv_item');
 
-        // default: all selected, but users must be able to click others
         hvItems.forEach(cb => cb.disabled = false);
 
         hvAll.addEventListener('change', () => {
             if (hvAll.checked) {
-                // if ALL checked → uncheck all individuals
                 hvItems.forEach(cb => { cb.checked = false; });
             }
         });
 
-        // if any individual HV is selected → uncheck ALL
         hvItems.forEach(cb => {
             cb.addEventListener('change', () => {
                 if (cb.checked) {
                     hvAll.checked = false;
                 } else {
-                    // if user deselects individuals and none selected → fallback to ALL
                     const anyChecked = [...hvItems].some(i => i.checked);
                     if (!anyChecked) hvAll.checked = true;
                 }
@@ -62,7 +57,6 @@
 
 <!--        <label for="vm_type">Select VM Type:</label>-->
             <select id="vm_type" name="vm_type" required onchange="toggleVmCount()">
-<!--            <label for="vm_type">Select VM Type:</label>-->
             <option value="">-- Select VM Type --</option>
             <option value="deployer">Deployer</option>
             <option value="nfm-p">NFM-P</option>

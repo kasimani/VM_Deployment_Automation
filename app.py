@@ -3,12 +3,8 @@ import sqlite3
 import os
 import paramiko
 import logging
-import subprocess
 from deploy_vm_handler2 import deploy_vm_route
 from delete_vm import delete_vm_handler
-import pandas as pd
-#from werkzeug.utils import secure_filename
-
 
 LOG_FILE = "vm_deploy.log"
 logging.basicConfig(
@@ -156,7 +152,6 @@ def delete_vm():
 
 
 def get_hv_resources(ip, username, password):
-    """Fetch hypervisor resources via SSH + virsh."""
     try:
         ssh = paramiko.SSHClient()
         ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
