@@ -9,7 +9,8 @@
         <input type="text" name="subnetprefix" placeholder="Subnet Prefix" required>
         <input type="text" name="vm_gateway" placeholder="Gateway" required>
 
-<!--        <select name="hv_id">
+<!-- Commenting the below dropdown option for Checkbox option
+		<select name="hv_id">
             <option value="all" selected>&#45;&#45; All Hypervisors &#45;&#45;</option>
             {% for hv in hypervisors %}
                 <option value="{{ hv.id }}">{{ hv.ip }}</option>
